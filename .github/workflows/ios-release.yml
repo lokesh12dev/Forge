@@ -1,0 +1,152 @@
+name: iOS Release
+
+# Builds a real, installable (unsigned) Forge iPhone app on a
+# GitHub-hosted macOS runner that ships with a full Xcode toolchain, then
+# publishes it as a downloadable artifact and GitHub Release asset.
+#
+# Local Xcode is NOT required to run this; the build happens on Apple's
+# hardware through GitHub Actions. Trigger it from:
+#   GitHub -> Actions -> "iOS Release" -> Run workflow
+#
+# The produced Forge.ipa is UNSIGNED (Apple signing requires an Apple
+# ID session that no CI service can silently provide). Installation on an
+# iPhone is done by signing it with the user's own free Apple ID using
+# AltStore/AltServer or Sideloadly — see docs/ios/INSTALL.md that ships with
+# the release. This mirrors how the user actually installs free-provisioned
+# builds; it is never presented as completed Apple signing.
+#
+# If the repository owner later adds paid Apple Developer signing secrets,
+# extend this workflow to run `xcodebuild -exportArchive` with a managed
+# provisioning profile to produce a fully signed distribution IPA.
+
+on:
+  push:
+    tags:
+      - 'ios-v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build & verify iPhone app
+    runs-on: macos-15
+    timeout-minutes: 120
+    env:
+      FLUTTER_VERSION: '3.47.9'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Flutter ${{ env.FLUTTER_VERSION }}
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Show toolchain versions
+        run: |
+          flutter --version
+          xcodebuild -version
+          swift --version
+
+      - name: Enable Swift Package Manager for iOS plugins
+        run: flutter config --enable-swift-package-manager
+
+      - name: Resolve dependencies
+        run: flutter pub get
+
+      - name: Static analysis
+        run: flutter analyze
+
+      - name: Unit & widget tests
+        run: flutter test
+
+      - name: Build iOS release (device, arm64)
+        run: |
+          flutter build ios --release --no-codesign --no-tree-shake-icons
+          ls -la build/ios/iphoneos/Runner.app
+
+      - name: Package .ipa
+        run: |
+          mkdir -p Payload
+          cp -R build/ios/iphoneos/Runner.app Payload/Runner.app
+          zip -qry Forge.ipa Payload
+          rm -rf Payload
+          ls -la Forge.ipa
+
+      - name: Verify bundle structure and metadata
+        run: |
+          mkdir -p verify
+          INNER=$(unzip -Z1 Forge.ipa | grep -E '^Payload/[^/]+/$' | head -1 | tr -d /)
+          echo "APP_DIR=$INNER" >> "$GITHUB_ENV"
+          unzip -q Forge.ipa -d verify/
+
+          B=verify/Payload/Runner.app
+          lipo -info "$B/Runner" | tee verify/arch.txt
+          test "$(lipo -info "$B/Runner" | grep -c arm64)" = 1 || { echo 'Not an arm64 device binary'; exit 1; }
+          test -d "$B/Frameworks/Flutter.framework" || { echo 'Flutter framework missing'; find "$B" -maxdepth 3 -name "*.framework" | head; exit 1; }
+          echo '--- Flutter.framework contents ---'
+          find "$B/Frameworks/Flutter.framework" -maxdepth 2 -type f | head -5
+          test -f "$B/Info.plist" || { echo 'Info.plist missing'; exit 1; }
+          # In release builds the assets bundle lives inside App.framework or
+          # Frameworks/flutter_assets depending on the Flutter version.
+          if [ -d "$B/Frameworks/flutter_assets" ]; then ASSETS_PATH='Frameworks/flutter_assets';
+          elif [ -d "$B/Frameworks/App.framework/flutter_assets" ]; then ASSETS_PATH='App.framework/flutter_assets';
+          else echo 'Flutter assets missing'; exit 1; fi
+          echo "ASSETS_PATH=$ASSETS_PATH" >> "$GITHUB_ENV"
+
+          {
+            echo '## Forge.ipa build verification'
+            echo
+            echo '| Property | Value |'
+            echo '|---|---|'
+            echo "| Bundle ID | $(plutil -extract CFBundleIdentifier raw "$B/Info.plist") |"
+            echo "| Display name | $(plutil -extract CFBundleDisplayName raw "$B/Info.plist") |"
+            echo "| Version | $(plutil -extract CFBundleShortVersionString raw "$B/Info.plist") ($(plutil -extract CFBundleVersion raw "$B/Info.plist")) |"
+            echo "| Architectures | $(cat verify/arch.txt) |"
+            echo "| Minimum iOS | $(plutil -extract MinimumOSVersion raw "$B/Info.plist" 2>/dev/null || echo 'not set') |"
+            echo "| Background modes | $(plutil -extract UIBackgroundModes json -o - "$B/Info.plist" 2>/dev/null | tr -d '\n') |"
+            echo "| Executable | $(plutil -extract CFBundleExecutable raw "$B/Info.plist") |"
+            echo "| Flutter assets | present at $ASSETS_PATH |"
+            echo "| Icon | $(plutil -extract CFBundleIcons json -o - "$B/Info.plist" 2>/dev/null | tr -d '\n' | cut -c1-60)... |"
+            echo
+            echo '> **Signature: unsigned build.** Apple signing must be applied with your own Apple ID (AltStore/AltServer or Sideloadly) before the app can be installed on an iPhone. This is expected for free Apple ID distribution and is documented in INSTALL.md included in this release.'
+          } | tee verify/REPORT.md
+
+          cat verify/REPORT.md
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Forge-ipa
+          path: |
+            Forge.ipa
+            verify/REPORT.md
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish GitHub Release with IPA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(plutil -extract CFBundleShortVersionString raw verify/Payload/Runner.app/Info.plist)
+          BUILD=$(plutil -extract CFBundleVersion raw verify/Payload/Runner.app/Info.plist)
+          TAG="ios-v${VERSION}-${BUILD}"
+          git config user.name "lokesh12dev"
+          git config user.email "actions@github.com"
+          git tag "$TAG" "$GITHUB_SHA"
+          git push origin "$TAG"
+          gh release create "$TAG" \
+            Forge.ipa \
+            docs/ios/INSTALL.md \
+            --title "Forge $VERSION for iPhone" \
+            --notes-file verify/REPORT.md \
+            --latest

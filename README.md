@@ -94,11 +94,11 @@ Get-FileHash .\Forge-v10.6.9-windows-setup.exe -Algorithm SHA256
 
 Official Release Checksums for v10.6.9:
 ```
-e200b5764f22ee4f0f289ea60f05a3f45c9e7674495fa2a21103887325ece5fb  Forge-v10.6.9-macos.dmg
-59e07bd812397b363d7a86ea30f7a74751e95bbeac9328984bc1f4174a6ae451  Forge-v10.6.9-windows-setup.exe
-0613092c422dba5ac1e9416b24205209cc4e0382766804ec9e7364a54f53446c  Forge-v10.6.9-windows-x64.zip
-3e167563ce31491ecdf3d0e79507ccf8a629d90d58a04900fb4471754c4ab1bf  Forge-v10.6.9-universal.apk
-8090ad27cafe4f999ea704016a1aff5a30cda8c719098032830d9113a67b17ca  Forge-v10.6.9-arm64-v8a.apk
+dec1128b0d51dc0438e7f33c3172c47d41d44249a3c84fcd2e671effb3dc0fa3  Forge-v10.6.9-macos.dmg
+b54998e34a2a48f76d7580695569dea18870137c395b3519f20d4ea318fc851e  Forge-v10.6.9-windows-setup.exe
+b808080e0b687b71b97027fa08699a3fe1c28f480f5827dbed0b96b8ad351193  Forge-v10.6.9-windows-x64.zip
+bb6c8a3dcf9318750cedf805eab7b7fc59906b0f3b3471d22495a7a42f2e5852  Forge-v10.6.9-universal.apk
+fc18e2619f13c6ea3c5a5047e066ece4a5adfd3b6353df5e31e4422867269f48  Forge-v10.6.9-arm64-v8a.apk
 ```
 
 ---

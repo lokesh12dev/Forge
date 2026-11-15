@@ -1,6 +1,6 @@
 # Forge website
 
-The standalone, responsive project website lives in `site/`. It is plain HTML, CSS, and JavaScript, so it needs no package installation or build step. The Android download buttons point to the actual v10.6.1 APK release assets. The page also shows the checksums published with that release. macOS and Windows are detected and shown as unavailable because the current official release has no installers for those platforms.
+The standalone, responsive project website lives in `site/`. It is plain HTML, CSS, and JavaScript, so it needs no package installation or build step. The Android download buttons point to the actual v10.6.2 APK release assets. The page also shows the checksums published with that release. macOS and Windows are detected and shown as unavailable because the current official release has no installers for those platforms.
 
 ## Preview locally
 

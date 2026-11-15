@@ -33,12 +33,12 @@ Click below to visit the official landing and download portal or download releas
 
 | Platform | Format / Architecture | File Size | Direct Download |
 | :--- | :--- | :--- | :--- |
-| 🍏 **macOS** | Universal Disk Image (`.dmg`) · macOS 12.0+ | **26.8 MB** | [**Forge-v10.6.1-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-macos.dmg) |
-| 🪟 **Windows** | Setup Installer (`-setup.exe`) · x64 | **18.4 MB** | [**Forge-v10.6.1-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-setup.exe) |
-| 🪟 **Windows** | Portable Archive (`.zip`) · x64 | **22.7 MB** | [**Forge-v10.6.1-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-x64.zip) |
-| 🤖 **Android** | Universal APK · All Architectures | **33.0 MB** | [**Forge-v10.6.1-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-universal.apk) |
-| 🤖 **Android** | ARM64 APK · arm64-v8a Devices | **13.0 MB** | [**Forge-v10.6.1-arm64-v8a.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-arm64-v8a.apk) |
-| 🔐 **Checksums** | SHA-256 Digest for All Platforms | **472 B** | [**SHA256SUMS.txt**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/SHA256SUMS.txt) |
+| 🍏 **macOS** | Universal Disk Image (`.dmg`) · macOS 12.0+ | **26.9 MB** | [**Forge-v10.6.2-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-macos.dmg) |
+| 🪟 **Windows** | Setup Installer (`-setup.exe`) · x64 | **18.4 MB** | [**Forge-v10.6.2-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-windows-setup.exe) |
+| 🪟 **Windows** | Portable Archive (`.zip`) · x64 | **22.7 MB** | [**Forge-v10.6.2-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-windows-x64.zip) |
+| 🤖 **Android** | Universal APK · All Architectures | **33.1 MB** | [**Forge-v10.6.2-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-universal.apk) |
+| 🤖 **Android** | ARM64 APK · arm64-v8a Devices | **13.0 MB** | [**Forge-v10.6.2-arm64-v8a.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-arm64-v8a.apk) |
+| 🔐 **Checksums** | SHA-256 Digest for All Platforms | **472 B** | [**SHA256SUMS.txt**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/SHA256SUMS.txt) |
 
 ---
 
@@ -47,7 +47,7 @@ Click below to visit the official landing and download portal or download releas
 <details open>
 <summary><b>🍏 macOS Installation Guide</b></summary>
 
-1. Download [**Forge-v10.6.1-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-macos.dmg).
+1. Download [**Forge-v10.6.2-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-macos.dmg).
 2. Double-click the `.dmg` file to open it.
 3. Drag **Forge.app** into your **Applications** folder.
 4. **First Launch Note:** Because Forge is built independently and unsigned, macOS Gatekeeper may show an untrusted developer prompt. To open:
@@ -59,7 +59,7 @@ Click below to visit the official landing and download portal or download releas
 <details open>
 <summary><b>🪟 Windows Installation Guide</b></summary>
 
-1. Download [**Forge-v10.6.1-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-setup.exe) for a guided installer, or download [**Forge-v10.6.1-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-x64.zip) for standalone portable usage.
+1. Download [**Forge-v10.6.2-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-windows-setup.exe) for a guided installer, or download [**Forge-v10.6.2-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-windows-x64.zip) for standalone portable usage.
 2. Launch the installer or extract the `.zip` archive to your desired directory.
 3. **SmartScreen Note:** Windows Defender SmartScreen may display an *"Unknown Publisher"* warning. Click **More info**, then click **Run anyway**.
 4. Enjoy high-performance native audio with libmpv integration!
@@ -68,7 +68,7 @@ Click below to visit the official landing and download portal or download releas
 <details open>
 <summary><b>🤖 Android Installation Guide</b></summary>
 
-1. Download [**Forge-v10.6.1-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-universal.apk) on your device.
+1. Download [**Forge-v10.6.2-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.2/Forge-v10.6.2-universal.apk) on your device.
 2. Open the downloaded `.apk` file.
 3. If prompted by Android, enable **Install from unknown sources** for your browser or file manager.
 4. Tap **Install** and launch Forge.
@@ -87,16 +87,16 @@ shasum -a 256 -c SHA256SUMS.txt
 
 **On Windows (PowerShell):**
 ```powershell
-Get-FileHash .\Forge-v10.6.1-windows-setup.exe -Algorithm SHA256
+Get-FileHash .\Forge-v10.6.2-windows-setup.exe -Algorithm SHA256
 ```
 
-Official Release Checksums for v10.6.1:
+Official Release Checksums for v10.6.2:
 ```
-68efde17f54966b95e11512290671c1df7c276c6ac519f99cca9afb3cb3979ad  Forge-v10.6.1-macos.dmg
-b5485edb8d9cb5349fb54ccf31bd4ed28dc6ce06d0640006d1953284ee9d964f  Forge-v10.6.1-windows-setup.exe
-85048b6eb5c118ff50f9ea5d1870368c4efddc9d9791107cb39d66281984473a  Forge-v10.6.1-windows-x64.zip
-494c78ab890e948c8c7f86d2081c68a645dda375087b06b50e8543a0b0382bbb  Forge-v10.6.1-universal.apk
-c7a10d7b6fffba00d8b4ffbc462d783fbeae0cd8274822de37d561bc2b2518c3  Forge-v10.6.1-arm64-v8a.apk
+b2de165b04457a6f2b89ee2c4c063368e8f4418e18dc32df638932d0c2515b11  Forge-v10.6.2-macos.dmg
+47e685a111d2c006cb3f0a87c7b7bde92ec504471a5e7b39375f12f249e7c529  Forge-v10.6.2-windows-setup.exe
+29ede5ce5cdfe3585570e2fe3ea453c4c2fe072168fc3a580736b2e5bae47290  Forge-v10.6.2-windows-x64.zip
+50b49c17130927aa4da531ef908d2cbaa1a65a8cbdbb103cfe01ebe48c7bd4c1  Forge-v10.6.2-universal.apk
+613b54a285b3492d35ec69c40e90262dade344f5cc39e8635c5a2ee98eafc97b  Forge-v10.6.2-arm64-v8a.apk
 ```
 
 ---

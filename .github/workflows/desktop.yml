@@ -1,95 +1,254 @@
 name: Desktop builds
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [published]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release (e.g. v10.6.1)'
+        required: true
+        default: 'v10.6.1'
+        type: string
 
 permissions:
   contents: write
 
 jobs:
-  build:
-    if: "github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, 'Update:')"
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            platform: linux
-            artifact: build/forge-linux-x64.tar.gz
-          - os: windows-latest
-            platform: windows
-            artifact: build/forge-windows-x64.zip
-    runs-on: ${{ matrix.os }}
+  build-windows:
+    name: Build Windows release
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v5
-      - name: Install Linux dependencies
-        if: runner.os == 'Linux'
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Resolve version
+        id: version
+        shell: bash
         run: |
-          sudo apt-get update
-          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libmpv-dev pulseaudio xvfb
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.tag }}"
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+          fi
+          VERSION="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Building Windows for $TAG ($VERSION)"
+
       - name: Resolve Flutter version
         shell: bash
         run: |
-          echo "FLUTTER_VERSION=$(sed -n 's/^  flutter: \^*//p' pubspec.yaml)" >> "$GITHUB_ENV"
-      - uses: subosito/flutter-action@v2
+          echo "FLUTTER_VERSION=$(sed -n 's/^  flutter: \^*\([0-9.]*\)/\1/p' pubspec.yaml)" >> "$GITHUB_ENV"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: ${{ env.FLUTTER_VERSION }}
-      - run: flutter pub get
-      - run: flutter analyze
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze Dart code
+        run: flutter analyze --no-fatal-infos
+
       - name: Test Windows Runtime initialization
-        if: runner.os == 'Windows'
         run: |
           cmake -S test/windows/runtime -B build/windows-runtime-test -A x64
           cmake --build build/windows-runtime-test --config Release
           ctest --test-dir build/windows-runtime-test -C Release --output-on-failure
-      - run: flutter build ${{ matrix.platform }} --release
+
+      - name: Build Windows release
+        run: flutter build windows --release
+
       - name: Test native playback
         shell: bash
         run: |
-          if [[ "$RUNNER_OS" == "Linux" ]]; then
-            pulseaudio --start --exit-idle-time=-1
-            pactl load-module module-null-sink sink_name=forge-test
-            export MUSIFY_TEST_LIBMPV=/usr/lib/x86_64-linux-gnu/libmpv.so.2
-          else
-            export MUSIFY_TEST_LIBMPV="$(pwd)/build/windows/x64/runner/Release/libmpv-2.dll"
-          fi
+          export MUSIFY_TEST_LIBMPV="$(pwd)/build/windows/x64/runner/Release/libmpv-2.dll"
           flutter test test/desktop/audio_native_test.dart test/desktop/media_handler_native_test.dart
-      - name: Check Linux startup
-        if: runner.os == 'Linux'
-        run: dbus-run-session -- xvfb-run -a python .github/scripts/check_desktop_startup.py build/linux/x64/release/bundle/forge
+
       - name: Check Windows startup
-        if: runner.os == 'Windows'
         run: python .github/scripts/check_desktop_startup.py build/windows/x64/runner/Release/forge.exe
+
       - name: Check Windows icons
-        if: runner.os == 'Windows'
         run: python .github/scripts/check_windows_icons.py build/windows/x64/runner/Release/forge.exe
-      - name: Archive Linux bundle
-        if: runner.os == 'Linux'
-        run: tar -czf build/forge-linux-x64.tar.gz -C build/linux/x64/release/bundle .
-      - name: Archive Windows bundle
-        if: runner.os == 'Windows'
-        run: Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath build/forge-windows-x64.zip
-      - name: Extract version
-        id: extract_version
-        shell: bash
-        env:
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          REF_NAME: ${{ github.ref_name }}
+
+      - name: Package Windows assets
+        shell: pwsh
         run: |
-          version=$(echo "$COMMIT_MESSAGE" | grep -oP '(?<=Update: v)\d+\.\d+\.\d+' || true)
-          echo "version=${version:-$REF_NAME}" >> "$GITHUB_OUTPUT"
-          [[ -n "$version" ]] && echo "prerelease=false" >> "$GITHUB_OUTPUT" || echo "prerelease=true" >> "$GITHUB_OUTPUT"
-      - name: Release desktop bundle
-        uses: svenstaro/upload-release-action@v2
+          $version = "${{ steps.version.outputs.version }}"
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          
+          # Create portable ZIP
+          Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath "dist\Forge-v$version-windows-x64.zip"
+          
+          # Create Inno Setup installer if available
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (Test-Path $iscc) {
+            Write-Host "Compiling Inno Setup installer..."
+            & $iscc "/DMyAppVersion=$version" windows\installer.iss
+            if (Test-Path "build\Forge-v$version-windows-setup.exe") {
+              Move-Item -Force "build\Forge-v$version-windows-setup.exe" "dist\Forge-v$version-windows-setup.exe"
+              Write-Host "Created dist\Forge-v$version-windows-setup.exe"
+            }
+          } else {
+            Write-Host "ISCC not found; skipping installer build."
+          }
+          Get-ChildItem dist
+
+      - name: Upload Windows workflow artifacts
+        uses: actions/upload-artifact@v4
         with:
-          repo_name: lokesh/Forge
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ matrix.artifact }}
-          asset_name: Forge-${{ matrix.platform }}-x64.${{ matrix.platform == 'linux' && 'tar.gz' || 'zip' }}
-          tag: ${{ steps.extract_version.outputs.version }}
-          prerelease: ${{ steps.extract_version.outputs.prerelease }}
-          overwrite: true
+          name: windows-assets
+          path: dist/*
+          if-no-files-found: error
+
+  build-macos:
+    name: Build macOS release
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.tag }}"
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+          fi
+          VERSION="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Building macOS for $TAG ($VERSION)"
+
+      - name: Resolve Flutter version
+        shell: bash
+        run: |
+          echo "FLUTTER_VERSION=$(sed -n 's/^  flutter: \^*\([0-9.]*\)/\1/p' pubspec.yaml)" >> "$GITHUB_ENV"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze Dart code
+        run: flutter analyze --no-fatal-infos
+
+      - name: Build macOS release
+        run: flutter build macos --release
+
+      - name: Package macOS DMG
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${{ steps.version.outputs.version }}"
+          mkdir -p dist dmg_root
+          APP_SRC="build/macos/Build/Products/Release/forge.app"
+          if [ ! -d "$APP_SRC" ]; then
+            APP_SRC="build/macos/Build/Products/Release/Forge.app"
+          fi
+          test -d "$APP_SRC"
+          cp -R "$APP_SRC" dmg_root/Forge.app
+          ln -s /Applications dmg_root/Applications
+          hdiutil create -volname "Forge" -srcfolder dmg_root -ov -format UDZO "dist/Forge-v${VERSION}-macos.dmg"
+          ls -lh dist
+
+      - name: Upload macOS workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-assets
+          path: dist/*
+          if-no-files-found: error
+
+  publish:
+    name: Publish desktop release assets
+    needs: [build-windows, build-macos]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.tag }}"
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+          fi
+          VERSION="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Download Windows artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-assets
+          path: new_assets
+
+      - name: Download macOS artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-assets
+          path: new_assets
+
+      - name: Publish assets and update checksums
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.version.outputs.tag }}"
+          
+          echo "Publishing desktop assets for release $TAG"
+          ls -lh new_assets
+          
+          mkdir -p all_assets
+          cd all_assets
+          
+          # Download all existing release assets (Android APKs, etc.)
+          gh release download "$TAG" --repo lokesh12dev/Forge --dir . || true
+          echo "Existing assets in release:"
+          ls -lh
+          
+          # Copy new desktop assets into all_assets
+          cp ../new_assets/* .
+          
+          # Upload each new desktop asset
+          for f in ../new_assets/*; do
+            filename=$(basename "$f")
+            if [ "$filename" != "SHA256SUMS.txt" ]; then
+              echo "Uploading $filename to release $TAG..."
+              gh release upload "$TAG" "$filename" --repo lokesh12dev/Forge --clobber
+            fi
+          done
+          
+          # Regenerate SHA256SUMS.txt covering all assets
+          rm -f SHA256SUMS.txt
+          sha256sum Forge-* > SHA256SUMS.txt
+          echo "Regenerated SHA256SUMS.txt:"
+          cat SHA256SUMS.txt
+          
+          # Upload updated SHA256SUMS.txt
+          gh release upload "$TAG" SHA256SUMS.txt --repo lokesh12dev/Forge --clobber
+          echo "Release assets successfully updated for $TAG"

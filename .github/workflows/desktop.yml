@@ -92,9 +92,9 @@ jobs:
           if (Test-Path $iscc) {
             Write-Host "Compiling Inno Setup installer..."
             & $iscc "/DMyAppVersion=$version" windows\installer.iss
-            if (Test-Path "build\Forge-v$version-windows-setup.exe") {
-              Move-Item -Force "build\Forge-v$version-windows-setup.exe" "dist\Forge-v$version-windows-setup.exe"
-              Write-Host "Created dist\Forge-v$version-windows-setup.exe"
+            if ($LASTEXITCODE -ne 0) {
+              Write-Error "ISCC compilation failed with code $LASTEXITCODE"
+              exit $LASTEXITCODE
             }
           } else {
             Write-Host "ISCC not found; skipping installer build."
@@ -164,6 +164,7 @@ jobs:
             APP_SRC="build/macos/Build/Products/Release/Forge.app"
           fi
           test -d "$APP_SRC"
+          codesign --force --deep --sign - "$APP_SRC" || true
           cp -R "$APP_SRC" dmg_root/Forge.app
           ln -s /Applications dmg_root/Applications
           hdiutil create -volname "Forge" -srcfolder dmg_root -ov -format UDZO "dist/Forge-v${VERSION}-macos.dmg"

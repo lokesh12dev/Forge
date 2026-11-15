@@ -50,10 +50,17 @@ class UpiPaymentMethod {
   /// Flexible UPI Payment URI without any fixed amount parameter.
   /// Standard format:
   /// upi://pay?pa=ACTUAL_UPI_ID&pn=ACTUAL_PAYEE_NAME&tn=Support%20Forge%20by%20Lokesh&cu=INR
-  Uri get paymentUri {
+  Uri get paymentUri => getPaymentUriWithAmount();
+
+  /// UPI Payment URI with optional custom amount parameter.
+  Uri getPaymentUriWithAmount([int? amount]) {
     final encodedPn = Uri.encodeComponent(payeeName);
     final encodedTn = Uri.encodeComponent(note);
-    return Uri.parse('upi://pay?pa=$upiId&pn=$encodedPn&tn=$encodedTn&cu=INR');
+    final base = 'upi://pay?pa=$upiId&pn=$encodedPn&tn=$encodedTn&cu=INR';
+    if (amount != null && amount > 0) {
+      return Uri.parse('$base&am=$amount');
+    }
+    return Uri.parse(base);
   }
 
   /// Full payment details string formatted for easy copying

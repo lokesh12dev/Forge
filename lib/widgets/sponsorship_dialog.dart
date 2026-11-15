@@ -92,11 +92,19 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
       // Intent launch failed or unsupported on this platform (e.g. desktop)
     }
 
+    // On desktop platforms, launch the web payment portal directly
+    try {
+      await launchUrl(
+        Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
+        mode: LaunchMode.externalApplication,
+      );
+    } catch (_) {}
+
     // If opening UPI app directly didn't succeed, handle gracefully
     if (!mounted) return;
     setState(() {
       _statusMessage = SponsorshipConfig.failedOpenAppMessage;
-      _isErrorMessage = true;
+      _isErrorMessage = false;
     });
     // Also copy UPI ID to clipboard to assist the user
     await Clipboard.setData(ClipboardData(text: _selectedMethod.upiId));
@@ -104,7 +112,7 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          'UPI ID ${_selectedMethod.upiId} copied! Scan the QR or paste in your UPI app.',
+          'UPI ID ${_selectedMethod.upiId} copied! Scan the QR or complete payment.',
         ),
         duration: const Duration(seconds: 4),
       ),

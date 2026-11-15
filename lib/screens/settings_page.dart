@@ -500,9 +500,11 @@ class SettingsPage extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () async {
+              // Automatically open payment screen on device
+              unawaited(showSponsorshipDialog(context));
+
               if (isMobilePlatform) {
-                // On Android/iOS: open UPI app directly, show dialog too
-                unawaited(showSponsorshipDialog(context));
+                // On Android/iOS: trigger Google Pay UPI intent directly
                 try {
                   await url_launcher.launchUrl(
                     SponsorshipConfig.googlePay.paymentUri,
@@ -510,16 +512,13 @@ class SettingsPage extends StatelessWidget {
                   );
                 } catch (_) {}
               } else {
-                // On macOS/Windows: open browser payment page directly
+                // On macOS/Windows: also open browser payment page directly
                 try {
                   await url_launcher.launchUrl(
                     Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
                     mode: url_launcher.LaunchMode.externalApplication,
                   );
-                } catch (_) {
-                  // Fallback to dialog if browser fails
-                  if (context.mounted) unawaited(showSponsorshipDialog(context));
-                }
+                } catch (_) {}
               }
             },
             child: Padding(

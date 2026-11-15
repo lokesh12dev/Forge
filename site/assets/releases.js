@@ -5,7 +5,7 @@
  * - Live data comes from the GitHub Releases API (assets, sizes, sha256 digests).
  * - A verified static snapshot (FALLBACK_RELEASE) ships with the site so the
  *   page is correct even if the API is unreachable. Every value in the
- *   snapshot is copied from the official v10.6.9 release (SHA256SUMS.txt and
+ *   snapshot is copied from the official v10.7.0 release (SHA256SUMS.txt and
  *   the release API response) — never edited by hand.
  * - All download URLs are strictly allow-listed to official GitHub release
  *   asset URLs before they are ever placed in the DOM.
@@ -21,24 +21,24 @@
   const ALLOWED_URL_PREFIX = 'https://github.com/lokesh12dev/Forge/releases/download/';
 
   /*
-   * VERIFIED static snapshot of Forge v10.6.9 (published 2026-11-15).
+   * VERIFIED static snapshot of Forge v10.7.0 (published 2026-11-15).
    * Sizes are exact byte counts from the release API; checksums are copied
    * verbatim from the release's official SHA256SUMS.txt.
    * Update this object only by re-verifying a newly published release.
    */
   const FALLBACK_RELEASE = {
-    version: 'v10.6.9',
-    versionClean: '10.6.9',
-    name: 'Forge v10.6.9',
+    version: 'v10.7.0',
+    versionClean: '10.7.0',
+    name: 'Forge v10.7.0',
     date: '15 Nov 2026',
-    publishedAt: '2026-11-15T13:40:00Z',
-    htmlUrl: 'https://github.com/lokesh12dev/Forge/releases/tag/v10.6.9',
-    checksumsUrl: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.9/SHA256SUMS.txt',
+    publishedAt: '2026-11-15T17:50:00Z',
+    htmlUrl: 'https://github.com/lokesh12dev/Forge/releases/tag/v10.7.0',
+    checksumsUrl: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/SHA256SUMS.txt',
     notes:
-      'Dual-UPI sponsorship experience with Google Pay and PhonePe QR integration.',
+      'One-click UPI payment on Android (opens Google Pay / PhonePe directly). One-click Forge Pay portal on macOS & Windows. GitHub shortcut in Settings. macOS: right-click Forge.app → Open to bypass Gatekeeper on first launch.',
     android: [
       {
-        name: 'Forge-v10.6.9-universal.apk',
+        name: 'Forge-v10.7.0-universal.apk',
         label: 'Universal APK',
         desc: 'Works on Android phones and tablets. The easiest choice for most devices.',
         arch: 'all architectures',
@@ -47,10 +47,10 @@
         size: 33603968,
         sizeFormatted: '32.0 MB',
         sha256: 'bb6c8a3dcf9318750cedf805eab7b7fc59906b0f3b3471d22495a7a42f2e5852',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.9/Forge-v10.6.9-universal.apk'
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-universal.apk'
       },
       {
-        name: 'Forge-v10.6.9-arm64-v8a.apk',
+        name: 'Forge-v10.7.0-arm64-v8a.apk',
         label: 'ARM64 APK',
         desc: 'For modern Android devices with a 64-bit ARM processor.',
         arch: 'arm64-v8a',
@@ -59,12 +59,12 @@
         size: 13334885,
         sizeFormatted: '12.7 MB',
         sha256: 'fc18e2619f13c6ea3c5a5047e066ece4a5adfd3b6353df5e31e4422867269f48',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.9/Forge-v10.6.9-arm64-v8a.apk'
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-arm64-v8a.apk'
       }
     ],
     macos: [
       {
-        name: 'Forge-v10.6.9-macos.dmg',
+        name: 'Forge-v10.7.0-macos.dmg',
         label: 'macOS Disk Image',
         desc: 'Universal build for Apple Silicon and Intel Macs.',
         arch: 'macOS 12.0+',
@@ -73,12 +73,12 @@
         size: 27336803,
         sizeFormatted: '26.1 MB',
         sha256: 'dec1128b0d51dc0438e7f33c3172c47d41d44249a3c84fcd2e671effb3dc0fa3',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.9/Forge-v10.6.9-macos.dmg'
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-macos.dmg'
       }
     ],
     windows: [
       {
-        name: 'Forge-v10.6.9-windows-setup.exe',
+        name: 'Forge-v10.7.0-windows-setup.exe',
         label: 'Windows Installer',
         desc: 'Standard setup wizard with Start menu shortcuts and clean desktop integration.',
         arch: 'x64',
@@ -87,10 +87,10 @@
         size: 18614190,
         sizeFormatted: '17.8 MB',
         sha256: 'b54998e34a2a48f76d7580695569dea18870137c395b3519f20d4ea318fc851e',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.9/Forge-v10.6.9-windows-setup.exe'
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-windows-setup.exe'
       },
       {
-        name: 'Forge-v10.6.9-windows-x64.zip',
+        name: 'Forge-v10.7.0-windows-x64.zip',
         label: 'Portable ZIP',
         desc: 'Standalone archive. Extract anywhere and run forge.exe directly without installation.',
         arch: 'x64',
@@ -99,7 +99,7 @@
         size: 23003199,
         sizeFormatted: '21.9 MB',
         sha256: 'b808080e0b687b71b97027fa08699a3fe1c28f480f5827dbed0b96b8ad351193',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.9/Forge-v10.6.9-windows-x64.zip'
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-windows-x64.zip'
       }
     ]
   };

@@ -25,6 +25,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/constants/payment_constants.dart';
+import 'package:forge/utilities/url_launcher.dart' as forge_launcher;
 import 'package:url_launcher/url_launcher.dart';
 
 /// Opens the dedicated Forge Sponsorship dialog.
@@ -96,9 +97,8 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
 
     // On desktop platforms, launch the web payment portal directly
     try {
-      await launchUrl(
+      await forge_launcher.launchURL(
         Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
-        mode: LaunchMode.externalApplication,
       );
     } catch (_) {}
 

@@ -164,7 +164,7 @@ jobs:
             APP_SRC="build/macos/Build/Products/Release/Forge.app"
           fi
           test -d "$APP_SRC"
-          codesign --force --deep --sign - "$APP_SRC" || true
+          codesign --force --deep --sign - --entitlements macos/Runner/Release.entitlements "$APP_SRC" || true
           cp -R "$APP_SRC" dmg_root/Forge.app
           ln -s /Applications dmg_root/Applications
           hdiutil create -volname "Forge" -srcfolder dmg_root -ov -format UDZO "dist/Forge-v${VERSION}-macos.dmg"

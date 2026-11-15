@@ -520,28 +520,13 @@ class SettingsPage extends StatelessWidget {
               } else {
                 // On macOS/Windows/Linux: open dedicated web payment portal
                 const payUrl = 'https://lokesh12dev.github.io/Forge/pay/';
-                var launched = false;
                 try {
-                  launched = await url_launcher.launchUrl(
-                    Uri.parse(payUrl),
-                    mode: url_launcher.LaunchMode.externalApplication,
-                  );
+                  await launchURL(Uri.parse(payUrl));
                 } catch (_) {}
-                if (!launched) {
-                  try {
-                    launched = await url_launcher.launchUrl(Uri.parse(payUrl));
-                  } catch (_) {}
-                }
-                // macOS ultimate fallback: system open command
-                if (!launched && Platform.isMacOS) {
+                // Additional macOS guarantee
+                if (Platform.isMacOS) {
                   try {
                     await Process.run('open', [payUrl]);
-                  } catch (_) {}
-                }
-                // Windows ultimate fallback
-                if (!launched && Platform.isWindows) {
-                  try {
-                    await Process.run('cmd', ['/c', 'start', payUrl]);
                   } catch (_) {}
                 }
               }

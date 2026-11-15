@@ -500,14 +500,26 @@ class SettingsPage extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () async {
-              unawaited(showSponsorshipDialog(context));
               if (isMobilePlatform) {
+                // On Android/iOS: open UPI app directly, show dialog too
+                unawaited(showSponsorshipDialog(context));
                 try {
                   await url_launcher.launchUrl(
                     SponsorshipConfig.googlePay.paymentUri,
                     mode: url_launcher.LaunchMode.externalApplication,
                   );
                 } catch (_) {}
+              } else {
+                // On macOS/Windows: open browser payment page directly
+                try {
+                  await url_launcher.launchUrl(
+                    Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
+                    mode: url_launcher.LaunchMode.externalApplication,
+                  );
+                } catch (_) {
+                  // Fallback to dialog if browser fails
+                  if (context.mounted) unawaited(showSponsorshipDialog(context));
+                }
               }
             },
             child: Padding(

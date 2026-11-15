@@ -42,7 +42,7 @@ Widget _buildTestApp({required Widget home}) {
 void main() {
   group('Dual UPI Sponsorship Configuration Tests', () {
     test('Google Pay configuration verified', () {
-      final gpay = SponsorshipConfig.googlePay;
+      const gpay = SponsorshipConfig.googlePay;
       expect(gpay.type, UpiPaymentMethodType.googlePay);
       expect(gpay.title, 'Google Pay');
       expect(gpay.upiId, 'mr.mlokesh7@oksbi');
@@ -62,7 +62,7 @@ void main() {
     });
 
     test('PhonePe configuration verified', () {
-      final phonepe = SponsorshipConfig.phonePe;
+      const phonepe = SponsorshipConfig.phonePe;
       expect(phonepe.type, UpiPaymentMethodType.phonePe);
       expect(phonepe.title, 'PhonePe');
       expect(phonepe.upiId, '7603883879@axl');

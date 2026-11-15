@@ -31,8 +31,8 @@ import 'package:url_launcher/url_launcher.dart';
 Future<void> showSponsorshipDialog(BuildContext context) {
   return showDialog<void>(
     context: context,
-    useRootNavigator: true,
-    barrierDismissible: true,
+    // ignore: avoid_redundant_argument_values
+    useRootNavigator: true, // Required: ensures dialog renders above NavShell/MiniPlayer
     builder: (BuildContext dialogContext) => const SponsorshipDialog(),
   );
 }
@@ -116,7 +116,6 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
         content: Text(
           'UPI ID ${_selectedMethod.upiId} copied! Scan the QR or complete payment.',
         ),
-        duration: const Duration(seconds: 4),
       ),
     );
   }

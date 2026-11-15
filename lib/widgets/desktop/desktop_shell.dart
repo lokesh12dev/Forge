@@ -19,6 +19,7 @@
  *     please visit: https://github.com/lokesh12dev/Forge
  */
 
+import '../forge_wordmark.dart';
 import 'package:forge/services/navigation_history.dart';
 import 'package:forge/services/router_service.dart';
 import 'package:forge/widgets/desktop/desktop_now_playing_bar.dart';
@@ -125,7 +126,7 @@ class _MainSurface extends StatelessWidget {
   }
 }
 
-/// Floating Spotify-style top bar: back / forward history buttons,
+/// Floating top bar: back / forward history buttons,
 /// a centered high-contrast "Forge by Lokesh" brand title, and action shortcuts.
 class DesktopTopBar extends StatelessWidget {
   const DesktopTopBar({
@@ -201,7 +202,7 @@ class DesktopTopBar extends StatelessWidget {
   }
 }
 
-/// Pinned, unique "Forge by Lokesh" brand header.
+/// Pinned "forge · by Lokesh" brand lockup in the title bar.
 class _ForgeBrandTitle extends StatelessWidget {
   const _ForgeBrandTitle({this.onTap});
 
@@ -209,68 +210,21 @@ class _ForgeBrandTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Tooltip(
       message: 'Forge by Lokesh — Tap for About & Creator details',
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 8,
-                    height: 8,
-                    margin: const EdgeInsets.only(right: 6),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF1DB954),
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x661DB954),
-                          blurRadius: 6,
-                          spreadRadius: 1,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    'Forge',
-                    style: TextStyle(
-                      color: colorScheme.onSurface,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: -0.5,
-                      fontFamily: 'paytoneOne',
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 1),
-              const Text(
-                'by Lokesh',
-                style: TextStyle(
-                  color: Color(0xFF1DB954),
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ],
-          ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          child: ForgeWordmark(),
         ),
       ),
     );
   }
 }
 
-/// Circular chrome button, mirroring Spotify's dark circle nudges.
+/// Circular chrome button, soft dark circles.
 class _ChromeIconButton extends StatelessWidget {
   const _ChromeIconButton({
     required this.icon,

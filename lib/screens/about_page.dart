@@ -19,6 +19,7 @@
  *     please visit: https://github.com/lokesh12dev/Forge
  */
 
+import '../widgets/forge_wordmark.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:forge/constants/app_constants.dart';
 import 'package:forge/constants/version.dart';
@@ -55,15 +56,15 @@ class AboutPage extends StatelessWidget {
                     width: 72,
                     height: 72,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1DB954).withValues(alpha: 0.15),
+                      color: const Color(0xFFC8F56A).withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: const Color(0xFF1DB954),
+                        color: const Color(0xFFC8F56A),
                         width: 2,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF1DB954).withValues(alpha: 0.3),
+                          color: const Color(0xFFC8F56A).withValues(alpha: 0.3),
                           blurRadius: 18,
                           spreadRadius: 2,
                         ),
@@ -73,41 +74,12 @@ class AboutPage extends StatelessWidget {
                       child: Icon(
                         FluentIcons.music_note_2_24_filled,
                         size: 36,
-                        color: Color(0xFF1DB954),
+                        color: Color(0xFFC8F56A),
                       ),
                     ),
                   ),
                   const SizedBox(height: 14),
-                  const Text(
-                    'Forge',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 34,
-                      fontWeight: FontWeight.w900,
-                      fontFamily: 'paytoneOne',
-                      letterSpacing: -1,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 3,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1DB954).withValues(alpha: 0.18),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Text(
-                      'by Lokesh',
-                      style: TextStyle(
-                        color: Color(0xFF1DB954),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.6,
-                      ),
-                    ),
-                  ),
+                  const ForgeWordmark(scale: 2.2),
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -151,7 +123,7 @@ class AboutPage extends StatelessWidget {
             // Section: About Me
             _SectionContainer(
               icon: FluentIcons.person_24_filled,
-              iconColor: const Color(0xFF1DB954),
+              iconColor: const Color(0xFFC8F56A),
               title: 'About Me',
               child: Text(
                 'I am Lokesh, a passionate software developer and creator dedicated to building fast, elegant, and user-centric digital experiences. Forge was conceptualized, designed, and engineered entirely by me from the ground up as a premier, high-fidelity music streaming and library player. Driven by a deep love for music and modern software craft, I created Forge to give listeners an ad-free, smooth, and immersive sound experience across Android, macOS, and Windows. Every feature—from the native low-latency audio engine to the responsive desktop interface and real-time synchronized lyrics—reflects my commitment to clean architecture and uncompromising quality.',
@@ -270,7 +242,7 @@ class AboutPage extends StatelessWidget {
             // Section: Forge by Lokesh Board
             _SectionContainer(
               icon: FluentIcons.sparkle_24_filled,
-              iconColor: const Color(0xFF1DB954),
+              iconColor: const Color(0xFFC8F56A),
               title: 'Forge by Lokesh — Experience',
               subtitle: 'Key pillars engineered for listeners',
               child: LayoutBuilder(
@@ -371,12 +343,12 @@ class _ProfileCard extends StatelessWidget {
                 errorBuilder: (_, __, ___) => Container(
                   width: 56,
                   height: 56,
-                  color: const Color(0xFF1DB954),
+                  color: const Color(0xFFC8F56A),
                   child: const Center(
                     child: Text(
                       'L',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFF10120F),
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -417,8 +389,8 @@ class _ProfileCard extends StatelessWidget {
                 _ActionButton(
                   icon: FluentIcons.globe_24_filled,
                   tooltip: 'Portfolio — Lokesh',
-                  backgroundColor: const Color(0xFF1DB954),
-                  iconColor: Colors.white,
+                  backgroundColor: const Color(0xFFC8F56A),
+                  iconColor: Color(0xFF10120F),
                   onPressed: () => launchURL(Uri.parse(portfolioUrl)),
                 ),
                 const SizedBox(width: 10),
@@ -591,7 +563,7 @@ class _StatBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 18, color: const Color(0xFF1DB954)),
+          Icon(icon, size: 18, color: const Color(0xFFC8F56A)),
           const SizedBox(width: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -727,13 +699,13 @@ class _FeaturePillar extends StatelessWidget {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: const Color(0xFF1DB954).withValues(alpha: 0.16),
+                color: const Color(0xFFC8F56A).withValues(alpha: 0.16),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(
                 FluentIcons.music_note_2_24_filled,
                 size: 16,
-                color: Color(0xFF1DB954),
+                color: Color(0xFFC8F56A),
               ),
             ),
             const SizedBox(height: 10),

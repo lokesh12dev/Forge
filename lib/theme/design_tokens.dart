@@ -42,7 +42,7 @@ abstract final class SpotifyPalette {
   static const Color highlight = Color(0xFF2E2E2E); // hover / pressed fills
 
   // Accent
-  static const Color accent = Color(0xFF1DB954); // Spotify green
+  static const Color accent = Color(0xFFC8F56A); // Forge lime
   static const Color accentBright = Color(0xFF1ED760); // hover / trailing
   static const Color onAccent = Color(0xFF000000); // black label on green
 

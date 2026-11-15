@@ -84,8 +84,6 @@ void main() {
     test('Payment asset files exist and are intact', () {
       expect(File('assets/payments/upigpay.jpeg').existsSync(), isTrue);
       expect(File('assets/payments/phoneupi.jpeg').existsSync(), isTrue);
-      expect(File('/Users/m.lokesh/Downloads/upigpay.jpeg').existsSync(), isTrue);
-      expect(File('/Users/m.lokesh/Downloads/phoneupi.jpeg').existsSync(), isTrue);
     });
   });
 

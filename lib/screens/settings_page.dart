@@ -491,38 +491,16 @@ class SettingsPage extends StatelessWidget {
           title: context.l10n!.becomeSponsor,
           icon: Icons.favorite,
         ),
-        Card(
-          margin: const EdgeInsets.only(bottom: 8),
-          elevation: 0,
+        Material(
           color: colorScheme.primaryContainer,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
+          borderRadius: BorderRadius.circular(16),
+          clipBehavior: Clip.antiAlias,
           child: InkWell(
-            onTap: () async {
-              // Automatically open payment screen on device
-              unawaited(showSponsorshipDialog(context));
-
-              if (isMobilePlatform) {
-                // On Android/iOS: trigger Google Pay UPI intent directly
-                try {
-                  await url_launcher.launchUrl(
-                    SponsorshipConfig.googlePay.paymentUri,
-                    mode: url_launcher.LaunchMode.externalApplication,
-                  );
-                } catch (_) {}
-              } else {
-                // On macOS/Windows: also open browser payment page directly
-                try {
-                  await url_launcher.launchUrl(
-                    Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
-                    mode: url_launcher.LaunchMode.externalApplication,
-                  );
-                } catch (_) {}
-              }
+            onTap: () {
+              showSponsorshipDialog(context);
             },
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 12, 12),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
               child: Row(
                 children: [
                   FourSidedCookieShape(
@@ -538,13 +516,35 @@ class SettingsPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 14),
                   Expanded(
-                    child: Text(
-                      context.l10n!.sponsorProject,
-                      style: TextStyle(
-                        color: colorScheme.onPrimaryContainer,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n!.sponsorProject,
+                          style: TextStyle(
+                            color: colorScheme.onPrimaryContainer,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          'Google Pay & PhonePe UPI',
+                          style: TextStyle(
+                            color: colorScheme.onPrimaryContainer.withValues(
+                              alpha: 0.75,
+                            ),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: colorScheme.onPrimaryContainer.withValues(
+                      alpha: 0.6,
                     ),
                   ),
                 ],

@@ -31,7 +31,9 @@ import 'package:url_launcher/url_launcher.dart';
 Future<void> showSponsorshipDialog(BuildContext context) {
   return showDialog<void>(
     context: context,
-    builder: (context) => const SponsorshipDialog(),
+    useRootNavigator: true,
+    barrierDismissible: true,
+    builder: (BuildContext dialogContext) => const SponsorshipDialog(),
   );
 }
 

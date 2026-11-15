@@ -170,5 +170,32 @@ void main() {
       expect(find.text('Support Forge'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
+
+    testWidgets(
+        'Tapping Sponsor button opens SponsorshipDialog with root navigator',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        _buildTestApp(
+          home: Scaffold(
+            body: Builder(
+              builder: (context) {
+                return ElevatedButton(
+                  onPressed: () => showSponsorshipDialog(context),
+                  child: const Text('Sponsor the project'),
+                );
+              },
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Sponsor the project'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SponsorshipDialog), findsOneWidget);
+      expect(find.text('Support Forge'), findsOneWidget);
+      expect(find.text('Google Pay'), findsOneWidget);
+      expect(find.text('PhonePe'), findsOneWidget);
+    });
   });
 }

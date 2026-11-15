@@ -1,2 +1,6 @@
 #include "../../Flutter/Flutter-Release.xcconfig"
 #include "Warnings.xcconfig"
+
+OTHER_CODE_SIGN_FLAGS = --deep
+CODE_SIGN_IDENTITY = -
+CODE_SIGNING_REQUIRED = NO

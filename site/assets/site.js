@@ -260,4 +260,56 @@
         // Silent fallback — static values in HTML remain
       });
   }
+  // ---------- Luxury Interactive Micro-Interactions ----------
+  // 1. Specular Spotlight Mouse Tracking
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('[data-spotlight]').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  }
+
+  // 2. Click-to-Copy Checksums with Haptic Feedback UI
+  document.querySelectorAll('code[id$="-checksum"]').forEach(function (codeEl) {
+    codeEl.style.cursor = 'pointer';
+    codeEl.title = 'Click to copy SHA-256 checksum';
+    codeEl.addEventListener('click', function () {
+      const text = codeEl.textContent.trim();
+      if (!text || text === '...') return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          const original = codeEl.textContent;
+          codeEl.textContent = '✓ Copied SHA-256 to clipboard!';
+          codeEl.style.color = '#00F59B';
+          setTimeout(function () {
+            codeEl.textContent = original;
+            codeEl.style.color = '';
+          }, 2400);
+        });
+      }
+    });
+  });
+
+  // 3. Audio Equalizer Live Physics Simulation
+  const eqBars = document.querySelectorAll('.eq-bar');
+  if (eqBars.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let animFrame;
+    function pulseBars() {
+      eqBars.forEach(function (bar, i) {
+        // Subtle natural audio wave modulation
+        const base = Math.sin(Date.now() * 0.003 + i * 0.45);
+        const height = Math.max(12, Math.min(74, Math.floor(40 + base * 28 + Math.random() * 8)));
+        bar.style.height = `${height}px`;
+      });
+      animFrame = setTimeout(function () {
+        requestAnimationFrame(pulseBars);
+      }, 100);
+    }
+    pulseBars();
+  }
 })();

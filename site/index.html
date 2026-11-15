@@ -40,6 +40,7 @@
           <a href="#macOS">macOS</a>
           <a href="#windows">Windows</a>
           <a href="#android">Android</a>
+          <a href="pay/">Support 💚</a>
           <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
           <a class="nav-cta" href="download/">Download Forge <span class="arr" aria-hidden="true">↓</span></a>
         </nav>
@@ -52,6 +53,7 @@
         <a href="#macOS">Forge for macOS <span class="arr" aria-hidden="true">→</span></a>
         <a href="#windows">Forge for Windows <span class="arr" aria-hidden="true">→</span></a>
         <a href="#android">Forge for Android <span class="arr" aria-hidden="true">→</span></a>
+        <a href="pay/">Support &amp; Sponsor Forge <span class="arr" aria-hidden="true">→</span></a>
         <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">GitHub Repository <span class="arr" aria-hidden="true">↗</span></a>
         <a class="menu-cta" href="download/">Download Portal <span class="arr" aria-hidden="true">↓</span></a>
       </div>
@@ -124,7 +126,7 @@
 
         <div class="editions-grid">
           <!-- macOS -->
-          <article class="edition-card edition-mac reveal" id="macOS">
+          <article class="edition-card edition-mac reveal" id="macOS" data-spotlight>
             <span class="edition-num">01 / macOS</span>
             <div class="edition-id">
               <span class="edition-os">Forge <small>for macOS</small></span>
@@ -150,7 +152,7 @@
           </article>
 
           <!-- Windows -->
-          <article class="edition-card edition-win reveal reveal-d1" id="windows">
+          <article class="edition-card edition-win reveal reveal-d1" id="windows" data-spotlight>
             <span class="edition-num">02 / Windows</span>
             <div class="edition-id">
               <span class="edition-os">Forge <small>for Windows</small></span>
@@ -176,7 +178,7 @@
           </article>
 
           <!-- Android -->
-          <article class="edition-card edition-android reveal reveal-d2" id="android">
+          <article class="edition-card edition-android reveal reveal-d2" id="android" data-spotlight>
             <span class="edition-num">03 / Android</span>
             <div class="edition-id">
               <span class="edition-os">Forge <small>for Android</small></span>
@@ -211,73 +213,102 @@
         </div>
 
         <div class="features-grid">
-          <article class="feature-card reveal">
+          <article class="feature-card reveal" data-spotlight>
             <div class="feature-topline">
               <span>01 / LISTEN</span>
               <span class="f-arr" aria-hidden="true">↗</span>
             </div>
             <div class="feature-visual fv-wave" aria-hidden="true">
-              <span class="wave-line"></span>
-              <span class="wave-line wave-b"></span>
-              <span class="wave-line wave-c"></span>
-              <span class="wave-tag">NATIVE AUDIO PIPELINE</span>
+              <span class="wave-tag">LIBMPV AUDIO ENGINE</span>
+              <span class="wave-metrics">192kHz · 24-BIT</span>
+              <div class="equalizer-spectrum">
+                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+                <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+              </div>
               <div class="wave-play">▶</div>
               <div class="wave-track"><i></i></div>
             </div>
             <div class="feature-copy">
               <h3>Low-latency native playback.</h3>
-              <p>Gapless track transitions, lock-screen media controls, and multi-stream intelligent caching across all desktop and mobile platforms.</p>
+              <p>Hardware-accelerated libmpv backend with gapless transitions, bit-perfect streaming, and system media integration across macOS, Windows, and Android.</p>
             </div>
           </article>
 
-          <article class="feature-card reveal reveal-d1">
+          <article class="feature-card reveal reveal-d1" data-spotlight>
             <div class="feature-topline">
-              <span>02 / KEEP</span>
-              <span class="f-arr" aria-hidden="true">✳</span>
+              <span>02 / VAULT</span>
+              <span class="f-arr" aria-hidden="true">✦</span>
             </div>
-            <div class="feature-visual fv-tiles" aria-hidden="true">
-              <div class="fv-tile tile-a"><span>YOUR<br />ROTATION</span><i>↗</i></div>
-              <div class="fv-tile tile-b"><span>ALWAYS<br />ON REPEAT</span><i>♫</i></div>
-              <div class="fv-tile tile-c"><span>FOR LATER</span><i>♡</i></div>
-              <div class="fv-tile tile-d"><span>THE<br />DEEP CUTS</span><i>✳</i></div>
+            <div class="feature-visual fv-vault" aria-hidden="true">
+              <div class="vault-tile is-featured">
+                <span>HEAVY ROTATION</span>
+                <small>128 TRACKS · ACTIVE</small>
+                <i>↗</i>
+              </div>
+              <div class="vault-tile">
+                <span>FAVORITES VAULT</span>
+                <small>LOSSLESS REPERTOIRE</small>
+                <i>♡</i>
+              </div>
+              <div class="vault-tile">
+                <span>OFFLINE ARCHIVE</span>
+                <small>CACHED ON DEVICE</small>
+                <i>↓</i>
+              </div>
+              <div class="vault-tile">
+                <span>STUDIO CUTS</span>
+                <small>CUSTOM PLAYLISTS</small>
+                <i>♫</i>
+              </div>
             </div>
             <div class="feature-copy">
-              <h3>A local-first music library.</h3>
-              <p>Build custom playlists, star your favorite tracks, track your recent listening history, and store media directly on your local device.</p>
+              <h3>Autonomous music library.</h3>
+              <p>Curate custom playlists, star timeless favorites, track deep listening history, and maintain complete custody of your library on your hardware.</p>
             </div>
           </article>
 
-          <article class="feature-card reveal">
+          <article class="feature-card reveal" data-spotlight>
             <div class="feature-topline">
-              <span>03 / GO</span>
+              <span>03 / CACHE</span>
               <span class="f-arr" aria-hidden="true">↓</span>
             </div>
-            <div class="feature-visual fv-lime" aria-hidden="true">
-              <div class="fv-offline">
-                <span class="o-tag">OFFLINE MODE</span>
-                <b>Ready when<br />you are.</b>
-                <i>↓</i>
+            <div class="feature-visual fv-offline-module" aria-hidden="true">
+              <div class="offline-card">
+                <div class="offline-card-head">
+                  <span class="offline-tag">AUTONOMOUS STORAGE</span>
+                  <span class="offline-status"><i></i> READY</span>
+                </div>
+                <b>Pure sound.<br />Any altitude.</b>
+                <div class="offline-meter"><i></i></div>
               </div>
             </div>
             <div class="feature-copy">
               <h3>Offline listening when signal fails.</h3>
-              <p>Save tracks directly to local storage. Keep your soundtrack active on flights, remote drives, or low-bandwidth connections.</p>
+              <p>Download and cache high-resolution streams directly to encrypted local storage. Keep your soundtrack unbroken across flights, subways, and remote expeditions.</p>
             </div>
           </article>
 
-          <article class="feature-card reveal reveal-d1">
+          <article class="feature-card reveal reveal-d1" data-spotlight>
             <div class="feature-topline">
-              <span>04 / FEEL</span>
+              <span>04 / LYRICS</span>
               <span class="f-arr" aria-hidden="true">“</span>
             </div>
-            <div class="feature-visual fv-lyrics" aria-hidden="true">
-              <span class="l-line">when the night gets quiet</span>
-              <div class="l-strong">let the next line<br />find you<em>.</em></div>
-              <div class="l-time">02:14 <i></i> 05:00</div>
+            <div class="feature-visual fv-lyrics-stage" aria-hidden="true">
+              <span class="l-prev">when the night gets quiet</span>
+              <div class="l-active">let the next line<br /><em>find you.</em></div>
+              <span class="l-next">in the cadence of pure sound</span>
+              <div class="l-time">
+                <span>02:14</span>
+                <i></i>
+                <span>05:00</span>
+              </div>
             </div>
             <div class="feature-copy">
               <h3>Real-time synchronized LRC lyrics.</h3>
-              <p>Accurate synchronized scrolling lyrics with timing alignment and active line highlighting for singing along.</p>
+              <p>Millisecond-accurate synchronized lyrics with active vocal highlighting, translation support, and interactive verse navigation.</p>
             </div>
           </article>
         </div>

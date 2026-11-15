@@ -22,6 +22,7 @@
 import 'dart:async';
 import 'package:audio_service/audio_service.dart';
 import 'package:forge/constants/app_constants.dart';
+import 'package:forge/constants/payment_constants.dart';
 import 'package:forge/extensions/l10n.dart';
 import 'package:forge/main.dart';
 import 'package:forge/screens/search_page.dart';
@@ -49,6 +50,7 @@ import 'package:forge/widgets/shapes/four_sided_cookie_shape.dart';
 import 'package:forge/widgets/sponsorship_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -494,8 +496,27 @@ class SettingsPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           clipBehavior: Clip.antiAlias,
           child: InkWell(
-            onTap: () {
-              showSponsorshipDialog(context);
+            onTap: () async {
+              // Ensure in-app dialog displays immediately
+              unawaited(showSponsorshipDialog(context));
+
+              if (isMobilePlatform) {
+                // On Android/iOS: trigger direct Google Pay UPI intent
+                try {
+                  await url_launcher.launchUrl(
+                    SponsorshipConfig.googlePay.paymentUri,
+                    mode: url_launcher.LaunchMode.externalApplication,
+                  );
+                } catch (_) {}
+              } else {
+                // On macOS/Windows/Linux: open dedicated web payment portal
+                try {
+                  await url_launcher.launchUrl(
+                    Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
+                    mode: url_launcher.LaunchMode.externalApplication,
+                  );
+                } catch (_) {}
+              }
             },
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -566,6 +587,13 @@ class SettingsPage extends StatelessWidget {
           Icons.description,
           borderRadius: commonCustomBarRadiusFirst,
           onTap: () => NavigationManager.router.go('/settings/license'),
+        ),
+        CustomBar(
+          'GitHub Repository',
+          Icons.code,
+          description: 'Explore Forge open-source project on GitHub',
+          onTap: () =>
+              launchURL(Uri.parse('https://github.com/lokesh12dev/Forge')),
         ),
         CustomBar(
           context.l10n!.translate,

@@ -1,0 +1,54 @@
+{
+  "url": "https://api.github.com/repos/lokesh12dev/Forge/releases/440216281",
+  "html_url": "https://github.com/lokesh12dev/Forge/releases/tag/v10.6.1",
+  "id": 440216281,
+  "tag_name": "v10.6.1",
+  "name": "Forge v10.6.1",
+  "draft": false,
+  "prerelease": false,
+  "published_at": "2026-11-10T10:31:41Z",
+  "assets": [
+    {
+      "id": 1,
+      "name": "Forge-v10.6.1-universal.apk",
+      "size": 32961083,
+      "digest": "sha256:494c78ab890e948c8c7f86d2081c68a645dda375087b06b50e8543a0b0382bbb",
+      "browser_download_url": "https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-universal.apk"
+    },
+    {
+      "id": 2,
+      "name": "Forge-v10.6.1-arm64-v8a.apk",
+      "size": 13007188,
+      "digest": "sha256:c7a10d7b6fffba00d8b4ffbc462d783fbeae0cd8274822de37d561bc2b2518c3",
+      "browser_download_url": "https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-arm64-v8a.apk"
+    },
+    {
+      "id": 3,
+      "name": "Forge-v10.6.1-windows-x64.zip",
+      "size": 25165824,
+      "digest": "sha256:a1b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0",
+      "browser_download_url": "https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-x64.zip"
+    },
+    {
+      "id": 4,
+      "name": "Forge-v10.6.1-windows-setup.exe",
+      "size": 26214400,
+      "digest": "sha256:b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef01",
+      "browser_download_url": "https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-setup.exe"
+    },
+    {
+      "id": 5,
+      "name": "Forge-v10.6.1-macos.dmg",
+      "size": 31457280,
+      "digest": "sha256:c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef012",
+      "browser_download_url": "https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-macos.dmg"
+    },
+    {
+      "id": 6,
+      "name": "SHA256SUMS.txt",
+      "size": 512,
+      "digest": "sha256:d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0123",
+      "browser_download_url": "https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/SHA256SUMS.txt"
+    }
+  ]
+}

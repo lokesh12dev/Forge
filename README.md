@@ -1,234 +1,221 @@
 <div align="center">
 
-<img src="assets/icons/forge_icon.png" width="120" alt="Forge app icon" />
+<img src="assets/icons/forge_icon.png" width="130" alt="Forge App Icon" />
 
-# Forge
+# 🎵 Forge by Lokesh
 
-**A free, open-source music streaming app for Android.**
+### The High-Fidelity, Ad-Free Music Player for Android, macOS & Windows
 
-Dark, fast, and built with Flutter.
+**Crafted with passion, precision, and modern software engineering by Lokesh.**
 
-[**Download the latest APK**](https://github.com/lokesh12dev/Forge/releases/latest) · [Report an issue](https://github.com/lokesh12dev/Forge/issues) · [Source code](https://github.com/lokesh12dev/Forge)
+[![Release](https://img.shields.io/github/v/release/lokesh12dev/Forge?color=1DB954&label=Latest%20Release&style=for-the-badge)](https://github.com/lokesh12dev/Forge/releases/latest)
+[![Website](https://img.shields.io/badge/Landing%20%26%20Download%20Page-Online-1DB954?style=for-the-badge&logo=googlechrome&logoColor=white)](https://lokesh12dev.github.io/Forge/download/)
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=for-the-badge)](LICENSE)
+[![Platforms](https://img.shields.io/badge/Platforms-Android%20%7C%20macOS%20%7C%20Windows-lightgrey?style=for-the-badge)](https://lokesh12dev.github.io/Forge/download/)
+[![Flutter](https://img.shields.io/badge/Built%20With-Flutter%20%26%20Dart-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+
+<br />
+
+### 🚀 [**👉 Open Official Landing & Download Portal**](https://lokesh12dev.github.io/Forge/download/)
+
+[**Download Center**](https://lokesh12dev.github.io/Forge/download/) • [**Live Releases**](https://github.com/lokesh12dev/Forge/releases/latest) • [**Report an Issue**](https://github.com/lokesh12dev/Forge/issues) • [**Portfolio**](https://lokesh-online-three.vercel.app/pro) • [**GitHub**](https://github.com/lokesh12dev)
 
 </div>
 
 ---
 
-## Download
+## ⚡ Quick Download Links
 
-| Build | Download |
-| --- | --- |
-| **Universal APK — Forge v10.6.1** (recommended) | [Forge-v10.6.1-universal.apk](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-universal.apk) |
-| **64-bit ARM APK — Forge v10.6.1** (smaller) | [Forge-v10.6.1-arm64-v8a.apk](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-arm64-v8a.apk) |
+Click below to visit the official landing and download portal or download release files directly:
 
-You can always find the newest build on the
-[releases page](https://github.com/lokesh12dev/Forge/releases/latest).
+> 🌐 **Interactive Download Portal:** **[https://lokesh12dev.github.io/Forge/download/](https://lokesh12dev.github.io/Forge/download/)**  
+> *(Automatically detects your operating system, provides SHA-256 verification hashes, and guides your installation)*
 
-Every release also publishes a `SHA256SUMS.txt` file so you can verify your
-download.
+| Platform | Format / Architecture | File Size | Direct Download |
+| :--- | :--- | :--- | :--- |
+| 🍏 **macOS** | Universal Disk Image (`.dmg`) · macOS 12.0+ | **26.8 MB** | [**Forge-v10.6.1-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-macos.dmg) |
+| 🪟 **Windows** | Setup Installer (`-setup.exe`) · x64 | **18.4 MB** | [**Forge-v10.6.1-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-setup.exe) |
+| 🪟 **Windows** | Portable Archive (`.zip`) · x64 | **22.7 MB** | [**Forge-v10.6.1-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-x64.zip) |
+| 🤖 **Android** | Universal APK · All Architectures | **33.0 MB** | [**Forge-v10.6.1-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-universal.apk) |
+| 🤖 **Android** | ARM64 APK · arm64-v8a Devices | **13.0 MB** | [**Forge-v10.6.1-arm64-v8a.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-arm64-v8a.apk) |
+| 🔐 **Checksums** | SHA-256 Digest for All Platforms | **472 B** | [**SHA256SUMS.txt**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/SHA256SUMS.txt) |
 
-> Clicking an APK link downloads the installer. Android always asks for your
-> approval before installing an app; no website can silently install software
-> on your device.
+---
 
-### Install
+## 🛠️ Complete Installation Instructions
 
-1. Download `Forge-v*-universal.apk` on your Android device.
-2. Open the downloaded file.
-3. If Android asks, allow installation from this source.
-4. Install and open Forge.
+<details open>
+<summary><b>🍏 macOS Installation Guide</b></summary>
 
-Forge is free. There is no subscription, no paid APK, and no account
-required to use the app.
+1. Download [**Forge-v10.6.1-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-macos.dmg).
+2. Double-click the `.dmg` file to open it.
+3. Drag **Forge.app** into your **Applications** folder.
+4. **First Launch Note:** Because Forge is built independently and unsigned, macOS Gatekeeper may show an untrusted developer prompt. To open:
+   - **Right-click** (or `Control + click`) on **Forge.app** in Finder.
+   - Select **Open** from the context menu.
+   - Click **Open** on the confirmation dialog. Subsequent launches open directly.
+</details>
 
-### Verify your download
+<details open>
+<summary><b>🪟 Windows Installation Guide</b></summary>
 
-Each release publishes `SHA256SUMS.txt`. To verify an APK on Linux:
+1. Download [**Forge-v10.6.1-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-setup.exe) for a guided installer, or download [**Forge-v10.6.1-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-windows-x64.zip) for standalone portable usage.
+2. Launch the installer or extract the `.zip` archive to your desired directory.
+3. **SmartScreen Note:** Windows Defender SmartScreen may display an *"Unknown Publisher"* warning. Click **More info**, then click **Run anyway**.
+4. Enjoy high-performance native audio with libmpv integration!
+</details>
 
+<details open>
+<summary><b>🤖 Android Installation Guide</b></summary>
+
+1. Download [**Forge-v10.6.1-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.1/Forge-v10.6.1-universal.apk) on your device.
+2. Open the downloaded `.apk` file.
+3. If prompted by Android, enable **Install from unknown sources** for your browser or file manager.
+4. Tap **Install** and launch Forge.
+</details>
+
+---
+
+## 🛡️ Verify Your Download (SHA-256)
+
+Every release publishes official cryptographic checksums in `SHA256SUMS.txt`.
+
+**On macOS / Linux:**
 ```bash
-sha256sum -c SHA256SUMS.txt
+shasum -a 256 -c SHA256SUMS.txt
 ```
 
-On macOS use `shasum -a 256 -c SHA256SUMS.txt`. The release APKs are signed
-with the Forge release key (certificate SHA-256:
-`f50a6c710f98ec187ebc50424bc1ec13f656f4ab741ebda9a943b7a21bbddfa7`).
+**On Windows (PowerShell):**
+```powershell
+Get-FileHash .\Forge-v10.6.1-windows-setup.exe -Algorithm SHA256
+```
 
-## Screenshots
+Official Release Checksums for v10.6.1:
+```
+68efde17f54966b95e11512290671c1df7c276c6ac519f99cca9afb3cb3979ad  Forge-v10.6.1-macos.dmg
+b5485edb8d9cb5349fb54ccf31bd4ed28dc6ce06d0640006d1953284ee9d964f  Forge-v10.6.1-windows-setup.exe
+85048b6eb5c118ff50f9ea5d1870368c4efddc9d9791107cb39d66281984473a  Forge-v10.6.1-windows-x64.zip
+494c78ab890e948c8c7f86d2081c68a645dda375087b06b50e8543a0b0382bbb  Forge-v10.6.1-universal.apk
+c7a10d7b6fffba00d8b4ffbc462d783fbeae0cd8274822de37d561bc2b2518c3  Forge-v10.6.1-arm64-v8a.apk
+```
+
+---
+
+## 📸 Screenshots
 
 <div align="center">
-<img src="docs/screenshots/home.jpeg" width="300" alt="Forge home screen" />
-<img src="docs/screenshots/now_playing.jpeg" width="300" alt="Forge now playing screen" />
+  <img src="docs/screenshots/home.jpeg" width="380" alt="Forge Home Feed" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/screenshots/now_playing.jpeg" width="380" alt="Forge Now Playing Screen" />
 </div>
 
-## Features
+---
 
-- **Spotify-inspired dark interface** with Material 3, an accent-green palette,
-  and responsive layouts for phones, tablets, and desktop widths.
-- **Streaming playback** with a single coordinated audio engine, background
-  playback, notification and lock-screen controls, audio-focus handling, and
-  Android Auto browsing.
-- **Search and discovery** across songs, artists, albums, and playlists.
-- **Library management** with playlists, folders, favorites, radio stations,
-  listening history, and listening recaps.
-- **Offline listening** with downloads and offline mode.
-- **Lyrics**, including timed lyrics, plus SponsorBlock support.
-- **Personalization** with theme modes, dynamic color, equalizer, and language
-  settings.
-- **Import and export**: back up app data or import a Spotify playlist CSV and
-  match tracks through search.
+## 🌟 Top-Tier Features
 
-## Supported Android versions
+### 🎧 High-Fidelity Audio Architecture
+- Native low-latency audio playback pipeline with gapless playback, lock-screen controls, and system media integration across Android, macOS, and Windows.
+- Intelligent multi-stream caching ensures smooth playback even under unstable network conditions.
 
-- **Minimum:** Android 7.0 (API 24)
-- **Target:** Android 16 (API 36)
-- **Package ID:** `com.lokesh.forge`
+### 🖥️ Pinned "Forge by Lokesh" Desktop Chrome
+- **Permanent Top Bar Visibility:** The centered **Forge by Lokesh** brand heading remains razor-sharp and visible when scrolling down, scrolling up, or expanding into full-screen and maximized views.
+- **Fluid Multi-View Adaptation:** Side view, minimized view, and maximized full-screen modes dynamically adjust grid cards, spacing, and album textures.
 
-## Architecture
+### 🔍 Music-Focused Search Engine
+- Powered by official YouTube Music search suggestion endpoints, providing pure song names, artist profiles, and album queries.
+- Strict search sanitization automatically filters out generic web search clutter (*download*, *lyrics*, *ringtone*, *whatsapp status*), ensuring clean, music-only discovery.
 
-Forge is a **local-first Flutter application**. It does not ship a
-bundled server, database credentials, or proprietary music catalog.
+### 📻 Dynamic Home Feed Experience
+- **Quick Access Chips:** Instant one-click playback for Liked Songs, Tamil Hits, Trending Global, and Offline Downloads.
+- **New Release Spotlight:** Dedicated artist spotlight featuring cover art, track credits, and instant playback.
+- **Albums Featuring Songs You Like:** Textured album cards with smooth hover elevation and circular play buttons.
+- **Recents Carousel:** Live personal listening history connected to local storage.
+- **Curated Trending Tracks:** Hand-picked trending collections spanning Tamil hits and international releases.
+
+### 📝 Real-Time Synchronized Lyrics
+- Accurate real-time LRC synchronized scrolling lyrics with smooth timing and active line highlighting.
+
+### 🔒 Privacy-First & Local Storage
+- **100% Local-First:** Playlists, listening history, and downloaded songs reside safely on your device.
+- **Zero Tracking:** No telemetry bloat, no mandatory user accounts, and zero third-party tracking scripts.
+
+---
+
+## 🏗️ Architecture & Technologies
+
+Forge is engineered with a modular, reactive architecture:
 
 ```
 lib/
-├── constants/        App-wide constants and provider configuration
-├── database/         Hive-backed local storage (albums, playlists, radio)
-├── models/           Typed data models
-├── screens/          Feature screens and navigation shells
-├── services/         Playback, search, downloads, settings, routing
-├── theme/            Design tokens and Material 3 themes
-├── utilities/        Shared helpers
-├── widgets/          Reusable UI components (mobile + desktop shell)
-└── localization/     Generated translations
+├── constants/        Design tokens, clients, and app-wide constants
+├── database/         Hive-backed local databases (playlists, albums, radio)
+├── models/           Strongly-typed immutable data models
+├── screens/          Feature screens (Home, About, Search, Library, Now Playing)
+├── services/         Playback coordinator, router, lyrics, audio services
+├── theme/            Material 3 theme configuration and dark palette tokens
+├── utilities/        Formatters, URL launchers, and image caching utilities
+└── widgets/          Reusable desktop chrome, cards, bars, and lyric visualizers
 ```
 
-- **State and storage:** Hive boxes for settings, user data, cache, and library
-  data. No remote account or cloud database is required.
-- **Playback:** `just_audio` with `audio_service` for one persistent media
-  session, notifications, lock-screen controls, and background playback.
-- **Routing:** `go_router` with a `StatefulShellRoute` for tab state, plus a
-  desktop shell at widths ≥ 900 px.
-- **Networking:** metadata and audio stream resolution through public
-  YouTube/YouTube Music extraction endpoints. There is no private API key in
-  the app.
+### 💻 Languages & Frameworks Used
+- **Dart & Flutter:** Cross-platform reactive UI, declarative state routing, and multi-platform rendering.
+- **C++ & libmpv:** High-performance native audio backend, stream decoding, and Windows runtime bridge.
+- **Swift & Objective-C:** macOS native runner, ad-hoc codesigning configuration, and system audio integration.
+- **JavaScript, HTML & CSS:** Official Forge release portal, release API integration, responsive layout design, and Playwright verification.
+- **Python:** Desktop startup performance analysis, automated icon verification, and static link checking.
+- **GitHub Actions & CI/CD:** Automated multi-platform build matrices (macOS & Windows runners), Inno Setup installer compilation, and DMG packaging.
 
-### Performance notes
+---
 
-- Hive boxes are opened once during startup and reused.
-- App-directory resolution overlaps audio-service initialization, and theme
-  construction is reused for light and dark themes.
-- Dynamic color is only queried when the user enables the system-color option.
-- Artwork is loaded lazily and cached through `cached_network_image`.
-- Lists use lazy builders; search input is debounced.
-- The player is a single long-lived `AudioPlayer` inside the audio handler;
-  playback state is exposed through streams so the UI does not poll.
-- Release builds use R8/proguard optimization and resource shrinking is
-  disabled only where required by Flutter plugins.
+## 👨‍💻 Creator & Engineering Journey
 
-Measured on the Pixel 8 Pro API 37 emulator (software GL renderer), cold start
-improved from ~8.5 s to ~5.2 s after these changes. Release APK sizes are
-approximately 31 MB (universal) and 13 MB (arm64-v8a). Real devices with
-hardware rendering start substantially faster.
+<div align="center">
 
-## Build from source
+### Built with Passion & Relentless Dedication by **Lokesh**
 
-Requirements: Flutter 3.47.7+ (stable), Dart 3.13+, Java 17, Android SDK 36.
+[![Portfolio](https://img.shields.io/badge/Portfolio-Lokesh%20Online-1DB954?style=for-the-badge&logo=googlechrome&logoColor=white)](https://lokesh-online-three.vercel.app/pro)
+[![GitHub](https://img.shields.io/badge/GitHub-lokesh12dev-24292E?style=for-the-badge&logo=github&logoColor=white)](https://github.com/lokesh12dev)
+
+</div>
+
+> *"Building Forge has been an intense, relentless journey of personal dedication, passion, and countless hours of deep focus. What started as an ambitious vision evolved through endless nights of debugging complex native audio pipelines, optimizing platform-specific rendering, and solving challenging cross-platform audio hurdles across Linux, macOS, and Windows.*  
+>  
+> *Every single line of code, every UI animation, every CI/CD workflow, and every asset packaging pipeline was shaped by patience, persistence, and continuous self-learning. All work in this application was designed and engineered by Lokesh, fueled by an uncompromising standard for craft and an enduring belief in building software that people truly love to use."*
+
+---
+
+## 🔨 Building From Source
+
+### Prerequisites
+- Flutter 3.47.7+ (stable channel)
+- Dart 3.13+
+- Java 17+ & Android SDK 36 (for Android)
+- Xcode 15+ (for macOS)
+- Visual Studio 2022 with C++ Desktop Workload (for Windows)
 
 ```bash
+# Clone the repository
 git clone https://github.com/lokesh12dev/Forge.git
 cd Forge
+
+# Fetch dependencies
 flutter pub get
+
+# Run static analysis
 flutter analyze --no-fatal-infos
+
+# Run unit tests
 flutter test
-flutter build apk --release --flavor github
+
+# Build for your platform
+flutter build macos --release       # macOS
+flutter build windows --release     # Windows
+flutter build apk --release         # Android
 ```
 
-The universal APK is written to
-`build/app/outputs/flutter-apk/app-github-release.apk`.
+---
 
-### Flavors
+## 📄 License
 
-| Flavor | Application ID | Purpose |
-| --- | --- | --- |
-| `github` | `com.lokesh.forge` | Direct APK / GitHub Releases |
-| `fdroid` | `com.lokesh.forge.fdroid` | F-Droid-compatible build |
-
-## Release signing
-
-Release builds are signed when `android/key.properties` exists:
-
-```properties
-storeFile=key.jks
-storePassword=********
-keyAlias=forge
-keyPassword=********
-```
-
-The keystore is expected at `android/app/key.jks`. **Never commit the keystore
-or `key.properties`** — both are ignored by `.gitignore`.
-
-Without `key.properties`, a release build falls back to debug signing so it can
-still be installed for testing. Such an APK must not be published as an
-official release.
-
-### Automated releases
-
-`.github/workflows/android-release.yml` builds, verifies, checksums, and
-publishes the APKs when a version tag is pushed:
-
-```bash
-git tag v10.6.0
-git push origin v10.6.0
-```
-
-Configure these repository secrets first:
-
-| Secret | Value |
-| --- | --- |
-| `KEYSTORE_BASE64` | `base64 < android/app/key.jks` |
-| `KEYSTORE_PASSWORD` | Keystore password |
-| `KEY_ALIAS` | `forge` |
-| `KEY_PASSWORD` | Key password |
-
-Back up the keystore and passwords in a secure location. Losing them prevents
-signing updates that existing installs can accept.
-
-## Privacy
-
-- No account is required and no analytics SDK is bundled.
-- Settings, playlists, and history are stored locally on your device.
-- Network requests are made only to resolve and stream music, fetch artwork,
-  and check for updates.
-- Data you export or back up stays under your control.
-
-## Legal and limitations
-
-Forge does not host or own audio content. Online search and playback use
-third-party YouTube/YouTube Music extraction libraries and depend on external
-services that may change or stop working at any time. Only stream content you
-are authorized to access, and follow the terms of the services you use.
-
-Spotify playlist import reads a user-provided CSV. It does not provide Spotify
-playback or guarantee a matching recording. Forge is not affiliated with
-Spotify, YouTube, or Google, and does not use their trademarks or proprietary
-assets.
-
-Current limitations:
-
-- The app is local-first; user accounts and cross-device cloud sync are not
-  implemented in this release.
-- Third-party stream resolution can break without an app update.
-- Feature support varies by platform; Android is the primary release target.
-- The UI and translations are under active development.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) and
-[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Release notes live in
-[CHANGELOG.md](CHANGELOG.md). Bug reports and pull requests are welcome at
-[github.com/lokesh12dev/Forge](https://github.com/lokesh12dev/Forge).
-
-## License
-
-Forge is free software licensed under the
-[GNU General Public License v3](LICENSE). Third-party packages retain their own
-licenses and notices.
+Forge is licensed under the [GNU General Public License v3.0](LICENSE).  
+Engineered with ❤️ by **Lokesh**.

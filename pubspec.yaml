@@ -65,6 +65,7 @@ flutter:
     - assets/licenses/
     - assets/icons/forge_icon.png
     - assets/icons/ic_launcher.png
+    - assets/payments/
 
   fonts:
     - family: paytoneOne

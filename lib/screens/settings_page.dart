@@ -45,6 +45,7 @@ import 'package:forge/widgets/custom_bar.dart';
 import 'package:forge/widgets/mini_player_bottom_space.dart';
 import 'package:forge/widgets/section_header.dart';
 import 'package:forge/widgets/shapes/four_sided_cookie_shape.dart';
+import 'package:forge/widgets/sponsorship_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -495,7 +496,7 @@ class SettingsPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           child: InkWell(
-            onTap: () => launchURL(Uri.parse('https://lokesh12dev.github.io/Forge/pay/')),
+            onTap: () => showSponsorshipDialog(context),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 12, 12),
               child: Row(

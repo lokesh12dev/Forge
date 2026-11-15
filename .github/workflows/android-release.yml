@@ -70,11 +70,17 @@ jobs:
           java-version: '17'
           cache: gradle
 
+      - name: Resolve Flutter version
+        shell: bash
+        run: |
+          echo "FLUTTER_VERSION=$(sed -n 's/^  flutter: \^*\([0-9.]*\)/\1/p' pubspec.yaml)" >> "$GITHUB_ENV"
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
+          flutter-version: ${{ env.FLUTTER_VERSION }}
 
       - name: Install dependencies
         run: flutter pub get

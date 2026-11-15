@@ -76,8 +76,9 @@ jobs:
           MAC_ARCH: ${{ matrix.id == 'macos-arm64' && 'arm64' || 'x86_64' }}
         run: |
           flutter build macos --config-only
-          xcodebuild -project macos/Runner.xcodeproj -scheme Runner -configuration Release -derivedDataPath build/macos/Build -arch "$MAC_ARCH" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= build
-          APP="build/macos/Build/Products/Release/Forge.app"
+          DERIVED_DATA="build/macos/DerivedData"
+          xcodebuild -project macos/Runner.xcodeproj -scheme Runner -configuration Release -derivedDataPath "$DERIVED_DATA" -arch "$MAC_ARCH" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= build
+          APP="$DERIVED_DATA/Build/Products/Release/Forge.app"
           test -d "$APP"
           EXECUTABLE=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$APP/Contents/Info.plist")
           python .github/scripts/check_desktop_startup.py "$APP/Contents/MacOS/$EXECUTABLE"

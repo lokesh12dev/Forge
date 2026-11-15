@@ -5,7 +5,7 @@
  * - Live data comes from the GitHub Releases API (assets, sizes, sha256 digests).
  * - A verified static snapshot (FALLBACK_RELEASE) ships with the site so the
  *   page is correct even if the API is unreachable. Every value in the
- *   snapshot is copied from the official v10.6.4 release (SHA256SUMS.txt and
+ *   snapshot is copied from the official v10.6.5 release (SHA256SUMS.txt and
  *   the release API response) — never edited by hand.
  * - All download URLs are strictly allow-listed to official GitHub release
  *   asset URLs before they are ever placed in the DOM.
@@ -21,85 +21,85 @@
   const ALLOWED_URL_PREFIX = 'https://github.com/lokesh12dev/Forge/releases/download/';
 
   /*
-   * VERIFIED static snapshot of Forge v10.6.4 (published 2026-11-15).
+   * VERIFIED static snapshot of Forge v10.6.5 (published 2026-11-15).
    * Sizes are exact byte counts from the release API; checksums are copied
    * verbatim from the release's official SHA256SUMS.txt.
    * Update this object only by re-verifying a newly published release.
    */
   const FALLBACK_RELEASE = {
-    version: 'v10.6.4',
-    versionClean: '10.6.4',
-    name: 'Forge v10.6.4',
+    version: 'v10.6.5',
+    versionClean: '10.6.5',
+    name: 'Forge v10.6.5',
     date: '15 Nov 2026',
-    publishedAt: '2026-11-15T08:15:42Z',
-    htmlUrl: 'https://github.com/lokesh12dev/Forge/releases/tag/v10.6.4',
-    checksumsUrl: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/SHA256SUMS.txt',
+    publishedAt: '2026-11-15T11:10:13Z',
+    htmlUrl: 'https://github.com/lokesh12dev/Forge/releases/tag/v10.6.5',
+    checksumsUrl: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.5/SHA256SUMS.txt',
     notes:
-      'Sporty green top bar across the app. The Forge icon replaces the generic music-note placeholders. Update prompts now open the Forge download page on every platform. Fixed the invisible "forge" wordmark and removed the "Build Up Myself" section from About. Android APKs keep the same signing key, so updates install in place.',
+      'Dual-UPI sponsorship experience with Google Pay and PhonePe QR integration.',
     android: [
       {
-        name: 'Forge-v10.6.4-universal.apk',
+        name: 'Forge-v10.6.5-universal.apk',
         label: 'Universal APK',
         desc: 'Works on Android phones and tablets. The easiest choice for most devices.',
         arch: 'all architectures',
         type: 'universal',
         recommended: true,
-        size: 33143191,
-        sizeFormatted: '31.6 MB',
-        sha256: '20208fd2814a2cc0d9d33e76303d9bb4ebb48ce5e4a14786f2bb46962bb79b3a',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-universal.apk'
+        size: 33603084,
+        sizeFormatted: '32.0 MB',
+        sha256: '3e167563ce31491ecdf3d0e79507ccf8a629d90d58a04900fb4471754c4ab1bf',
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.5/Forge-v10.6.5-universal.apk'
       },
       {
-        name: 'Forge-v10.6.4-arm64-v8a.apk',
+        name: 'Forge-v10.6.5-arm64-v8a.apk',
         label: 'ARM64 APK',
         desc: 'For modern Android devices with a 64-bit ARM processor.',
         arch: 'arm64-v8a',
         type: 'arm64',
         recommended: false,
-        size: 13066172,
-        sizeFormatted: '12.5 MB',
-        sha256: '73359f3af5dfd2d0b7f0fe259ad657cdd4117651602210d5c6b5c0d5c4f0faa4',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-arm64-v8a.apk'
+        size: 13334121,
+        sizeFormatted: '12.7 MB',
+        sha256: '8090ad27cafe4f999ea704016a1aff5a30cda8c719098032830d9113a67b17ca',
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.5/Forge-v10.6.5-arm64-v8a.apk'
       }
     ],
     macos: [
       {
-        name: 'Forge-v10.6.4-macos.dmg',
+        name: 'Forge-v10.6.5-macos.dmg',
         label: 'macOS Disk Image',
         desc: 'Universal build for Apple Silicon and Intel Macs.',
         arch: 'macOS 12.0+',
         type: 'dmg',
         recommended: true,
-        size: 26943388,
-        sizeFormatted: '25.7 MB',
-        sha256: 'b0f64e503d0d010a6d70e16f72a296091377d5bf9407c0a18792994383f3ae81',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-macos.dmg'
+        size: 27335274,
+        sizeFormatted: '26.1 MB',
+        sha256: 'e200b5764f22ee4f0f289ea60f05a3f45c9e7674495fa2a21103887325ece5fb',
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.5/Forge-v10.6.5-macos.dmg'
       }
     ],
     windows: [
       {
-        name: 'Forge-v10.6.4-windows-setup.exe',
+        name: 'Forge-v10.6.5-windows-setup.exe',
         label: 'Windows Installer',
         desc: 'Standard setup wizard with Start menu shortcuts and clean desktop integration.',
         arch: 'x64',
         type: 'installer',
         recommended: true,
-        size: 18406274,
-        sizeFormatted: '17.6 MB',
-        sha256: 'e6ac3400dfdbd35e4e3a5dbbde4ae95d870b1d550bcb12bed2326e1da64eebe0',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-setup.exe'
+        size: 18617836,
+        sizeFormatted: '17.8 MB',
+        sha256: '59e07bd812397b363d7a86ea30f7a74751e95bbeac9328984bc1f4174a6ae451',
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.5/Forge-v10.6.5-windows-setup.exe'
       },
       {
-        name: 'Forge-v10.6.4-windows-x64.zip',
+        name: 'Forge-v10.6.5-windows-x64.zip',
         label: 'Portable ZIP',
         desc: 'Standalone archive. Extract anywhere and run forge.exe directly without installation.',
         arch: 'x64',
         type: 'portable',
         recommended: false,
-        size: 22744264,
-        sizeFormatted: '21.7 MB',
-        sha256: '235cac8aa57ea82821f59da0a55dbb71d9b219b542c183b7174535ce59a95dfb',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-x64.zip'
+        size: 23002743,
+        sizeFormatted: '21.9 MB',
+        sha256: '0613092c422dba5ac1e9416b24205209cc4e0382766804ec9e7364a54f53446c',
+        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.6.5/Forge-v10.6.5-windows-x64.zip'
       }
     ]
   };

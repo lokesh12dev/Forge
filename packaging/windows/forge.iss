@@ -4,10 +4,8 @@
 
 #define AppName "Forge"
 #define AppExe "forge.exe"
-#define AppId "{B91A3D0B-42A1-4653-9FE2-6E7521B31701}"
-
 [Setup]
-AppId={#AppId}
+AppId={{B91A3D0B-42A1-4653-9FE2-6E7521B31701}}
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppPublisher=M. Lokesh

@@ -3,172 +3,363 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#10120f" />
-    <meta name="description" content="Download the latest official Forge release for Android, macOS, and Windows. Check platform availability, choose your build, and verify its SHA-256 checksum." />
-    <meta property="og:title" content="Download Forge" />
-    <meta property="og:description" content="Get the latest official Forge release for Android, macOS, and Windows." />
-    <title>Download Forge</title>
+    <meta name="theme-color" content="#0a0c09" />
+    <meta name="description" content="Download official Forge v10.6.4 builds for macOS, Windows, and Android. Verify SHA-256 checksums, view platform-specific installation guides, and check GitHub release notes." />
+    <meta property="og:title" content="Download Forge — Official Releases for macOS, Windows & Android" />
+    <meta property="og:description" content="Official verified Forge builds: macOS universal DMG, Windows installer & portable ZIP, Android APKs. SHA-256 checksums and install guides included." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lokesh12dev.github.io/Forge/download/" />
+    <meta property="og:image" content="https://lokesh12dev.github.io/Forge/assets/social-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Forge" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Download Forge — Official Releases for macOS, Windows & Android" />
+    <meta name="twitter:description" content="Official verified Forge builds: macOS universal DMG, Windows installer & portable ZIP, Android APKs. SHA-256 checksums and install guides included." />
+    <meta name="twitter:image" content="https://lokesh12dev.github.io/Forge/assets/social-card.jpg" />
+    <link rel="canonical" href="https://lokesh12dev.github.io/Forge/download/" />
+    <title>Download Forge — Official Releases for macOS, Windows &amp; Android</title>
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="icon" type="image/png" href="../assets/forge-icon.png" />
     <link rel="stylesheet" href="../assets/styles.css" />
     <script src="../assets/releases.js" defer></script>
     <script src="../assets/site.js" defer></script>
   </head>
   <body class="download-page">
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <a class="brand" href="../" aria-label="Forge home"><span class="brand-mark" aria-hidden="true"></span><span class="brand-word">forge<small>by Lokesh</small></span></a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="../#features">The experience</a>
-        <a href="../#screens">A closer look</a>
-        <a class="nav-download nav-download-active" href="./" aria-current="page">Download <span aria-hidden="true">↗</span></a>
-      </nav>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    
+    <header class="site-nav" role="banner">
+      <div class="nav-inner">
+        <a class="brand" href="../" aria-label="Forge home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-word">forge<small>by Lokesh</small></span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="../#features">Experience</a>
+          <a href="../#screenshots">Showcase</a>
+          <a href="./" aria-current="page">Download</a>
+          <a class="nav-cta" href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">GitHub <span class="arr" aria-hidden="true">↗</span></a>
+        </nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" hidden aria-label="Mobile navigation">
+        <a href="../">Overview <span class="arr" aria-hidden="true">→</span></a>
+        <a href="../#features">Experience <span class="arr" aria-hidden="true">→</span></a>
+        <a href="../#screenshots">Showcase <span class="arr" aria-hidden="true">→</span></a>
+        <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">GitHub Repository <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="menu-cta" href="./" aria-current="page">Download Center <span class="arr" aria-hidden="true">↓</span></a>
+      </div>
     </header>
 
-    <main id="main" class="download-main section-wrap">
-      <div class="download-intro">
-        <a class="back-link" href="../"><span aria-hidden="true">←</span> Back to Forge</a>
-        <p class="eyebrow"><span class="eyebrow-dot"></span> A little closer to the music</p>
-        <h1>Get Forge.<br /><span>Find your flow.</span></h1>
-        <p>Choose your device to see what’s ready. We’ll start you on the platform you’re visiting from.</p>
-      </div>
-
-      <section class="download-card" aria-labelledby="download-heading">
-        <div class="download-card-heading">
-          <div><p class="eyebrow"><span class="eyebrow-dot"></span> Choose your device</p><h2 id="download-heading">Downloads, made simple.</h2></div>
-          <div class="detected-pill"><span class="detected-indicator" aria-hidden="true"></span><span id="device-status" aria-live="polite">Checking your device…</span></div>
-        </div>
-
-        <div class="device-tabs" role="group" aria-label="Select your device">
-          <button type="button" class="device-tab" data-os="android" aria-pressed="false"><span class="device-icon" aria-hidden="true">◉</span><span>Android</span><span class="tab-available">Available</span></button>
-          <button type="button" class="device-tab" data-os="macos" aria-pressed="false"><span class="device-icon device-icon-apple" aria-hidden="true">●</span><span>macOS</span><span class="tab-available">Available</span></button>
-          <button type="button" class="device-tab" data-os="windows" aria-pressed="false"><span class="device-icon device-icon-windows" aria-hidden="true">▦</span><span>Windows</span><span class="tab-available">Available</span></button>
-        </div>
-
-        <div class="download-panels" aria-live="polite">
-          <section class="platform-panel" data-panel="android" hidden>
-            <div class="release-heading">
-              <div><span class="release-kicker"><span class="release-dot"></span> LATEST STABLE RELEASE</span><h3>Forge <span class="release-version">v10.6.4</span></h3><p>Free and open-source music streaming for Android.</p></div>
-              <div class="version-pill release-date">10 Nov 2026</div>
-            </div>
-            <div class="build-list">
-              <article class="build-option build-recommended">
-                <div class="build-label"><span class="build-radio" aria-hidden="true"></span><span class="build-name">Universal APK</span><span class="recommended-pill">Recommended</span></div>
-                <p>Works on Android phones and tablets. The easiest choice for most devices.</p>
-                <div class="build-actions"><span class="build-size" id="android-universal-size">31.6 MB <i>·</i> all architectures</span><a class="button button-primary button-download" id="android-universal-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-universal.apk">Download APK <span class="button-icon" aria-hidden="true">↓</span></a></div>
-              </article>
-              <article class="build-option">
-                <div class="build-label"><span class="build-radio build-radio-muted" aria-hidden="true"></span><span class="build-name">ARM64 APK</span><span class="small-tag">Smaller file</span></div>
-                <p>For modern Android devices with a 64-bit ARM processor.</p>
-                <div class="build-actions"><span class="build-size" id="android-arm64-size">12.5 MB <i>·</i> arm64-v8a</span><a class="button button-outline button-download" id="android-arm64-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-arm64-v8a.apk">Download APK <span class="button-icon" aria-hidden="true">↓</span></a></div>
-              </article>
-            </div>
-
-            <div class="release-facts"><span><b>Minimum</b> Android 7.0+</span><span><b>Package ID</b> com.lokesh.forge</span><span><b>License</b> GPL-3.0</span></div>
-            <details class="checksum-details">
-              <summary><span>Verify your download</span><span class="checksum-summary-note">SHA-256 checksums <i aria-hidden="true">＋</i></span></summary>
-              <div class="checksum-body">
-                <p>These SHA-256 values are published with Forge v10.6.4. Compare the checksum for the file you downloaded to verify that it matches the release.</p>
-                <div class="checksum-row"><span>Universal APK</span><code id="android-universal-checksum">50b49c17130927aa4da531ef908d2cbaa1a65a8cbdbb103cfe01ebe48c7bd4c1</code></div>
-                <div class="checksum-row"><span>ARM64 APK</span><code id="android-arm64-checksum">613b54a285b3492d35ec69c40e90262dade344f5cc39e8635c5a2ee98eafc97b</code></div>
-                <a class="text-link checksum-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/SHA256SUMS.txt" target="_blank" rel="noreferrer">Open the official checksum file <span aria-hidden="true">↗</span></a>
-              </div>
-            </details>
-
-            <div class="install-guide">
-              <div class="install-heading"><span class="install-number">01—03</span><div><h4>Three small steps.</h4><p>Android will walk you through the install.</p></div></div>
-              <ol><li><span>01</span><p>Download the APK on your Android device.</p></li><li><span>02</span><p>Open it from your downloads. If asked, allow installs from your browser.</p></li><li><span>03</span><p>Review Android’s prompt, tap <b>Install</b>, then open Forge.</p></li></ol>
-            </div>
-            <p class="approval-note"><span aria-hidden="true">ⓘ</span> This button downloads the APK. A website cannot silently install or launch an app; Android will ask you to confirm before installation.</p>
-            <a class="release-link" href="https://github.com/lokesh12dev/Forge/releases/tag/v10.6.4" target="_blank" rel="noreferrer">See the release notes and all files on GitHub <span aria-hidden="true">↗</span></a>
-          </section>
-
-          <section class="platform-panel" data-panel="macos" hidden>
-            <div class="release-heading">
-              <div><span class="release-kicker"><span class="release-dot"></span> LATEST STABLE RELEASE</span><h3>Forge <span class="release-version">v10.6.4</span></h3><p>Universal build for Apple Silicon and Intel Macs.</p></div>
-              <div class="version-pill release-date">10 Nov 2026</div>
-            </div>
-            <div class="build-list">
-              <article class="build-option build-recommended">
-                <div class="build-label"><span class="build-radio" aria-hidden="true"></span><span class="build-name">macOS Disk Image</span><span class="recommended-pill">Recommended</span></div>
-                <p>Drag-and-drop installer for macOS. Compatible with Apple Silicon (M1/M2/M3/M4) and Intel Macs.</p>
-                <div class="build-actions"><span class="build-size" id="macos-dmg-size">Universal <i>·</i> macOS 12.0+</span><a class="button button-primary button-download" id="macos-dmg-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-macos.dmg">Download DMG <span class="button-icon" aria-hidden="true">↓</span></a></div>
-              </article>
-            </div>
-
-            <div class="release-facts"><span><b>Minimum</b> macOS 12.0+ (Monterey)</span><span><b>Architecture</b> Universal (Apple Silicon &amp; Intel)</span><span><b>Package ID</b> com.lokesh.forge</span><span><b>License</b> GPL-3.0</span></div>
-            <details class="checksum-details">
-              <summary><span>Verify your download</span><span class="checksum-summary-note">SHA-256 checksums <i aria-hidden="true">＋</i></span></summary>
-              <div class="checksum-body">
-                <p>These SHA-256 values are published with Forge v10.6.4. Compare the checksum for the file you downloaded to verify that it matches the release.</p>
-                <div class="checksum-row"><span>macOS Disk Image</span><code id="macos-dmg-checksum">Published with official release</code></div>
-                <a class="text-link checksum-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/SHA256SUMS.txt" target="_blank" rel="noreferrer">Open the official checksum file <span aria-hidden="true">↗</span></a>
-              </div>
-            </details>
-
-            <div class="install-guide">
-              <div class="install-heading"><span class="install-number">01—03</span><div><h4>Three small steps.</h4><p>macOS will walk you through the install.</p></div></div>
-              <ol>
-                <li><span>01</span><p>Download and open <b>Forge-v10.6.4-macos.dmg</b>, then drag Forge into Applications.</p></li>
-                <li><span>02</span><p>Because the app is unsigned, right-click (or Control-click) Forge in Applications and choose <b>Open</b> the first time.</p></li>
-                <li><span>03</span><p>Click <b>Open</b> on macOS Gatekeeper’s confirmation prompt to launch Forge.</p></li>
-              </ol>
-            </div>
-            <p class="approval-note"><span aria-hidden="true">ⓘ</span> Forge is community-developed and unsigned. Right-clicking and selecting Open the first time bypasses Gatekeeper safely.</p>
-            <a class="release-link" href="https://github.com/lokesh12dev/Forge/releases/tag/v10.6.4" target="_blank" rel="noreferrer">See the release notes and all files on GitHub <span aria-hidden="true">↗</span></a>
-          </section>
-
-          <section class="platform-panel" data-panel="windows" hidden>
-            <div class="release-heading">
-              <div><span class="release-kicker"><span class="release-dot"></span> LATEST STABLE RELEASE</span><h3>Forge <span class="release-version">v10.6.4</span></h3><p>Fast, lightweight music streaming for Windows 10 &amp; 11.</p></div>
-              <div class="version-pill release-date">10 Nov 2026</div>
-            </div>
-            <div class="build-list">
-              <article class="build-option build-recommended">
-                <div class="build-label"><span class="build-radio" aria-hidden="true"></span><span class="build-name">Windows Installer</span><span class="recommended-pill">Recommended</span></div>
-                <p>Standard setup wizard with Start menu shortcuts and clean desktop integration.</p>
-                <div class="build-actions"><span class="build-size" id="windows-setup-size">Setup EXE <i>·</i> x64</span><a class="button button-primary button-download" id="windows-setup-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-setup.exe">Download Installer <span class="button-icon" aria-hidden="true">↓</span></a></div>
-              </article>
-              <article class="build-option">
-                <div class="build-label"><span class="build-radio build-radio-muted" aria-hidden="true"></span><span class="build-name">Portable ZIP</span><span class="small-tag">No install</span></div>
-                <p>Standalone archive. Extract anywhere and run forge.exe directly without installation.</p>
-                <div class="build-actions"><span class="build-size" id="windows-zip-size">Portable ZIP <i>·</i> x64</span><a class="button button-outline button-download" id="windows-zip-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-x64.zip">Download ZIP <span class="button-icon" aria-hidden="true">↓</span></a></div>
-              </article>
-            </div>
-
-            <div class="release-facts"><span><b>Minimum</b> Windows 10 (1809+) / 11</span><span><b>Architecture</b> x64 (64-bit)</span><span><b>License</b> GPL-3.0</span></div>
-            <details class="checksum-details">
-              <summary><span>Verify your download</span><span class="checksum-summary-note">SHA-256 checksums <i aria-hidden="true">＋</i></span></summary>
-              <div class="checksum-body">
-                <p>These SHA-256 values are published with Forge v10.6.4. Compare the checksum for the file you downloaded to verify that it matches the release.</p>
-                <div class="checksum-row"><span>Windows Installer</span><code id="windows-setup-checksum">Published with official release</code></div>
-                <div class="checksum-row"><span>Portable ZIP</span><code id="windows-zip-checksum">Published with official release</code></div>
-                <a class="text-link checksum-link" href="https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/SHA256SUMS.txt" target="_blank" rel="noreferrer">Open the official checksum file <span aria-hidden="true">↗</span></a>
-              </div>
-            </details>
-
-            <div class="install-guide">
-              <div class="install-heading"><span class="install-number">01—03</span><div><h4>Three small steps.</h4><p>Windows will walk you through the install.</p></div></div>
-              <ol>
-                <li><span>01</span><p>Download the installer or extract the portable ZIP archive to any folder.</p></li>
-                <li><span>02</span><p>If Windows SmartScreen appears, click <b>More info</b>, then select <b>Run anyway</b>.</p></li>
-                <li><span>03</span><p>Follow the installer prompts (or double-click forge.exe in the extracted folder) and enjoy the music.</p></li>
-              </ol>
-            </div>
-            <p class="approval-note"><span aria-hidden="true">ⓘ</span> Forge is community-developed and unsigned. SmartScreen warns about new executables; click "More info" followed by "Run anyway".</p>
-            <a class="release-link" href="https://github.com/lokesh12dev/Forge/releases/tag/v10.6.4" target="_blank" rel="noreferrer">See the release notes and all files on GitHub <span aria-hidden="true">↗</span></a>
-          </section>
+    <main id="main" class="wrap">
+      <section class="dl-hero" aria-labelledby="dl-heading">
+        <a class="text-link" href="../"><span class="arr" aria-hidden="true">←</span> Back to Overview</a>
+        <h1 id="dl-heading" class="display">Get Forge. <em>Find your flow.</em></h1>
+        <p class="lede">Choose your operating system to see compatible builds and installation instructions. We'll automatically suggest the best edition.</p>
+        <div class="pill pill-live detect-pill" data-detect-pill>
+          <span class="dot"></span> Checking your device…
         </div>
       </section>
 
-      <section class="download-footer section-wrap">
-        <div class="download-footer-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> Still curious?</p><h2>See what Forge<br /><span>is made of.</span></h2><p>Browse the code, read the release notes, or follow along as the project grows.</p></div>
-        <div class="download-footer-links"><a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer"><span>01</span> Source code <b>↗</b></a><a href="https://github.com/lokesh12dev/Forge/releases" target="_blank" rel="noreferrer"><span>02</span> All releases <b>↗</b></a><a href="https://github.com/lokesh12dev/Forge/issues" target="_blank" rel="noreferrer"><span>03</span> Help &amp; issues <b>↗</b></a></div>
+      <!-- Selector Section -->
+      <section class="selector" aria-label="Download selector">
+        <div class="selector-head">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Official Download Center</p>
+          <h2>All verified builds</h2>
+        </div>
+
+        <div class="device-tabs" role="group" aria-label="Select platform">
+          <button type="button" class="device-tab" data-os="macos" aria-pressed="false"><span class="device-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702"/></svg></span> macOS</button>
+          <button type="button" class="device-tab" data-os="windows" aria-pressed="false"><span class="device-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.95-9.6L24 0v11.4H10.95M0 12.6h9.75v9.451L0 20.699M10.95 12.6H24V24l-12.9-1.801"/></svg></span> Windows</button>
+          <button type="button" class="device-tab" data-os="android" aria-pressed="false"><span class="device-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4486.9993.9997 0 .5511-.4482.9993-.9993.9993m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.404-6.056l1.9027-3.2948c.0996-.1726.04-.3942-.1327-.4938-.1727-.0996-.3942-.0399-.4938.1327l-1.927 3.3374c-1.4471-.6604-3.0741-1.0276-4.8-1.0276-1.7267 0-3.3537.3672-4.7993 1.0276L5.6132 5.6305c-.0996-.1726-.3212-.2323-.4938-.1327-.1727.0996-.2323.3212-.1327.4938l1.9027 3.2948C3.7504 10.8762 1.6744 14.0776 1.3542 17.809h21.2916c-.3202-3.7314-2.3963-6.9328-5.6649-8.5244"/></svg></span> Android</button>
+        </div>
+
+        <!-- macOS Panel -->
+        <section class="platform-panel" data-panel="macos" hidden>
+          <div class="panel-heading">
+            <div>
+              <span class="release-kicker"><span class="dot" aria-hidden="true"></span> LATEST STABLE</span>
+              <h3>Forge <span class="release-version">v10.6.4</span></h3>
+              <p>Native macOS experience for Apple Silicon &amp; Intel.</p>
+            </div>
+            <span class="version-pill release-date">15 Nov 2026</span>
+          </div>
+
+          <div class="build-list">
+            <article class="build-option is-recommended">
+              <div class="build-label">
+                <span class="build-name">macOS Disk Image (.dmg)</span>
+                <span class="tag tag-acid">Recommended</span>
+              </div>
+              <p class="build-desc">Drag-and-drop installer. Fully universal build.</p>
+              <div class="build-action">
+                <a class="button button-primary button-download" id="macos-dmg-link" href="#">
+                  Download DMG <span class="button-icon" aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <span class="build-meta" id="macos-dmg-size">25.7 MB <i>·</i> macOS 12.0+</span>
+            </article>
+          </div>
+
+          <div class="panel-facts">
+            <span><b>Minimum</b> macOS 12.0 Monterey</span>
+            <span><b>Arch</b> Universal (M1/M2/M3/M4 &amp; Intel)</span>
+            <span><b>Format</b> .dmg</span>
+          </div>
+
+          <details class="checksum-drawer">
+            <summary>Verify your download <span class="cs-plus">+</span></summary>
+            <div class="checksum-body">
+              <p>SHA-256 checksums ensure file integrity. Verify against official release values:</p>
+              <div class="checksum-row">
+                <span>Disk Image</span>
+                <code id="macos-dmg-checksum">...</code>
+              </div>
+              <a class="text-link checksum-link release-link checksum-file-link" href="#">Open official SHA256SUMS file <span class="arr" aria-hidden="true">↗</span></a>
+            </div>
+          </details>
+
+          <div class="install-grid panel-foot">
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">01</div><div><h3>Download</h3><p>Get the official DMG.</p></div></div>
+              <ol class="install-steps"><li><span class="n">01</span><p>Download the latest official <b>Forge-v10.6.4-macos.dmg</b>.</p></li></ol>
+            </article>
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">02</div><div><h3>Install</h3><p>Mount and move.</p></div></div>
+              <ol class="install-steps"><li><span class="n">02</span><p>Mount the DMG, drag <b>Forge.app</b> into your <b>Applications</b> folder.</p></li></ol>
+            </article>
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">03</div><div><h3>Launch</h3><p>Gatekeeper bypass.</p></div></div>
+              <ol class="install-steps"><li><span class="n">03</span><p>First launch: <b>Right-click</b> (Control-click) Forge, select <b>Open</b>, and confirm.</p></li></ol>
+            </article>
+          </div>
+          <div class="install-warn"><span class="w-ico">ⓘ</span> Forge is ad-hoc signed and independent. Right-clicking "Open" the first time safely bypasses macOS Gatekeeper protection.</div>
+        </section>
+
+        <!-- Windows Panel -->
+        <section class="platform-panel" data-panel="windows" hidden>
+          <div class="panel-heading">
+            <div>
+              <span class="release-kicker"><span class="dot" aria-hidden="true"></span> LATEST STABLE</span>
+              <h3>Forge <span class="release-version">v10.6.4</span></h3>
+              <p>Fast, lightweight native Windows audio.</p>
+            </div>
+            <span class="version-pill release-date">15 Nov 2026</span>
+          </div>
+
+          <div class="build-list">
+            <article class="build-option is-recommended">
+              <div class="build-label">
+                <span class="build-name">Windows Installer (.exe)</span>
+                <span class="tag tag-acid">Recommended</span>
+              </div>
+              <p class="build-desc">Standard guided setup with Start menu integration.</p>
+              <div class="build-action">
+                <a class="button button-primary button-download" id="windows-setup-link" href="#">
+                  Download Installer <span class="button-icon" aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <span class="build-meta" id="windows-setup-size">17.6 MB <i>·</i> x64</span>
+            </article>
+            <article class="build-option">
+              <div class="build-label">
+                <span class="build-name">Portable ZIP (.zip)</span>
+                <span class="tag tag-mute">No install</span>
+              </div>
+              <p class="build-desc">Standalone folder. Extract and run forge.exe directly.</p>
+              <div class="build-action">
+                <a class="button button-ghost button-download" id="windows-zip-link" href="#">
+                  Download ZIP <span class="button-icon" aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <span class="build-meta" id="windows-zip-size">21.7 MB <i>·</i> x64</span>
+            </article>
+          </div>
+
+          <div class="panel-facts">
+            <span><b>Minimum</b> Windows 10 (1809+)</span>
+            <span><b>Arch</b> x64 (64-bit)</span>
+            <span><b>Engine</b> libmpv + Flutter</span>
+          </div>
+
+          <details class="checksum-drawer">
+            <summary>Verify your download <span class="cs-plus">+</span></summary>
+            <div class="checksum-body">
+              <p>SHA-256 checksums ensure file integrity. Verify against official release values:</p>
+              <div class="checksum-row"><span>Installer (EXE)</span><code id="windows-setup-checksum">...</code></div>
+              <div class="checksum-row"><span>Portable (ZIP)</span><code id="windows-zip-checksum">...</code></div>
+              <a class="text-link checksum-link release-link checksum-file-link" href="#">Open official SHA256SUMS file <span class="arr" aria-hidden="true">↗</span></a>
+            </div>
+          </details>
+
+          <div class="install-grid panel-foot">
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">01</div><div><h3>Download</h3><p>Pick installer or ZIP.</p></div></div>
+              <ol class="install-steps"><li><span class="n">01</span><p>Download <b>Forge-v10.6.4-windows-setup.exe</b> (guided) or the <b>ZIP</b> (portable).</p></li></ol>
+            </article>
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">02</div><div><h3>SmartScreen</h3><p>Security bypass.</p></div></div>
+              <ol class="install-steps"><li><span class="n">02</span><p>Windows Defender SmartScreen warning? Click <b>More info</b>, then <b>Run anyway</b>.</p></li></ol>
+            </article>
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">03</div><div><h3>Install</h3><p>Setup &amp; launch.</p></div></div>
+              <ol class="install-steps"><li><span class="n">03</span><p>Follow the installer prompts or extract the ZIP and double-click <b>forge.exe</b>.</p></li></ol>
+            </article>
+          </div>
+          <div class="install-warn"><span class="w-ico">ⓘ</span> Forge is community-developed and unsigned. SmartScreen warns about new, unsigned executables by default.</div>
+        </section>
+
+        <!-- Android Panel -->
+        <section class="platform-panel" data-panel="android" hidden>
+          <div class="panel-heading">
+            <div>
+              <span class="release-kicker"><span class="dot" aria-hidden="true"></span> LATEST STABLE</span>
+              <h3>Forge <span class="release-version">v10.6.4</span></h3>
+              <p>Native Android player for phone &amp; tablet.</p>
+            </div>
+            <span class="version-pill release-date">15 Nov 2026</span>
+          </div>
+
+          <div class="build-list">
+            <article class="build-option is-recommended">
+              <div class="build-label">
+                <span class="build-name">Universal APK</span>
+                <span class="tag tag-acid">Recommended</span>
+              </div>
+              <p class="build-desc">Optimized for all Android devices.</p>
+              <div class="build-action">
+                <a class="button button-primary button-download" id="android-universal-link" href="#">
+                  Download APK <span class="button-icon" aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <span class="build-meta" id="android-universal-size">31.6 MB <i>·</i> all architectures</span>
+            </article>
+            <article class="build-option">
+              <div class="build-label">
+                <span class="build-name">ARM64 APK</span>
+                <span class="tag tag-mute">Smaller</span>
+              </div>
+              <p class="build-desc">Best for modern 64-bit devices.</p>
+              <div class="build-action">
+                <a class="button button-ghost button-download" id="android-arm64-link" href="#">
+                  Download APK <span class="button-icon" aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <span class="build-meta" id="android-arm64-size">12.5 MB <i>·</i> arm64-v8a</span>
+            </article>
+          </div>
+
+          <div class="panel-facts">
+            <span><b>Minimum</b> Android 7.0 (Nougat)</span>
+            <span><b>Package</b> com.lokesh.forge</span>
+            <span><b>License</b> GPL-3.0</span>
+          </div>
+
+          <details class="checksum-drawer">
+            <summary>Verify your download <span class="cs-plus">+</span></summary>
+            <div class="checksum-body">
+              <p>SHA-256 checksums ensure file integrity. Verify against official release values:</p>
+              <div class="checksum-row"><span>Universal APK</span><code id="android-universal-checksum">...</code></div>
+              <div class="checksum-row"><span>ARM64 APK</span><code id="android-arm64-checksum">...</code></div>
+              <a class="text-link checksum-link release-link checksum-file-link" href="#">Open official SHA256SUMS file <span class="arr" aria-hidden="true">↗</span></a>
+            </div>
+          </details>
+
+          <div class="install-grid panel-foot">
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">01</div><div><h3>Download</h3><p>Grab the APK.</p></div></div>
+              <ol class="install-steps"><li><span class="n">01</span><p>Download the <b>Forge APK</b> directly onto your Android device.</p></li></ol>
+            </article>
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">02</div><div><h3>Allow</h3><p>Install permissions.</p></div></div>
+              <ol class="install-steps"><li><span class="n">02</span><p>Open the APK. If Android asks, allow installs from your browser or file manager.</p></li></ol>
+            </article>
+            <article class="install-card">
+              <div class="install-card-head"><div class="i-glyph">03</div><div><h3>Install</h3><p>Review &amp; enjoy.</p></div></div>
+              <ol class="install-steps"><li><span class="n">03</span><p>Tap <b>Install</b>, then open Forge to start listening.</p></li></ol>
+            </article>
+          </div>
+          <div class="install-warn ok"><span class="w-ico">ⓘ</span> Forge is free and open-source. Updates install directly in-place from GitHub, keeping your playlists and history intact.</div>
+        </section>
+      </section>
+
+      <!-- GitHub Section -->
+      <section class="section-tight github-band" aria-labelledby="github-heading">
+        <div class="wrap github-grid">
+          <div class="github-copy">
+            <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open-source transparency</p>
+            <h2 id="github-heading" class="display">Engineered in the <em>open.</em></h2>
+            <p>Forge is developed entirely on GitHub. Every feature, bug fix, and CI/CD workflow is open for inspection, contribution, and verification by the community.</p>
+            <div class="github-stats">
+              <div class="stat"><b>3</b> <span>Platforms</span></div>
+              <div class="stat"><b>5</b> <span>Official v10.6.4 assets</span></div>
+              <div class="stat"><b>GPL-3.0</b> <span>Open-source license</span></div>
+            </div>
+          </div>
+          <div class="github-links">
+            <a class="gh-row" href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">
+              <span class="n">01</span>
+              <div>Source Code <small>Browse the Dart &amp; C++ codebase</small></div>
+              <span class="arr" aria-hidden="true">↗</span>
+            </a>
+            <a class="gh-row" href="https://github.com/lokesh12dev/Forge/releases" target="_blank" rel="noreferrer">
+              <span class="n">02</span>
+              <div>Release History <small>View all past versions &amp; notes</small></div>
+              <span class="arr" aria-hidden="true">↗</span>
+            </a>
+            <a class="gh-row" href="https://github.com/lokesh12dev/Forge/issues" target="_blank" rel="noreferrer">
+              <span class="n">03</span>
+              <div>Report an Issue <small>Contribute bug reports &amp; feedback</small></div>
+              <span class="arr" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section wrap" aria-labelledby="faq-heading">
+        <div class="faq-head reveal">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Common questions</p>
+          <h2 id="faq-heading" class="display">Need a hand?</h2>
+        </div>
+        <div class="faq-wrap">
+          <details class="faq-item reveal">
+            <summary>Which platform should I download for? <span class="f-plus">+</span></summary>
+            <div class="faq-answer"><p>Forge provides native builds. Use the macOS DMG for Mac computers, the Windows Installer (EXE) for Windows 10/11, and the Android APK for phones and tablets.</p></div>
+          </details>
+          <details class="faq-item reveal reveal-d1">
+            <summary>Is Forge safe to install? <span class="f-plus">+</span></summary>
+            <div class="faq-answer"><p>Yes. Forge is 100% open-source and local-first. It requires no user accounts and includes no third-party tracking scripts. Being community-developed and unsigned, macOS Gatekeeper or Windows SmartScreen may warn about "untrusted" or "unknown" publishers; this is normal for independent software.</p></div>
+          </details>
+          <details class="faq-item reveal reveal-d2">
+            <summary>How do I update Forge? <span class="f-plus">+</span></summary>
+            <div class="faq-answer"><p>Forge includes an in-app update checker that detects new GitHub releases. You can also manually download the latest version from this portal. Your library, playlists, and listening history are stored locally and are preserved during updates.</p></div>
+          </details>
+        </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="section-wrap footer-main"><a class="brand footer-brand" href="../" aria-label="Forge home"><span class="brand-mark" aria-hidden="true"></span><span>forge</span></a><p>Made for the music.<br />Built in the open.</p><div class="footer-links"><a href="../">Home</a><a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">Source code ↗</a><a href="https://github.com/lokesh12dev/Forge/issues" target="_blank" rel="noreferrer">Report an issue ↗</a></div></div>
-      <div class="section-wrap footer-bottom"><span>© Forge · GPL-3.0</span><span>Built by <a href="https://github.com/lokesh12dev" target="_blank" rel="noreferrer">M. Lokesh</a></span><span>Independent project · Not affiliated with Spotify</span></div>
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="wrap footer-main">
+        <a class="brand" href="../" aria-label="Forge home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-word">forge</span>
+        </a>
+        <p>Engineered for the music.<br />Built transparently in the open.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">Source code ↗</a>
+          <a href="https://github.com/lokesh12dev/Forge/issues" target="_blank" rel="noreferrer">Report an Issue ↗</a>
+        </div>
+      </div>
+      <div class="wrap footer-bottom">
+        <span>© Forge · GNU GPL-3.0 License</span>
+        <span>Designed &amp; engineered by <a href="https://github.com/lokesh12dev" target="_blank" rel="noreferrer">M. Lokesh</a></span>
+        <span>Independent open-source project · Not affiliated with Spotify or YouTube</span>
+      </div>
     </footer>
   </body>
 </html>

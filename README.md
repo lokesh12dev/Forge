@@ -33,12 +33,14 @@ Click below to visit the official landing and download portal or download releas
 
 | Platform | Format / Architecture | File Size | Direct Download |
 | :--- | :--- | :--- | :--- |
-| 🍏 **macOS** | Universal Disk Image (`.dmg`) · macOS 12.0+ | **26.9 MB** | [**Forge-v10.6.4-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-macos.dmg) |
-| 🪟 **Windows** | Setup Installer (`-setup.exe`) · x64 | **18.4 MB** | [**Forge-v10.6.4-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-setup.exe) |
-| 🪟 **Windows** | Portable Archive (`.zip`) · x64 | **22.7 MB** | [**Forge-v10.6.4-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-x64.zip) |
-| 🤖 **Android** | Universal APK · All Architectures | **33.1 MB** | [**Forge-v10.6.4-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-universal.apk) |
-| 🤖 **Android** | ARM64 APK · arm64-v8a Devices | **13.1 MB** | [**Forge-v10.6.4-arm64-v8a.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-arm64-v8a.apk) |
+| 🍏 **macOS** | Universal Disk Image (`.dmg`) · macOS 12.0+ | **25.7 MB** | [**Forge-v10.6.4-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-macos.dmg) |
+| 🪟 **Windows** | Setup Installer (`-setup.exe`) · x64 | **17.6 MB** | [**Forge-v10.6.4-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-setup.exe) |
+| 🪟 **Windows** | Portable Archive (`.zip`) · x64 | **21.7 MB** | [**Forge-v10.6.4-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-windows-x64.zip) |
+| 🤖 **Android** | Universal APK · All Architectures | **31.6 MB** | [**Forge-v10.6.4-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-universal.apk) |
+| 🤖 **Android** | ARM64 APK · arm64-v8a Devices | **12.5 MB** | [**Forge-v10.6.4-arm64-v8a.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/Forge-v10.6.4-arm64-v8a.apk) |
 | 🔐 **Checksums** | SHA-256 Digest for All Platforms | **472 B** | [**SHA256SUMS.txt**](https://github.com/lokesh12dev/Forge/releases/download/v10.6.4/SHA256SUMS.txt) |
+
+*File sizes are shown in binary megabytes (MiB), matching the official download portal; in decimal MB the same assets measure ~5% more (e.g. the DMG is 26.9 decimal MB).*
 
 ---
 

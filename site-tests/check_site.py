@@ -125,7 +125,9 @@ def check_html_file(file_path):
         elif not urlparse(href).scheme:
             # Local page link
             parts = href.split("#", 1)
-            path_part = parts[0]
+            path_part = parts[0].split("?", 1)[0]
+            if not path_part:
+                continue  # Pure query/fragment link on same page
             target = (file_dir / path_part).resolve()
             if not (target.exists() or (target.is_dir() and (target / "index.html").exists())):
                 # Also check with .html extension

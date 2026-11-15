@@ -204,7 +204,7 @@ test('Playwright: API failure degrades gracefully to fallback links', async () =
   await page.waitForLoadState('networkidle');
 
   // Verify the page still renders properly
-  const downloadCard = page.locator('.download-card');
+  const downloadCard = page.locator('.build-option').first();
   assert.equal(await downloadCard.isVisible(), true);
 
   // Tab clicking still works

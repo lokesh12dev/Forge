@@ -3,166 +3,374 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#10120f" />
-    <meta name="description" content="Meet Forge: a free, open-source music player for Android, macOS, and Windows. Explore the features and download the latest official release." />
-    <meta property="og:title" content="Forge — make room for the music" />
-    <meta property="og:description" content="A free, open-source music player for Android, macOS, and Windows. Your library, your listening, your way." />
+    <meta name="theme-color" content="#0a0c09" />
+    <meta name="description" content="Forge is an exceptional, ad-free music player crafted for macOS, Windows, and Android. High-fidelity native audio, local-first privacy, and zero telemetry." />
+    <meta property="og:title" content="Forge — High-Fidelity Music Player for macOS, Windows & Android" />
+    <meta property="og:description" content="High-fidelity native music player for macOS, Windows, and Android. Free, open source, and built for people who love music." />
     <meta property="og:type" content="website" />
-    <title>Forge — Make room for the music</title>
+    <meta property="og:url" content="https://lokesh12dev.github.io/Forge/" />
+    <meta property="og:image" content="https://lokesh12dev.github.io/Forge/assets/social-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Forge" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Forge — High-Fidelity Music Player for macOS, Windows & Android" />
+    <meta name="twitter:description" content="High-fidelity native music player for macOS, Windows, and Android. Free, open source, and built for people who love music." />
+    <meta name="twitter:image" content="https://lokesh12dev.github.io/Forge/assets/social-card.jpg" />
+    <link rel="canonical" href="https://lokesh12dev.github.io/Forge/" />
+    <title>Forge — High-Fidelity Music Player for macOS, Windows &amp; Android</title>
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="icon" type="image/png" href="assets/forge-icon.png" />
     <link rel="stylesheet" href="assets/styles.css" />
     <script src="assets/releases.js" defer></script>
     <script src="assets/site.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <a class="brand" href="./" aria-label="Forge home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-word">forge<small>by Lokesh</small></span>
-      </a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="#features">The experience</a>
-        <a href="#screens">A closer look</a>
-        <a class="nav-download" href="download/">Download <span aria-hidden="true">↗</span></a>
-      </nav>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Sticky Header Navigation -->
+    <header class="site-nav" role="banner">
+      <div class="nav-inner">
+        <a class="brand" href="./" aria-label="Forge home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-word">forge<small>by Lokesh</small></span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#ecosystem">Ecosystem</a>
+          <a href="#macOS">macOS</a>
+          <a href="#windows">Windows</a>
+          <a href="#android">Android</a>
+          <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="nav-cta" href="download/">Download Forge <span class="arr" aria-hidden="true">↓</span></a>
+        </nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" hidden aria-label="Mobile navigation">
+        <a href="#ecosystem">Product Ecosystem <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#macOS">Forge for macOS <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#windows">Forge for Windows <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#android">Forge for Android <span class="arr" aria-hidden="true">→</span></a>
+        <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">GitHub Repository <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="menu-cta" href="download/">Download Portal <span class="arr" aria-hidden="true">↓</span></a>
+      </div>
     </header>
 
     <main id="main">
-      <section class="hero section-wrap">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-dot"></span> A music player for Android, macOS &amp; Windows</p>
-          <h1>Make room<br />for the <span>music.</span></h1>
-          <p class="hero-lede">Your library, your listening, your way. Forge brings streaming, playlists, offline listening, lyrics, and a little more calm to the everyday.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="download/">
-              Get Forge <span class="button-icon" aria-hidden="true">↓</span>
-            </a>
-            <a class="text-link" href="#features">Take a look <span aria-hidden="true">↘</span></a>
+      <!-- Section 1: Hero -->
+      <section class="hero wrap" aria-labelledby="hero-heading">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Official Download Destination · v10.6.4</p>
+            <h1 id="hero-heading" class="display">Your next chapter<br />starts <em>here.</em></h1>
+            <p class="lede">High-fidelity native listening engineered for macOS, Windows, and Android. Pure sound, real-time synchronized lyrics, local storage, and zero telemetry.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="download/">
+                Get Official Build <span class="button-icon" aria-hidden="true">↓</span>
+              </a>
+              <a class="text-link" href="#ecosystem">
+                Explore Products <span class="arr" aria-hidden="true">↘</span>
+              </a>
+            </div>
+            <ul class="hero-facts" aria-label="Forge highlights">
+              <li><i></i> <b>GPL-3.0</b> Open Source</li>
+              <li><b>100%</b> Local-First</li>
+              <li><b>No</b> User Accounts</li>
+              <li>Latest: <b class="release-version">v10.6.4</b></li>
+            </ul>
           </div>
-          <div class="hero-meta" aria-label="Forge details">
-            <span><i aria-hidden="true"></i> Free &amp; open source</span>
-            <span>Android · macOS · Windows</span>
-            <span>Latest: v10.6.4</span>
-          </div>
-        </div>
 
-        <div class="hero-visual" aria-label="A real screenshot of the Forge music library">
-          <div class="hero-orbit hero-orbit-one"></div>
-          <div class="hero-orbit hero-orbit-two"></div>
-          <div class="hero-record" aria-hidden="true"><span></span></div>
-          <div class="hero-device">
-            <img src="assets/screenshots/home.jpeg" alt="Forge home screen showing a music library and recommendations" />
+          <div class="hero-stage reveal reveal-d2" aria-label="Forge application showcase">
+            <div class="orbit orbit-a" aria-hidden="true"></div>
+            <div class="orbit orbit-b" aria-hidden="true"></div>
+            <div class="record" aria-hidden="true"><span></span></div>
+            <div class="device">
+              <img src="assets/screenshots/home.jpeg" alt="Real screenshot of Forge showing Tamil songs, recommendations, and music library interface" />
+            </div>
+            <div class="stage-note">
+              <span class="stage-note-icon" aria-hidden="true">♫</span>
+              <div>
+                <strong>Find your next favorite</strong>
+                <small>YouTube Music search suggestions · Playlists · Radio</small>
+              </div>
+              <span class="stage-note-play" aria-hidden="true">▶</span>
+            </div>
+            <p class="stage-caption">Authentic application screenshot · Forge v10.6.4</p>
           </div>
-          <div class="visual-note"><span class="visual-note-mark" aria-hidden="true">♫</span><span><strong>Find your next favorite</strong><small>Search · playlists · radio</small></span><span class="visual-note-play" aria-hidden="true">▶</span></div>
-          <p class="visual-caption">A real look inside Forge</p>
         </div>
       </section>
 
-      <section class="signal-strip" aria-label="Forge at a glance">
-        <div class="section-wrap signal-inner">
-          <span class="signal-label">Made for listening</span>
-          <span class="signal-item"><b>01</b> One thoughtful player</span>
-          <span class="signal-item"><b>02</b> Your library stays yours</span>
-          <span class="signal-item"><b>03</b> Built in the open</span>
-          <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">Meet the project <span aria-hidden="true">↗</span></a>
+      <!-- Section 2: Signal Strip -->
+      <section class="signal" aria-label="Forge core principles">
+        <div class="wrap signal-inner">
+          <span class="signal-label">Built for listening</span>
+          <span class="signal-item"><b>01</b> Native audio pipeline (libmpv &amp; Flutter)</span>
+          <span class="signal-item"><b>02</b> Your library stays on your hardware</span>
+          <span class="signal-item"><b>03</b> GPL-3.0 open source transparency</span>
+          <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">
+            Explore repository <span class="arr" aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
 
-      <section class="features section-wrap" id="features">
-        <div class="section-heading">
-          <p class="eyebrow"><span class="eyebrow-dot"></span> The good stuff</p>
-          <h2>All the little things<br />that make a <span>listening life.</span></h2>
-          <p>Made for the way you actually listen: a song on repeat, a playlist for the drive, a quiet album saved for later.</p>
+      <!-- Section 3: Product Ecosystem -->
+      <section class="section wrap" id="ecosystem" aria-labelledby="eco-heading">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Three platform editions</p>
+          <h2 id="eco-heading" class="display">Curated for your <em>operating system.</em></h2>
+          <p class="head-note">Each Forge edition is tailored natively to its platform's interface standards, audio pipeline, and keyboard shortcuts.</p>
         </div>
 
-        <div class="feature-grid">
-          <article class="feature-card feature-card-large">
-            <div class="feature-topline"><span>01 / LISTEN</span><span aria-hidden="true">↗</span></div>
-            <div class="feature-visual feature-visual-wave" aria-hidden="true">
-              <span class="wave-line wave-line-a"></span><span class="wave-line wave-line-b"></span><span class="wave-line wave-line-c"></span>
-              <span class="wave-label">ONE PLAYER. ALL THE MOMENTS.</span>
+        <div class="editions-grid">
+          <!-- macOS -->
+          <article class="edition-card edition-mac reveal" id="macOS">
+            <span class="edition-num">01 / macOS</span>
+            <div class="edition-id">
+              <span class="edition-os">Forge <small>for macOS</small></span>
+              <span class="pill pill-live">Universal Build Ready</span>
+            </div>
+            <div class="edition-main">
+              <h3>Desktop performance on Apple Silicon &amp; Intel Macs</h3>
+              <p>Built for macOS 12.0 Monterey and newer. Native window controls, system media transport controls, menu bar integration, and multi-stream low-latency playback.</p>
+              <div class="edition-chips">
+                <span class="chip chip-acid">Universal Disk Image (.dmg)</span>
+                <span class="chip">Apple Silicon (M1/M2/M3/M4)</span>
+                <span class="chip">Intel 64-bit</span>
+                <span class="chip">macOS 12.0+</span>
+                <span class="chip">25.7 MB</span>
+              </div>
+            </div>
+            <div class="edition-side">
+              <div class="edition-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.56-1.702"/></svg></div>
+              <a class="button button-ghost" href="download/?os=macos">
+                macOS Download <span class="button-icon" aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Windows -->
+          <article class="edition-card edition-win reveal reveal-d1" id="windows">
+            <span class="edition-num">02 / Windows</span>
+            <div class="edition-id">
+              <span class="edition-os">Forge <small>for Windows</small></span>
+              <span class="pill pill-live">Installer &amp; Zip Ready</span>
+            </div>
+            <div class="edition-main">
+              <h3>High-performance audio backend powered by libmpv</h3>
+              <p>Tailored for Windows 10 (1809+) &amp; 11 x64. Includes an Inno Setup guided installer with Start menu shortcuts and a standalone zero-install portable ZIP archive.</p>
+              <div class="edition-chips">
+                <span class="chip chip-acid">Setup Installer (.exe)</span>
+                <span class="chip">Portable Archive (.zip)</span>
+                <span class="chip">libmpv native backend</span>
+                <span class="chip">Windows 10/11 x64</span>
+                <span class="chip">17.6 MB</span>
+              </div>
+            </div>
+            <div class="edition-side">
+              <div class="edition-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.95-9.6L24 0v11.4H10.95M0 12.6h9.75v9.451L0 20.699M10.95 12.6H24V24l-12.9-1.801"/></svg></div>
+              <a class="button button-ghost" href="download/?os=windows">
+                Windows Download <span class="button-icon" aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Android -->
+          <article class="edition-card edition-android reveal reveal-d2" id="android">
+            <span class="edition-num">03 / Android</span>
+            <div class="edition-id">
+              <span class="edition-os">Forge <small>for Android</small></span>
+              <span class="pill pill-live">Signed APK Available</span>
+            </div>
+            <div class="edition-main">
+              <h3>The mobile experience for phone, tablet &amp; Android Auto</h3>
+              <p>Optimized for Android 7.0 (API 24) and newer. Background playback service, lock-screen widget, Android Auto integration, offline caching, and synchronized lyrics.</p>
+              <div class="edition-chips">
+                <span class="chip chip-acid">Universal APK (31.6 MB)</span>
+                <span class="chip">ARM64-v8a APK (12.5 MB)</span>
+                <span class="chip">Android 7.0+</span>
+                <span class="chip">GPL-3.0 Key Signed</span>
+              </div>
+            </div>
+            <div class="edition-side">
+              <div class="edition-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4486.9993.9997 0 .5511-.4482.9993-.9993.9993m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.404-6.056l1.9027-3.2948c.0996-.1726.04-.3942-.1327-.4938-.1727-.0996-.3942-.0399-.4938.1327l-1.927 3.3374c-1.4471-.6604-3.0741-1.0276-4.8-1.0276-1.7267 0-3.3537.3672-4.7993 1.0276L5.6132 5.6305c-.0996-.1726-.3212-.2323-.4938-.1327-.1727.0996-.2323.3212-.1327.4938l1.9027 3.2948C3.7504 10.8762 1.6744 14.0776 1.3542 17.809h21.2916c-.3202-3.7314-2.3963-6.9328-5.6649-8.5244"/></svg></div>
+              <a class="button button-ghost" href="download/?os=android">
+                Android Download <span class="button-icon" aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Section 4: Features Showcase -->
+      <section class="section wrap" id="features" aria-labelledby="feat-heading">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Engineered details</p>
+          <h2 id="feat-heading" class="display">Built for how you <em>actually listen.</em></h2>
+          <p class="head-note">From continuous multi-stream playback to synchronized LRC lyrics and clean music-only search suggestions.</p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card reveal">
+            <div class="feature-topline">
+              <span>01 / LISTEN</span>
+              <span class="f-arr" aria-hidden="true">↗</span>
+            </div>
+            <div class="feature-visual fv-wave" aria-hidden="true">
+              <span class="wave-line"></span>
+              <span class="wave-line wave-b"></span>
+              <span class="wave-line wave-c"></span>
+              <span class="wave-tag">NATIVE AUDIO PIPELINE</span>
               <div class="wave-play">▶</div>
-              <div class="wave-progress"><i></i></div>
+              <div class="wave-track"><i></i></div>
             </div>
-            <div class="feature-copy"><h3>Stay with the song.</h3><p>Background playback, lock-screen controls, and a single player that keeps the music moving with you.</p></div>
+            <div class="feature-copy">
+              <h3>Low-latency native playback.</h3>
+              <p>Gapless track transitions, lock-screen media controls, and multi-stream intelligent caching across all desktop and mobile platforms.</p>
+            </div>
           </article>
 
-          <article class="feature-card feature-card-library">
-            <div class="feature-topline"><span>02 / KEEP</span><span aria-hidden="true">✳</span></div>
-            <div class="library-art" aria-hidden="true">
-              <div class="library-tile tile-a"><span>YOUR<br />ROTATION</span><i>↗</i></div>
-              <div class="library-tile tile-b"><span>ALWAYS<br />ON REPEAT</span><i>♫</i></div>
-              <div class="library-tile tile-c"><span>FOR LATER</span><i>♡</i></div>
-              <div class="library-tile tile-d"><span>THE<br />DEEP CUTS</span><i>✳</i></div>
+          <article class="feature-card reveal reveal-d1">
+            <div class="feature-topline">
+              <span>02 / KEEP</span>
+              <span class="f-arr" aria-hidden="true">✳</span>
             </div>
-            <div class="feature-copy"><h3>A library that feels like yours.</h3><p>Build playlists, save favorites, revisit your history, and keep the things you love close.</p></div>
+            <div class="feature-visual fv-tiles" aria-hidden="true">
+              <div class="fv-tile tile-a"><span>YOUR<br />ROTATION</span><i>↗</i></div>
+              <div class="fv-tile tile-b"><span>ALWAYS<br />ON REPEAT</span><i>♫</i></div>
+              <div class="fv-tile tile-c"><span>FOR LATER</span><i>♡</i></div>
+              <div class="fv-tile tile-d"><span>THE<br />DEEP CUTS</span><i>✳</i></div>
+            </div>
+            <div class="feature-copy">
+              <h3>A local-first music library.</h3>
+              <p>Build custom playlists, star your favorite tracks, track your recent listening history, and store media directly on your local device.</p>
+            </div>
           </article>
 
-          <article class="feature-card feature-card-lime">
-            <div class="feature-topline"><span>03 / GO</span><span aria-hidden="true">↗</span></div>
-            <div class="offline-art" aria-hidden="true">
-              <div class="offline-disc"><span></span></div>
-              <div class="offline-label"><span>OFFLINE MODE</span><b>Ready when<br />you are.</b><i>↓</i></div>
+          <article class="feature-card reveal">
+            <div class="feature-topline">
+              <span>03 / GO</span>
+              <span class="f-arr" aria-hidden="true">↓</span>
             </div>
-            <div class="feature-copy"><h3>Take the long way.</h3><p>Save music for offline listening, then bring your own soundtrack along when the signal fades.</p></div>
+            <div class="feature-visual fv-lime" aria-hidden="true">
+              <div class="fv-offline">
+                <span class="o-tag">OFFLINE MODE</span>
+                <b>Ready when<br />you are.</b>
+                <i>↓</i>
+              </div>
+            </div>
+            <div class="feature-copy">
+              <h3>Offline listening when signal fails.</h3>
+              <p>Save tracks directly to local storage. Keep your soundtrack active on flights, remote drives, or low-bandwidth connections.</p>
+            </div>
           </article>
 
-          <article class="feature-card feature-card-lyrics">
-            <div class="feature-topline"><span>04 / FEEL</span><span aria-hidden="true">“</span></div>
-            <div class="lyrics-art" aria-label="A stylized lyrics preview, not a live app screenshot">
-              <span>when the night gets quiet</span>
-              <strong>let the next line<br />find you<span>.</span></strong>
-              <span class="lyrics-time">02:14 <i></i> 03:52</span>
+          <article class="feature-card reveal reveal-d1">
+            <div class="feature-topline">
+              <span>04 / FEEL</span>
+              <span class="f-arr" aria-hidden="true">“</span>
             </div>
-            <div class="feature-copy"><h3>Words, right on time.</h3><p>Follow along with lyrics, including timed lyrics for the moments you want to sing along.</p></div>
+            <div class="feature-visual fv-lyrics" aria-hidden="true">
+              <span class="l-line">when the night gets quiet</span>
+              <div class="l-strong">let the next line<br />find you<em>.</em></div>
+              <div class="l-time">02:14 <i></i> 05:00</div>
+            </div>
+            <div class="feature-copy">
+              <h3>Real-time synchronized LRC lyrics.</h3>
+              <p>Accurate synchronized scrolling lyrics with timing alignment and active line highlighting for singing along.</p>
+            </div>
           </article>
         </div>
       </section>
 
-      <section class="screens-section" id="screens">
-        <div class="section-wrap screens-wrap">
-          <div class="screens-heading">
-            <div><p class="eyebrow"><span class="eyebrow-dot"></span> A closer look</p><h2>Familiar in the<br /><span>best way.</span></h2></div>
-            <p>Dark, warm, and easy to make your own. Forge is built with a clean Material 3 interface that adapts from phone to tablet.</p>
+      <!-- Section 5: Real Screenshots -->
+      <section class="section-tight screens-band" id="screenshots" aria-labelledby="shots-heading">
+        <div class="wrap">
+          <div class="screens-head reveal">
+            <div>
+              <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Authentic screenshots</p>
+              <h2 id="shots-heading" class="display">Familiar in the <em>best way.</em></h2>
+            </div>
+            <p class="head-note">Crafted with Material 3 dark surface tokens, an electric green accent, and responsive layouts that adapt from mobile viewports to desktop displays.</p>
           </div>
+
           <div class="screens-grid">
-            <figure class="screenshot-card screenshot-home">
-              <div class="screenshot-image"><img src="assets/screenshots/home.jpeg" alt="Actual Forge home screen with Tamil playlists, recommendations, and a mini-player" loading="lazy" /></div>
-              <figcaption><span>01</span><span>Home / Your listening, in one place</span><span>↗</span></figcaption>
+            <figure class="shot-card reveal">
+              <div class="shot-frame">
+                <img src="assets/screenshots/home.jpeg" alt="Actual Forge home screen displaying quick-access chips, Tamil playlists, recommendations, and mini-player controls" loading="lazy" />
+              </div>
+              <figcaption>
+                <span><span class="n">01</span> Home Feed · Recommended &amp; Recent Playlists</span>
+                <span class="n" aria-hidden="true">↗</span>
+              </figcaption>
             </figure>
-            <figure class="screenshot-card screenshot-player">
-              <div class="screenshot-image"><img src="assets/screenshots/player.jpeg" alt="Actual Forge now playing screen with album artwork, playback controls, and lyrics shortcut" loading="lazy" /></div>
-              <figcaption><span>02</span><span>Now playing / Stay in the moment</span><span>↗</span></figcaption>
+
+            <figure class="shot-card reveal reveal-d1">
+              <div class="shot-frame">
+                <img src="assets/screenshots/player.jpeg" alt="Actual Forge Now Playing screen showing Lana Del Rey album artwork, playback bar, and lyrics navigation" loading="lazy" />
+              </div>
+              <figcaption>
+                <span><span class="n">02</span> Now Playing · Album Art &amp; LRC Lyrics</span>
+                <span class="n" aria-hidden="true">↗</span>
+              </figcaption>
             </figure>
           </div>
-          <p class="screens-note">Actual Forge app screenshots. Album artwork and music shown in the app belong to their respective rights holders.</p>
+
+          <p class="screens-note reveal">Authentic application screenshots captured from Forge v10.6.4. Album artwork and song content shown remain the intellectual property of their respective rights holders.</p>
         </div>
       </section>
 
-      <section class="promise-section section-wrap">
-        <div class="promise-card">
-          <div class="promise-orb" aria-hidden="true"></div>
-          <div class="promise-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> Yours to make your own</p><h2>Good music.<br /><span>No extra noise.</span></h2><p>Forge is free, open source, and local-first. No account is needed. Your playlists, settings, and listening history stay on your device.</p><a class="text-link text-link-dark" href="https://github.com/lokesh12dev/Forge/blob/master/LICENSE" target="_blank" rel="noreferrer">Explore the GPL-3.0 license <span aria-hidden="true">↗</span></a></div>
-          <div class="promise-stamp" aria-hidden="true"><span>FREE</span><strong>&amp;</strong><span>OPEN</span><span>SOURCE</span></div>
+      <!-- Section 6: Open Source Promise -->
+      <section class="section wrap" aria-labelledby="promise-heading">
+        <div class="open-band reveal">
+          <div class="open-orb" aria-hidden="true"></div>
+          <div class="open-copy">
+            <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Crafted with passion by Lokesh</p>
+            <h2 id="promise-heading" class="display">Your music.<br /><em>Zero extra noise.</em></h2>
+            <p>Forge is free, open source, and local-first. No mandatory user accounts, no background analytics, and no third-party tracking scripts. Your listening history and saved music stay on your hardware.</p>
+            <a class="text-link" href="https://github.com/lokesh12dev/Forge/blob/master/LICENSE" target="_blank" rel="noreferrer">
+              Inspect GPL-3.0 License <span class="arr" aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="open-stamp" aria-hidden="true">
+            <span>FREE</span>
+            <strong>&amp;</strong>
+            <span>OPEN</span>
+            <span>SOURCE</span>
+          </div>
         </div>
       </section>
 
-      <section class="closing section-wrap">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> The next song is yours</p>
-        <h2>Ready when<br /><span>you are.</span></h2>
-        <a class="button button-primary" href="download/">Get Forge <span class="button-icon" aria-hidden="true">↓</span></a>
-        <p class="closing-meta">Latest official release · v10.6.4 · Android, macOS &amp; Windows</p>
+      <!-- Section 7: Closing Call to Action -->
+      <section class="closing wrap reveal" aria-labelledby="closing-heading">
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Official Download Portal</p>
+        <h2 id="closing-heading" class="display">Ready when<br /><em>you are.</em></h2>
+        <a class="button button-primary" href="download/">
+          Open Download Center <span class="button-icon" aria-hidden="true">↓</span>
+        </a>
+        <p class="closing-meta">Latest stable release · <span class="release-version">v10.6.4</span> · Verified builds for macOS, Windows &amp; Android</p>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="section-wrap footer-main">
-        <a class="brand footer-brand" href="./" aria-label="Forge home"><span class="brand-mark" aria-hidden="true"></span><span>forge</span></a>
-        <p>Made for the music.<br />Built in the open.</p>
-        <div class="footer-links"><a href="download/">Download</a><a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">Source code ↗</a><a href="https://github.com/lokesh12dev/Forge/issues" target="_blank" rel="noreferrer">Report an issue ↗</a></div>
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="wrap footer-main">
+        <a class="brand" href="./" aria-label="Forge home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-word">forge</span>
+        </a>
+        <p>Engineered for the music.<br />Built transparently in the open.</p>
+        <div class="footer-links">
+          <a href="download/">Download Center</a>
+          <a href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer">GitHub Repository ↗</a>
+          <a href="https://github.com/lokesh12dev/Forge/issues" target="_blank" rel="noreferrer">Report an Issue ↗</a>
+        </div>
       </div>
-      <div class="section-wrap footer-bottom"><span>© Forge · GPL-3.0</span><span>Built by <a href="https://github.com/lokesh12dev" target="_blank" rel="noreferrer">M. Lokesh</a></span><span>Independent project · Not affiliated with Spotify</span></div>
+      <div class="wrap footer-bottom">
+        <span>© Forge · GNU GPL-3.0 License</span>
+        <span>Designed &amp; engineered by <a href="https://github.com/lokesh12dev" target="_blank" rel="noreferrer">M. Lokesh</a></span>
+        <span>Independent open-source project · Not affiliated with Spotify or YouTube</span>
+      </div>
     </footer>
   </body>
 </html>

@@ -20,6 +20,7 @@
  */
 
 import 'dart:async';
+import 'dart:io';
 import 'package:audio_service/audio_service.dart';
 import 'package:forge/constants/app_constants.dart';
 import 'package:forge/constants/payment_constants.dart';
@@ -501,21 +502,48 @@ class SettingsPage extends StatelessWidget {
               unawaited(showSponsorshipDialog(context));
 
               if (isMobilePlatform) {
-                // On Android/iOS: trigger direct Google Pay UPI intent
+                // On Android/iOS: trigger direct Google Pay / PhonePe UPI intent
+                var launched = false;
                 try {
-                  await url_launcher.launchUrl(
+                  launched = await url_launcher.launchUrl(
                     SponsorshipConfig.googlePay.paymentUri,
                     mode: url_launcher.LaunchMode.externalApplication,
                   );
                 } catch (_) {}
+                if (!launched) {
+                  try {
+                    await url_launcher.launchUrl(
+                      SponsorshipConfig.googlePay.paymentUri,
+                    );
+                  } catch (_) {}
+                }
               } else {
                 // On macOS/Windows/Linux: open dedicated web payment portal
+                const payUrl = 'https://lokesh12dev.github.io/Forge/pay/';
+                var launched = false;
                 try {
-                  await url_launcher.launchUrl(
-                    Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
+                  launched = await url_launcher.launchUrl(
+                    Uri.parse(payUrl),
                     mode: url_launcher.LaunchMode.externalApplication,
                   );
                 } catch (_) {}
+                if (!launched) {
+                  try {
+                    launched = await url_launcher.launchUrl(Uri.parse(payUrl));
+                  } catch (_) {}
+                }
+                // macOS ultimate fallback: system open command
+                if (!launched && Platform.isMacOS) {
+                  try {
+                    await Process.run('open', [payUrl]);
+                  } catch (_) {}
+                }
+                // Windows ultimate fallback
+                if (!launched && Platform.isWindows) {
+                  try {
+                    await Process.run('cmd', ['/c', 'start', payUrl]);
+                  } catch (_) {}
+                }
               }
             },
             child: Padding(

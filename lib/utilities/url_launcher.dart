@@ -19,17 +19,41 @@
  *     please visit: https://github.com/lokesh12dev/Forge
  */
 
+import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> launchURL(Uri url) async {
+  // Try url_launcher first (works on all platforms when entitlements are set)
+  var launched = false;
   try {
-    final launched = await launchUrl(url, mode: LaunchMode.externalApplication);
-    if (!launched) {
-      await launchUrl(url);
-    }
-  } catch (_) {
+    launched = await launchUrl(url, mode: LaunchMode.externalApplication);
+  } catch (_) {}
+
+  if (!launched) {
     try {
-      await launchUrl(url);
+      launched = await launchUrl(url);
+    } catch (_) {}
+  }
+
+  // macOS fallback: use system `open` command directly
+  if (!launched && Platform.isMacOS) {
+    try {
+      await Process.run('open', [url.toString()]);
+      launched = true;
+    } catch (_) {}
+  }
+
+  // Windows fallback: use `start` command
+  if (!launched && Platform.isWindows) {
+    try {
+      await Process.run('cmd', ['/c', 'start', url.toString()]);
+    } catch (_) {}
+  }
+
+  // Linux fallback
+  if (!launched && Platform.isLinux) {
+    try {
+      await Process.run('xdg-open', [url.toString()]);
     } catch (_) {}
   }
 }

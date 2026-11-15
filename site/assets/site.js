@@ -312,4 +312,88 @@
     }
     pulseBars();
   }
+  // 4. Interactive Acoustic Studio Audio Synthesizer
+  let audioCtx = null;
+  let synthGain = null;
+  let isSoundActive = false;
+
+  function toggleStudioSound(triggerBtn) {
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) {
+        audioCtx = new AudioContextClass();
+      }
+    }
+
+    if (!audioCtx) return;
+
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    isSoundActive = !isSoundActive;
+    document.body.classList.toggle('is-playing', isSoundActive);
+
+    const playButtons = document.querySelectorAll('.stage-note-play, .wave-play');
+    playButtons.forEach(function (btn) {
+      btn.textContent = isSoundActive ? '❚❚' : '▶';
+    });
+
+    if (isSoundActive) {
+      // Warm pentatonic ambient harmonic chord (F#3, A#3, C#4, F#4)
+      const freqs = [185.00, 233.08, 277.18, 369.99];
+      synthGain = audioCtx.createGain();
+      synthGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      synthGain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.8);
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(650, audioCtx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 1.2);
+
+      synthGain.connect(filter);
+      filter.connect(audioCtx.destination);
+
+      freqs.forEach(function (freq, idx) {
+        const osc = audioCtx.createOscillator();
+        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        // Slight detune for warm analog chorus width
+        osc.detune.setValueAtTime((idx - 1.5) * 6, audioCtx.currentTime);
+
+        const oscGain = audioCtx.createGain();
+        oscGain.gain.value = 1 / freqs.length;
+        osc.connect(oscGain);
+        oscGain.connect(synthGain);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 3.8);
+      });
+
+      // Smooth auto fade out
+      synthGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.6);
+      setTimeout(function () {
+        if (isSoundActive) {
+          isSoundActive = false;
+          document.body.classList.remove('is-playing');
+          playButtons.forEach(function (btn) { btn.textContent = '▶'; });
+        }
+      }, 3800);
+    } else {
+      if (synthGain) {
+        try {
+          synthGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+        } catch (_) {}
+      }
+    }
+  }
+
+  document.querySelectorAll('.stage-note-play, .wave-play').forEach(function (btn) {
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('aria-label', 'Listen to sample studio sound');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleStudioSound(btn);
+    });
+  });
 })();

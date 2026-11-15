@@ -20,6 +20,7 @@
  */
 
 import 'package:forge/services/navigation_history.dart';
+import 'package:forge/services/router_service.dart';
 import 'package:forge/widgets/desktop/desktop_now_playing_bar.dart';
 import 'package:forge/widgets/desktop/desktop_sidebar.dart';
 import 'package:go_router/go_router.dart';
@@ -101,9 +102,13 @@ class _MainSurface extends StatelessWidget {
         color: colorScheme.surfaceContainerLow,
       ),
       clipBehavior: Clip.antiAlias,
-      child: Stack(
+      child: Column(
         children: [
-          Positioned.fill(
+          DesktopTopBar(
+            onSettings: onSettings,
+            onAbout: () => NavigationManager.router.go('/settings/about'),
+          ),
+          Expanded(
             child: MediaQuery(
               // Every page gets bottom room for the now-playing bar.
               data: mediaQuery.copyWith(
@@ -114,43 +119,39 @@ class _MainSurface extends StatelessWidget {
               child: navigationShell,
             ),
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: DesktopTopBar(onSettings: onSettings),
-          ),
         ],
       ),
     );
   }
 }
 
-/// Floating Spotify-style top bar: back / forward history buttons over a
-/// gradient scrim, plus a profile shortcut on the right.
+/// Floating Spotify-style top bar: back / forward history buttons,
+/// a centered high-contrast "Forge by Lokesh" brand title, and action shortcuts.
 class DesktopTopBar extends StatelessWidget {
-  const DesktopTopBar({required this.onSettings, super.key});
+  const DesktopTopBar({
+    required this.onSettings,
+    this.onAbout,
+    super.key,
+  });
 
   final VoidCallback onSettings;
+  final VoidCallback? onAbout;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      height: 64,
+      height: 60,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: const [0.6, 1],
-          colors: [
-            colorScheme.surfaceContainerLow,
-            colorScheme.surfaceContainerLow.withValues(alpha: 0),
-          ],
+        color: colorScheme.surfaceContainerLow,
+        border: Border(
+          bottom: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.15),
+          ),
         ),
       ),
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListenableBuilder(
         listenable: NavigationHistory.instance,
         builder: (context, _) {
@@ -172,6 +173,20 @@ class DesktopTopBar extends StatelessWidget {
                 onPressed: history.forward,
               ),
               const Spacer(),
+              _ForgeBrandTitle(
+                onTap: onAbout ??
+                    () => NavigationManager.router.go('/settings/about'),
+              ),
+              const Spacer(),
+              if (onAbout != null) ...[
+                _ChromeIconButton(
+                  icon: Icons.info_outline,
+                  tooltip: 'About Forge by Lokesh',
+                  enabled: true,
+                  onPressed: onAbout,
+                ),
+                const SizedBox(width: 8),
+              ],
               _ChromeIconButton(
                 icon: Icons.settings,
                 tooltip: 'Settings',
@@ -181,6 +196,75 @@ class DesktopTopBar extends StatelessWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// Pinned, unique "Forge by Lokesh" brand header.
+class _ForgeBrandTitle extends StatelessWidget {
+  const _ForgeBrandTitle({this.onTap});
+
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Tooltip(
+      message: 'Forge by Lokesh — Tap for About & Creator details',
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 8,
+                    height: 8,
+                    margin: const EdgeInsets.only(right: 6),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF1DB954),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x661DB954),
+                          blurRadius: 6,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    'Forge',
+                    style: TextStyle(
+                      color: colorScheme.onSurface,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: -0.5,
+                      fontFamily: 'paytoneOne',
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 1),
+              const Text(
+                'by Lokesh',
+                style: TextStyle(
+                  color: Color(0xFF1DB954),
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

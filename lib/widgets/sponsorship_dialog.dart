@@ -76,46 +76,39 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
   Future<void> _openUpiApp() async {
     final uri = _selectedMethod.paymentUri;
     try {
-      final canLaunch = await canLaunchUrl(uri);
-      if (canLaunch) {
-        final launched = await launchUrl(
-          uri,
-          mode: LaunchMode.externalApplication,
-        );
-        if (launched) {
-          if (!mounted) return;
-          setState(() {
-            _statusMessage = SponsorshipConfig.appreciationMessage;
-            _isErrorMessage = false;
-          });
-          return;
-        }
-      }
-
-      // If opening UPI app directly didn't succeed, handle gracefully
-      if (!mounted) return;
-      setState(() {
-        _statusMessage = SponsorshipConfig.failedOpenAppMessage;
-        _isErrorMessage = true;
-      });
-      // Also copy UPI ID to clipboard to assist the user
-      await Clipboard.setData(ClipboardData(text: _selectedMethod.upiId));
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'UPI ID ${_selectedMethod.upiId} copied! Scan the QR or paste in your UPI app.',
-          ),
-          duration: const Duration(seconds: 4),
-        ),
+      final launched = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
       );
+      if (launched) {
+        if (!mounted) return;
+        setState(() {
+          _statusMessage = SponsorshipConfig.appreciationMessage;
+          _isErrorMessage = false;
+        });
+        return;
+      }
     } catch (_) {
-      if (!mounted) return;
-      setState(() {
-        _statusMessage = SponsorshipConfig.failedOpenAppMessage;
-        _isErrorMessage = true;
-      });
+      // Intent launch failed or unsupported on this platform (e.g. desktop)
     }
+
+    // If opening UPI app directly didn't succeed, handle gracefully
+    if (!mounted) return;
+    setState(() {
+      _statusMessage = SponsorshipConfig.failedOpenAppMessage;
+      _isErrorMessage = true;
+    });
+    // Also copy UPI ID to clipboard to assist the user
+    await Clipboard.setData(ClipboardData(text: _selectedMethod.upiId));
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'UPI ID ${_selectedMethod.upiId} copied! Scan the QR or paste in your UPI app.',
+        ),
+        duration: const Duration(seconds: 4),
+      ),
+    );
   }
 
   void _showEnlargedQr(BuildContext context, UpiPaymentMethod method) {
@@ -657,9 +650,9 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                         size: 18,
                         color: Colors.black,
                       ),
-                      label: const Text(
-                        'Open UPI App',
-                        style: TextStyle(
+                      label: Text(
+                        'Pay with ${_selectedMethod.title}',
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,

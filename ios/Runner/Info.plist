@@ -45,6 +45,14 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>upi</string>
+		<string>gpay</string>
+		<string>phonepe</string>
+		<string>paytmmp</string>
+		<string>https</string>
+	</array>
 	<!--
 	  Forge streams from the user's own configured music server, which may
 	  use plain HTTP on a local network, and resolves playback sources from

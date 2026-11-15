@@ -112,7 +112,7 @@ void main() {
       expect(find.text('Payee: M Lokesh'), findsOneWidget);
 
       // Verify action buttons
-      expect(find.text('Open UPI App'), findsOneWidget);
+      expect(find.text('Pay with Google Pay'), findsOneWidget);
       expect(find.text('Copy Details'), findsOneWidget);
       expect(find.textContaining('Flexible amount'), findsOneWidget);
 
@@ -120,9 +120,10 @@ void main() {
       await tester.tap(find.text('PhonePe'));
       await tester.pumpAndSettle();
 
-      // Verify PhonePe details
+      // Verify PhonePe details and button
       expect(find.text('7603883879@axl'), findsOneWidget);
       expect(find.text('Payee: LOKESH M'), findsOneWidget);
+      expect(find.text('Pay with PhonePe'), findsOneWidget);
     });
 
     testWidgets('Opens enlarged QR modal when tapping on QR preview',

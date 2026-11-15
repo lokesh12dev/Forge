@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// Forge's signature electric lime, shared with the website.
-const Color forgeLime = Color(0xFFC8F56A);
+/// Forge's signature sporty green, shared with the website.
+const Color forgeGreen = Color(0xFF19E28A);
 
 /// The Forge brand lockup: a glowing ember, the heavy tight-tracked lowercase
 /// "forge" wordmark and a spaced "BY LOKESH" signature framed by hairlines.
@@ -10,15 +10,26 @@ const Color forgeLime = Color(0xFFC8F56A);
 /// anywhere (custom title bars, app bars, hero sections) without the yellow
 /// double underline Flutter draws for text that has no Material ancestor.
 class ForgeWordmark extends StatelessWidget {
-  const ForgeWordmark({this.scale = 1.0, this.showSignature = true, super.key});
+  const ForgeWordmark({
+    this.scale = 1,
+    this.showSignature = true,
+    this.inverted = false,
+    super.key,
+  });
 
   /// 1.0 is sized for a 60px bar. Use ~2.0 for hero placements.
   final double scale;
   final bool showSignature;
 
+  /// Dark ink on a green bar instead of white/green on a dark surface.
+  final bool inverted;
+
   @override
   Widget build(BuildContext context) {
-    final onSurface = Theme.of(context).colorScheme.onSurface;
+    const ink = Color(0xFF0A1410);
+    const paper = Color(0xFFF4F7F2);
+    final wordColor = inverted ? ink : paper;
+    final accent = inverted ? ink : forgeGreen;
 
     return Material(
       type: MaterialType.transparency,
@@ -36,11 +47,11 @@ class ForgeWordmark extends StatelessWidget {
                   height: 7 * scale,
                   margin: EdgeInsets.only(right: 7 * scale, top: 2 * scale),
                   decoration: BoxDecoration(
-                    color: forgeLime,
+                    color: accent,
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: forgeLime.withValues(alpha: 0.55),
+                        color: accent.withValues(alpha: inverted ? 0.0 : 0.55),
                         blurRadius: 8 * scale,
                         spreadRadius: 1 * scale,
                       ),
@@ -50,7 +61,7 @@ class ForgeWordmark extends StatelessWidget {
                 Text(
                   'forge',
                   style: TextStyle(
-                    color: onSurface,
+                    color: wordColor,
                     fontFamily: 'paytoneOne',
                     fontSize: 22 * scale,
                     height: 1.0,
@@ -65,12 +76,12 @@ class ForgeWordmark extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _Hairline(scale: scale, fadeLeft: true),
+                  _Hairline(scale: scale, fadeLeft: true, color: accent),
                   SizedBox(width: 6 * scale),
                   Text(
                     'BY LOKESH',
                     style: TextStyle(
-                      color: forgeLime,
+                      color: accent,
                       fontSize: 8.5 * scale,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 2.6 * scale,
@@ -79,7 +90,7 @@ class ForgeWordmark extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 6 * scale),
-                  _Hairline(scale: scale, fadeLeft: false),
+                  _Hairline(scale: scale, fadeLeft: false, color: accent),
                 ],
               ),
             ],
@@ -91,15 +102,20 @@ class ForgeWordmark extends StatelessWidget {
 }
 
 class _Hairline extends StatelessWidget {
-  const _Hairline({required this.scale, required this.fadeLeft});
+  const _Hairline({
+    required this.scale,
+    required this.fadeLeft,
+    required this.color,
+  });
 
   final double scale;
   final bool fadeLeft;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    final strong = forgeLime.withValues(alpha: 0.7);
-    final faint = forgeLime.withValues(alpha: 0.0);
+    final strong = color.withValues(alpha: 0.7);
+    final faint = color.withValues(alpha: 0);
     return Container(
       width: 16 * scale,
       height: 1,

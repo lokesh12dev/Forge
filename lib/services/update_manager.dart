@@ -30,7 +30,6 @@ import 'package:forge/main.dart';
 import 'package:forge/services/data_manager.dart';
 import 'package:forge/services/router_service.dart';
 import 'package:forge/services/settings_manager.dart';
-import 'package:forge/utilities/platform_utils.dart';
 import 'package:forge/utilities/url_launcher.dart';
 import 'package:forge/widgets/auto_format_text.dart';
 import 'package:http/http.dart' as http;
@@ -40,12 +39,12 @@ const String checkUrl =
     'https://raw.githubusercontent.com/lokesh12dev/Forge/update/check.json';
 const String releasesUrl =
     'https://api.github.com/repos/lokesh12dev/Forge/releases/latest';
+const String forgeDownloadPortalUrl =
+    'https://lokesh12dev.github.io/Forge/download/';
 const String releasesPageUrl =
     'https://github.com/lokesh12dev/Forge/releases/latest';
 
 Future<void> checkAppUpdates() async {
-  // Update distribution targets Android APK builds only.
-  if (!isMobilePlatform) return;
   try {
     final response = await http.get(
       Uri.parse(releasesUrl),
@@ -70,7 +69,7 @@ Future<void> checkAppUpdates() async {
     }
 
     final displayVersion = normalizeVersion(latestVersion);
-    final downloadUrl = await getReleaseDownloadUrl(releasesResponse);
+    const downloadUrl = forgeDownloadPortalUrl;
 
     await showDialog(
       context: NavigationManager().context,

@@ -110,9 +110,12 @@ class _HomePageState extends State<HomePage> {
               title: InkWell(
                 onTap: () => context.push('/settings/about'),
                 borderRadius: BorderRadius.circular(12),
-                child: const ForgeWordmark(),
+                child: const ForgeWordmark(inverted: true),
               ),
               centerTitle: true,
+              backgroundColor: forgeGreen,
+              foregroundColor: const Color(0xFF0A1410),
+              surfaceTintColor: Colors.transparent,
             ),
       body: CustomScrollView(
         scrollCacheExtent: const ScrollCacheExtent.pixels(350),
@@ -290,7 +293,7 @@ class _QuickAccessGrid extends StatelessWidget {
             _QuickChip(
               width: cardWidth,
               title: 'Trending Global',
-              gradientColors: const [Color(0xFF1E3264), Color(0xFFC8F56A)],
+              gradientColors: const [Color(0xFF1E3264), Color(0xFF19E28A)],
               icon: FluentIcons.sparkle_24_filled,
               onTap: () => NavigationManager.router
                   .go('/search?q=popular+English+trending+music'),
@@ -383,7 +386,7 @@ class _QuickChipState extends State<_QuickChip> {
                     height: 32,
                     margin: const EdgeInsets.only(right: 10),
                     decoration: const BoxDecoration(
-                      color: Color(0xFFC8F56A),
+                      color: Color(0xFF19E28A),
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
@@ -517,7 +520,7 @@ class _NewReleaseSpotlightState extends State<_NewReleaseSpotlight> {
                       errorWidget: (_, __, ___) => Container(
                         width: 110,
                         height: 110,
-                        color: const Color(0xFFC8F56A),
+                        color: const Color(0xFF19E28A),
                         child: const Icon(Icons.album, color: Color(0xFF10120F), size: 40),
                       ),
                     ),
@@ -565,11 +568,11 @@ class _NewReleaseSpotlightState extends State<_NewReleaseSpotlight> {
                               width: 38,
                               height: 38,
                               decoration: const BoxDecoration(
-                                color: Color(0xFFC8F56A),
+                                color: Color(0xFF19E28A),
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x66C8F56A),
+                                    color: Color(0x6619E28A),
                                     blurRadius: 8,
                                     offset: Offset(0, 3),
                                   ),
@@ -961,7 +964,7 @@ class _SpotifyAlbumCardState extends State<_SpotifyAlbumCard> {
                           width: 40,
                           height: 40,
                           decoration: const BoxDecoration(
-                            color: Color(0xFFC8F56A),
+                            color: Color(0xFF19E28A),
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(

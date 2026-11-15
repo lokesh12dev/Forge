@@ -140,16 +140,15 @@ class DesktopTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
       height: 60,
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerLow,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF19E28A), Color(0xFF0FC47A)],
+        ),
         border: Border(
-          bottom: BorderSide(
-            color: colorScheme.outlineVariant.withValues(alpha: 0.15),
-          ),
+          bottom: BorderSide(color: Color(0x33000000)),
         ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -217,7 +216,7 @@ class _ForgeBrandTitle extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-          child: ForgeWordmark(),
+          child: ForgeWordmark(inverted: true),
         ),
       ),
     );
@@ -240,7 +239,6 @@ class _ChromeIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
 
     return Tooltip(
       message: tooltip,
@@ -251,7 +249,7 @@ class _ChromeIconButton extends StatelessWidget {
           width: 34,
           height: 34,
           child: Material(
-            color: colorScheme.surfaceContainer,
+            color: const Color(0x1F000000),
             shape: const CircleBorder(),
             clipBehavior: Clip.antiAlias,
             child: InkWell(
@@ -260,7 +258,7 @@ class _ChromeIconButton extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: 18,
-                  color: colorScheme.onSurface,
+                  color: const Color(0xFF0A1410),
                 ),
               ),
             ),

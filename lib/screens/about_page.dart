@@ -56,25 +56,28 @@ class AboutPage extends StatelessWidget {
                     width: 72,
                     height: 72,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFC8F56A).withValues(alpha: 0.15),
+                      color: const Color(0xFF19E28A).withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: const Color(0xFFC8F56A),
+                        color: const Color(0xFF19E28A),
                         width: 2,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFFC8F56A).withValues(alpha: 0.3),
+                          color: const Color(0xFF19E28A).withValues(alpha: 0.3),
                           blurRadius: 18,
                           spreadRadius: 2,
                         ),
                       ],
                     ),
-                    child: const Center(
-                      child: Icon(
-                        FluentIcons.music_note_2_24_filled,
-                        size: 36,
-                        color: Color(0xFFC8F56A),
+                    child: Center(
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/icons/forge_icon.png',
+                          width: 52,
+                          height: 52,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -123,7 +126,7 @@ class AboutPage extends StatelessWidget {
             // Section: About Me
             _SectionContainer(
               icon: FluentIcons.person_24_filled,
-              iconColor: const Color(0xFFC8F56A),
+              iconColor: const Color(0xFF19E28A),
               title: 'About Me',
               child: Text(
                 'I am Lokesh, a passionate software developer and creator dedicated to building fast, elegant, and user-centric digital experiences. Forge was conceptualized, designed, and engineered entirely by me from the ground up as a premier, high-fidelity music streaming and library player. Driven by a deep love for music and modern software craft, I created Forge to give listeners an ad-free, smooth, and immersive sound experience across Android, macOS, and Windows. Every feature—from the native low-latency audio engine to the responsive desktop interface and real-time synchronized lyrics—reflects my commitment to clean architecture and uncompromising quality.',
@@ -133,52 +136,6 @@ class AboutPage extends StatelessWidget {
                   height: 1.6,
                   fontWeight: FontWeight.w400,
                 ),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // Section: Build Up Myself
-            _SectionContainer(
-              icon: FluentIcons.fire_24_filled,
-              iconColor: const Color(0xFFE5A00D),
-              title: 'Build Up Myself',
-              subtitle: 'Hard work, passion & countless hours of dedicated engineering',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Building Forge has been an intense, relentless journey of dedication, passion, and countless hours of deep focus. What started as an ambitious vision evolved through endless nights of debugging complex native audio pipelines, optimizing platform-specific rendering, and solving challenging cross-platform audio hurdles across Linux, macOS, and Windows.\n\nEvery single line of code, every UI animation, every CI/CD workflow, and every asset packaging pipeline was shaped by patience, persistence, and continuous self-learning. All work in this application was designed and engineered by Lokesh, fueled by an uncompromising standard for craft and an enduring belief in building software that people truly love to use.',
-                    style: TextStyle(
-                      color: colorScheme.onSurface.withValues(alpha: 0.9),
-                      fontSize: 14,
-                      height: 1.6,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      _StatBadge(
-                        icon: FluentIcons.timer_24_filled,
-                        label: 'Hard Work & Time',
-                        sublabel: 'Countless hours spent',
-                      ),
-                      _StatBadge(
-                        icon: FluentIcons.heart_24_filled,
-                        label: 'Passion & Craft',
-                        sublabel: 'Pure audio dedication',
-                      ),
-                      _StatBadge(
-                        icon: FluentIcons.shield_checkmark_24_filled,
-                        label: '100% by Lokesh',
-                        sublabel: 'Independently built',
-                      ),
-                    ],
-                  ),
-                ],
               ),
             ),
 
@@ -242,7 +199,7 @@ class AboutPage extends StatelessWidget {
             // Section: Forge by Lokesh Board
             _SectionContainer(
               icon: FluentIcons.sparkle_24_filled,
-              iconColor: const Color(0xFFC8F56A),
+              iconColor: const Color(0xFF19E28A),
               title: 'Forge by Lokesh — Experience',
               subtitle: 'Key pillars engineered for listeners',
               child: LayoutBuilder(
@@ -343,7 +300,7 @@ class _ProfileCard extends StatelessWidget {
                 errorBuilder: (_, __, ___) => Container(
                   width: 56,
                   height: 56,
-                  color: const Color(0xFFC8F56A),
+                  color: const Color(0xFF19E28A),
                   child: const Center(
                     child: Text(
                       'L',
@@ -389,7 +346,7 @@ class _ProfileCard extends StatelessWidget {
                 _ActionButton(
                   icon: FluentIcons.globe_24_filled,
                   tooltip: 'Portfolio — Lokesh',
-                  backgroundColor: const Color(0xFFC8F56A),
+                  backgroundColor: const Color(0xFF19E28A),
                   iconColor: Color(0xFF10120F),
                   onPressed: () => launchURL(Uri.parse(portfolioUrl)),
                 ),
@@ -535,64 +492,6 @@ class _SectionContainer extends StatelessWidget {
   }
 }
 
-/// Stat / milestone highlight badge.
-class _StatBadge extends StatelessWidget {
-  const _StatBadge({
-    required this.icon,
-    required this.label,
-    required this.sublabel,
-  });
-
-  final IconData icon;
-  final String label;
-  final String sublabel;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHigh,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.16),
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 18, color: const Color(0xFFC8F56A)),
-          const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                label,
-                style: TextStyle(
-                  color: colorScheme.onSurface,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Text(
-                sublabel,
-                style: TextStyle(
-                  color: colorScheme.onSurfaceVariant,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 /// Item showing a tool or programming language used by Lokesh.
 class _TechItem extends StatelessWidget {
   const _TechItem({
@@ -699,13 +598,13 @@ class _FeaturePillar extends StatelessWidget {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: const Color(0xFFC8F56A).withValues(alpha: 0.16),
+                color: const Color(0xFF19E28A).withValues(alpha: 0.16),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(
                 FluentIcons.music_note_2_24_filled,
                 size: 16,
-                color: Color(0xFFC8F56A),
+                color: Color(0xFF19E28A),
               ),
             ),
             const SizedBox(height: 10),

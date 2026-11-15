@@ -501,10 +501,9 @@ class _FallbackThumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColoredBox(
       color: colorScheme.surfaceContainerHighest,
-      child: Icon(
-        Icons.music_note,
-        size: 20,
-        color: colorScheme.onSurfaceVariant,
+      child: Image.asset(
+        'assets/icons/forge_icon.png',
+        fit: BoxFit.cover,
       ),
     );
   }

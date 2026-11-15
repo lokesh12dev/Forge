@@ -284,10 +284,9 @@ class _TrackSection extends StatelessWidget {
                       size: 56,
                       borderRadius: 6,
                     )
-                  : Icon(
-                      Icons.music_note,
-                      size: 22,
-                      color: colorScheme.onSurfaceVariant,
+                  : Image.asset(
+                      'assets/icons/forge_icon.png',
+                      fit: BoxFit.cover,
                     ),
             ),
           ),

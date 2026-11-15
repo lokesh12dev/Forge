@@ -66,11 +66,20 @@ class NullArtworkWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: colorScheme.primaryContainer.withValues(alpha: 0.55),
                 ),
-                child: Icon(
-                  icon,
-                  size: calculatedIconSize,
-                  color: colorScheme.onPrimaryContainer,
-                ),
+                child: icon == FluentIcons.music_note_1_24_regular
+                    ? ClipOval(
+                        child: Image.asset(
+                          'assets/icons/forge_icon.png',
+                          width: badgeSize,
+                          height: badgeSize,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : Icon(
+                        icon,
+                        size: calculatedIconSize,
+                        color: colorScheme.onPrimaryContainer,
+                      ),
               ),
               if (title != null) ...[
                 SizedBox(height: size * 0.045),

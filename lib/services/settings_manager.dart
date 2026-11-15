@@ -109,7 +109,7 @@ String offlineSortSetting = Hive.box('settings')
     .get('offlineSortType', defaultValue: OfflineSortType.default_.name);
 
 Color primaryColorSetting = Color(
-  Hive.box('settings').get('accentColor', defaultValue: 0xFFC8F56A),
+  Hive.box('settings').get('accentColor', defaultValue: 0xFF19E28A),
 );
 
 final shuffleNotifier = ValueNotifier<bool>(
@@ -203,7 +203,7 @@ void reloadSettingsFromStorage() {
 
   final restoredAccentColor = settings.get(
     'accentColor',
-    defaultValue: 0xFFC8F56A,
+    defaultValue: 0xFF19E28A,
   );
   if (restoredAccentColor is int) {
     primaryColorSetting = Color(restoredAccentColor);

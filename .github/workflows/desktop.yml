@@ -232,11 +232,11 @@ jobs:
           echo "Existing assets in release:"
           ls -lh
           
-          # Copy new desktop assets into all_assets
-          cp ../new_assets/* .
+          # Copy new desktop assets into all_assets (files only, skip subdirectories)
+          find ../new_assets -maxdepth 1 -type f -exec cp {} . \;
           
-          # Upload each new desktop asset
-          for f in ../new_assets/*; do
+          # Upload each new desktop asset (files only)
+          find ../new_assets -maxdepth 1 -type f | while read -r f; do
             filename=$(basename "$f")
             if [ "$filename" != "SHA256SUMS.txt" ]; then
               echo "Uploading $filename to release $TAG..."

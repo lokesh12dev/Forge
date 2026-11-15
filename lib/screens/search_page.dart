@@ -362,9 +362,27 @@ class _SearchPageState extends State<SearchPage> {
                                     items.length,
                                   );
 
+                                  final isSuggestion = _suggestionsList.isNotEmpty;
                                   return CustomBar(
                                     query,
-                                    FluentIcons.search_24_regular,
+                                    isSuggestion
+                                        ? FluentIcons.music_note_2_24_filled
+                                        : FluentIcons.history_24_regular,
+                                    description: isSuggestion
+                                        ? 'Music result · Tap to play or view'
+                                        : null,
+                                    iconColor: isSuggestion
+                                        ? Theme.of(context).colorScheme.primary
+                                        : null,
+                                    trailing: isSuggestion
+                                        ? Icon(
+                                            FluentIcons.arrow_up_left_24_regular,
+                                            size: 18,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onSurfaceVariant,
+                                          )
+                                        : null,
                                     borderRadius: borderRadius,
                                     onTap: () async {
                                       await _submitSearch(query.toString());

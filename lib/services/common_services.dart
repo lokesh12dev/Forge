@@ -546,40 +546,144 @@ Map<String, dynamic> getOfflineSongByYtid(String ytid) {
 }
 
 Future<List<String>> getSearchSuggestions(String query) async {
-  // Custom implementation:
+  final cleanQuery = query.trim();
+  if (cleanQuery.isEmpty) return [];
 
-  // const baseUrl = 'https://suggestqueries.google.com/complete/search';
-  // final parameters = {
-  //   'client': 'firefox',
-  //   'ds': 'yt',
-  //   'q': query,
-  // };
+  final musicSuggestions = <String>{};
+  final lowerQuery = cleanQuery.toLowerCase();
 
-  // final uri = Uri.parse(baseUrl).replace(queryParameters: parameters);
+  // 1. Check user local library / recent songs for fast, relevant suggestions
+  try {
+    for (final song in userRecentlyPlayed.value) {
+      if (song is Map) {
+        final title = song['title']?.toString().trim();
+        final artist = song['artist']?.toString().trim();
+        if (title != null && title.toLowerCase().contains(lowerQuery)) {
+          final cleaned = _cleanMusicSuggestion(title);
+          if (cleaned != null) musicSuggestions.add(cleaned);
+        }
+        if (artist != null && artist.toLowerCase().contains(lowerQuery)) {
+          final cleaned = _cleanMusicSuggestion(artist);
+          if (cleaned != null) musicSuggestions.add(cleaned);
+        }
+      }
+    }
+  } catch (_) {}
 
-  // try {
-  //   final response = await http.get(
-  //     uri,
-  //     headers: {
-  //       'User-Agent':
-  //           'Mozilla/5.0 (Windows NT 10.0; rv:96.0) Gecko/20100101 Firefox/96.0',
-  //     },
-  //   );
+  // 2. Query official YouTube Music get_search_suggestions endpoint for exact music queries
+  try {
+    final response = await http
+        .post(
+          Uri.parse(
+            'https://music.youtube.com/youtubei/v1/music/get_search_suggestions',
+          ),
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent':
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          },
+          body: jsonEncode({
+            'context': {
+              'client': {
+                'clientName': 'WEB_REMIX',
+                'clientVersion': '1.20231204.01.00',
+              },
+            },
+            'input': cleanQuery,
+          }),
+        )
+        .timeout(const Duration(seconds: 4));
 
-  //   if (response.statusCode == 200) {
-  //     final suggestions = jsonDecode(response.body)[1] as List<dynamic>;
-  //     final suggestionStrings = suggestions.cast<String>().toList();
-  //     return suggestionStrings;
-  //   }
-  // } catch (e, stackTrace) {
-  //   logger.log('Error in getSearchSuggestions:$e\n$stackTrace');
-  // }
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final contents = data['contents'] as List<dynamic>? ?? [];
+      for (final section in contents) {
+        if (section is Map) {
+          final renderer = section['searchSuggestionsSectionRenderer'] as Map?;
+          final items = renderer?['contents'] as List<dynamic>? ?? [];
+          for (final item in items) {
+            if (item is Map) {
+              final sugg = item['searchSuggestionRenderer'] as Map?;
+              final text = sugg?['navigationEndpoint']?['searchEndpoint']?['query']
+                  ?.toString();
+              if (text != null && text.trim().isNotEmpty) {
+                final cleaned = _cleanMusicSuggestion(text);
+                if (cleaned != null) {
+                  musicSuggestions.add(cleaned);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } catch (e, stackTrace) {
+    logger.log(
+      'YTM search suggestions error: $e',
+      error: e,
+      stackTrace: stackTrace,
+    );
+  }
 
-  // Built-in implementation:
+  // 3. Fallback: query ytClient and strictly filter out non-music and junk queries
+  if (musicSuggestions.length < 5) {
+    try {
+      final ytSuggestions = await ytClient.search.getQuerySuggestions(cleanQuery);
+      for (final item in ytSuggestions) {
+        final cleaned = _cleanMusicSuggestion(item);
+        if (cleaned != null) {
+          musicSuggestions.add(cleaned);
+        }
+      }
+    } catch (_) {}
+  }
 
-  final suggestions = await ytClient.search.getQuerySuggestions(query);
+  return musicSuggestions.take(10).toList();
+}
 
-  return suggestions;
+String? _cleanMusicSuggestion(String raw) {
+  var text = raw.trim();
+  if (text.isEmpty) return null;
+
+  final lower = text.toLowerCase();
+
+  // Filter out non-music random web queries (lyrics, ringtone, status, download junk)
+  const rejectedKeywords = [
+    'download',
+    'lyrics',
+    'ringtone',
+    'whatsapp status',
+    'status video',
+    'video status',
+    'full video',
+    'mp3',
+    'mp4',
+    'chords',
+    'karaoke',
+    'flac download',
+    'free download',
+    'dj remix download',
+    'dance video',
+    'reaction video',
+    'song download',
+  ];
+
+  for (final keyword in rejectedKeywords) {
+    if (lower.contains(keyword)) {
+      return null;
+    }
+  }
+
+  // Remove unwanted video/junk suffixes while keeping the song or artist name
+  text = text.replaceAll(
+    RegExp(
+      r'\s+(full\s+song|video\s+song|audio\s+song|official\s+video|lyric\s+video)$',
+      caseSensitive: false,
+    ),
+    '',
+  );
+
+  return text.trim().isEmpty ? null : text.trim();
 }
 
 // Throws on network, HTTP and parsing failure instead of swallowing it, so

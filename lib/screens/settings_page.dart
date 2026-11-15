@@ -22,7 +22,6 @@
 import 'dart:async';
 import 'package:audio_service/audio_service.dart';
 import 'package:forge/constants/app_constants.dart';
-import 'package:forge/constants/payment_constants.dart';
 import 'package:forge/extensions/l10n.dart';
 import 'package:forge/main.dart';
 import 'package:forge/screens/search_page.dart';
@@ -50,7 +49,6 @@ import 'package:forge/widgets/shapes/four_sided_cookie_shape.dart';
 import 'package:forge/widgets/sponsorship_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

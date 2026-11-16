@@ -21,19 +21,204 @@
 
   // The current-release asset details are filled from the release before deploy.
   const FALLBACK_RELEASE = {
-    version: 'v10.7.3',
-    versionClean: '10.7.3',
-    name: 'Forge v10.7.3',
-    date: '16 Nov 2026',
-    publishedAt: '',
-    htmlUrl: 'https://github.com/lokesh12dev/Forge/releases/tag/v10.7.3',
-    checksumsUrl: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/SHA256SUMS.txt',
-    notes: 'One-click UPI app launch with QR fallback on Android and iPhone. Forge Pay opens on desktop.',
-    android: [],
-    ios: [],
-    macos: [],
-    windows: [],
-    allAssets: []
+    "version": "v10.7.3",
+    "versionClean": "10.7.3",
+    "name": "Forge v10.7.3",
+    "date": "16 Nov 2026",
+    "htmlUrl": "https://github.com/lokesh12dev/Forge/releases/tag/v10.7.3",
+    "checksumsUrl": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/SHA256SUMS.txt",
+    "android": [
+      {
+        "name": "Forge-v10.7.3-universal.apk",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-universal.apk",
+        "size": 33315636,
+        "sizeFormatted": "31.8 MB",
+        "sha256": "b9a4547016ffe1a4be6613c55c2e71d78fe7931fe83a0e96480b5485511ce0b9",
+        "downloadCount": 2,
+        "label": "Universal APK",
+        "desc": "Works on Android phones and tablets. The easiest choice for most devices.",
+        "arch": "all architectures",
+        "recommended": true,
+        "type": "universal"
+      },
+      {
+        "name": "Forge-v10.7.3-arm64-v8a.apk",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-arm64-v8a.apk",
+        "size": 13241645,
+        "sizeFormatted": "12.6 MB",
+        "sha256": "7f26d236f200a0f2620422de8be8d54abd5507210bdf04722abee0af66871f7a",
+        "downloadCount": 2,
+        "label": "ARM64 APK",
+        "desc": "For modern Android devices with a 64-bit ARM processor.",
+        "arch": "arm64-v8a",
+        "recommended": false,
+        "type": "arm64"
+      }
+    ],
+    "ios": [
+      {
+        "name": "Forge.ipa",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge.ipa",
+        "size": 12952993,
+        "sizeFormatted": "12.4 MB",
+        "sha256": "df0d0c1fa460d08eb72c67751898b9935abff4a06c0e8e16a98012b64155e2c8",
+        "downloadCount": 0,
+        "label": "iPhone App",
+        "desc": "Unsigned IPA for installation with your Apple ID.",
+        "arch": "iOS 15+",
+        "recommended": true,
+        "type": "ipa"
+      }
+    ],
+    "macos": [
+      {
+        "name": "Forge-v10.7.3-macos.dmg",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-macos.dmg",
+        "size": 27131395,
+        "sizeFormatted": "25.9 MB",
+        "sha256": "32162a8c16f9b37cf1852dcf2d7d68efdf72920d91afb5d31a7a4a601ad03fe2",
+        "downloadCount": 0,
+        "label": "macOS Disk Image",
+        "desc": "Universal build for Apple Silicon and Intel Macs.",
+        "arch": "macOS 12.0+",
+        "recommended": true,
+        "type": "dmg"
+      }
+    ],
+    "windows": [
+      {
+        "name": "Forge-v10.7.3-windows-setup.exe",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-windows-setup.exe",
+        "size": 18557676,
+        "sizeFormatted": "17.7 MB",
+        "sha256": "7d8986a2f8cebd4c85f37fa36a35b6ccaba33bb4ec5fcf539ca2f089f500b954",
+        "downloadCount": 0,
+        "label": "Windows Installer",
+        "desc": "Installer with Start menu shortcuts and clean setup.",
+        "arch": "x64",
+        "recommended": true,
+        "type": "installer"
+      },
+      {
+        "name": "Forge-v10.7.3-windows-x64.zip",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-windows-x64.zip",
+        "size": 22903340,
+        "sizeFormatted": "21.8 MB",
+        "sha256": "e804f388a2df29810663da193119d94c1c1f15e7c5101d7af98084931920ab22",
+        "downloadCount": 0,
+        "label": "Portable ZIP",
+        "desc": "Standalone archive. Extract and run forge.exe without installation.",
+        "arch": "x64",
+        "recommended": false,
+        "type": "portable"
+      }
+    ],
+    "allAssets": [
+      {
+        "name": "Forge-v10.7.3-arm64-v8a.apk",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-arm64-v8a.apk",
+        "size": 13241645,
+        "sizeFormatted": "12.6 MB",
+        "sha256": "7f26d236f200a0f2620422de8be8d54abd5507210bdf04722abee0af66871f7a",
+        "downloadCount": 2,
+        "label": "ARM64 APK",
+        "desc": "For modern Android devices with a 64-bit ARM processor.",
+        "arch": "arm64-v8a",
+        "recommended": false,
+        "type": "arm64"
+      },
+      {
+        "name": "Forge-v10.7.3-macos.dmg",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-macos.dmg",
+        "size": 27131395,
+        "sizeFormatted": "25.9 MB",
+        "sha256": "32162a8c16f9b37cf1852dcf2d7d68efdf72920d91afb5d31a7a4a601ad03fe2",
+        "downloadCount": 0,
+        "label": "macOS Disk Image",
+        "desc": "Universal build for Apple Silicon and Intel Macs.",
+        "arch": "macOS 12.0+",
+        "recommended": true,
+        "type": "dmg"
+      },
+      {
+        "name": "Forge-v10.7.3-universal.apk",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-universal.apk",
+        "size": 33315636,
+        "sizeFormatted": "31.8 MB",
+        "sha256": "b9a4547016ffe1a4be6613c55c2e71d78fe7931fe83a0e96480b5485511ce0b9",
+        "downloadCount": 2,
+        "label": "Universal APK",
+        "desc": "Works on Android phones and tablets. The easiest choice for most devices.",
+        "arch": "all architectures",
+        "recommended": true,
+        "type": "universal"
+      },
+      {
+        "name": "Forge-v10.7.3-windows-setup.exe",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-windows-setup.exe",
+        "size": 18557676,
+        "sizeFormatted": "17.7 MB",
+        "sha256": "7d8986a2f8cebd4c85f37fa36a35b6ccaba33bb4ec5fcf539ca2f089f500b954",
+        "downloadCount": 0,
+        "label": "Windows Installer",
+        "desc": "Installer with Start menu shortcuts and clean setup.",
+        "arch": "x64",
+        "recommended": true,
+        "type": "installer"
+      },
+      {
+        "name": "Forge-v10.7.3-windows-x64.zip",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge-v10.7.3-windows-x64.zip",
+        "size": 22903340,
+        "sizeFormatted": "21.8 MB",
+        "sha256": "e804f388a2df29810663da193119d94c1c1f15e7c5101d7af98084931920ab22",
+        "downloadCount": 0,
+        "label": "Portable ZIP",
+        "desc": "Standalone archive. Extract and run forge.exe without installation.",
+        "arch": "x64",
+        "recommended": false,
+        "type": "portable"
+      },
+      {
+        "name": "Forge.ipa",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/Forge.ipa",
+        "size": 12952993,
+        "sizeFormatted": "12.4 MB",
+        "sha256": "df0d0c1fa460d08eb72c67751898b9935abff4a06c0e8e16a98012b64155e2c8",
+        "downloadCount": 0,
+        "label": "iPhone App",
+        "desc": "Unsigned IPA for installation with your Apple ID.",
+        "arch": "iOS 15+",
+        "recommended": true,
+        "type": "ipa"
+      },
+      {
+        "name": "INSTALL.md",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/INSTALL.md",
+        "size": 5135,
+        "sizeFormatted": "0.0 MB",
+        "sha256": "185b156d76be384a91f2da79cd4267a36436b49b221b1d59ce9e21121022b884",
+        "downloadCount": 0
+      },
+      {
+        "name": "REPORT.md",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/REPORT.md",
+        "size": 729,
+        "sizeFormatted": "0.0 MB",
+        "sha256": "dd61b79b772d2db7624c8dbe2195d388a493a5f63841798f2a8490b9a6278f15",
+        "downloadCount": 0
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "url": "https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/SHA256SUMS.txt",
+        "size": 548,
+        "sizeFormatted": "0.0 MB",
+        "sha256": "67d0033b36eed040e75d096f0d11813c274546a1bb461eb1d1e0a490050dda0d",
+        "downloadCount": 0
+      }
+    ],
+    "publishedAt": "2026-11-16T03:39:30Z",
+    "notes": "Direct UPI launch on mobile with Forge Pay and QR fallbacks. Desktop opens Forge Pay."
   };
 
   function isValidDownloadUrl(url) {

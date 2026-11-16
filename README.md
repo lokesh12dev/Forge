@@ -219,6 +219,9 @@ flutter build apk --release         # Android
 
 ## 🆕 Changelog
 
+### v10.7.5 — Header banner is now colorless with a green Forge wordmark only.*
+- Header banner is now colorless with a green Forge wordmark only.
+
 ### v10.7.3 — UPI sponsorship repair *(Latest)*
 - Opens the in-app sponsor dialog with bundled Google Pay and PhonePe QR codes.
 - Mobile taps launch the standard UPI payment intent after the dialog is visible.

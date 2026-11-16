@@ -4,6 +4,10 @@ All notable changes to Forge are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [10.7.5] — 2026-11-16
+
+- Header banner is now colorless with a green Forge wordmark only.
+
 ## [10.7.0] — 2026-11-15
 
 ### Added

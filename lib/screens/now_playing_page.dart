@@ -101,7 +101,7 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
             iconSize: 26,
             icon: const Icon(FluentIcons.chevron_down_24_regular),
             style: IconButton.styleFrom(
-              backgroundColor: colorScheme.surfaceContainerHighest,
+              backgroundColor: Colors.transparent,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

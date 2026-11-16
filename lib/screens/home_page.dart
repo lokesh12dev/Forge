@@ -110,11 +110,11 @@ class _HomePageState extends State<HomePage> {
               title: InkWell(
                 onTap: () => context.push('/settings/about'),
                 borderRadius: BorderRadius.circular(12),
-                child: const ForgeWordmark(inverted: true),
+                child: const ForgeWordmark(),
               ),
               centerTitle: true,
-              backgroundColor: forgeGreen,
-              foregroundColor: const Color(0xFF0A1410),
+              backgroundColor: Colors.transparent,
+              foregroundColor: Colors.white,
               surfaceTintColor: Colors.transparent,
             ),
       body: CustomScrollView(

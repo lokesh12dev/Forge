@@ -219,7 +219,7 @@ class _ForgeBrandTitle extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-          child: ForgeWordmark(inverted: true),
+          child: ForgeWordmark(),
         ),
       ),
     );

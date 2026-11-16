@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support Forge — Pay with Google Pay / UPI</title>
-  <meta name="description" content="Support Forge by Lokesh. One-click instant UPI payment via Google Pay or PhonePe." />
+  <meta name="description" content="Support Forge. One-click instant UPI payment via Google Pay or PhonePe." />
   <link rel="icon" href="../assets/favicon.png" type="image/png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -620,7 +620,7 @@
       <a class="brand" href="../">
         <div class="brand-logo">F</div>
         <span class="brand-name">Forge</span>
-        <span class="brand-tag">by Lokesh</span>
+        
       </a>
       <div style="display: flex; gap: 8px; align-items: center;">
         <a class="back-btn" href="https://github.com/lokesh12dev/Forge" target="_blank" rel="noreferrer" style="display: inline-flex; align-items: center; gap: 6px;">
@@ -787,7 +787,7 @@
     function buildUpiUri(methodKey, amount) {
       const cfg = CONFIG[methodKey];
       const encodedName = encodeURIComponent(cfg.payee);
-      const encodedNote = encodeURIComponent('Support Forge by Lokesh');
+      const encodedNote = encodeURIComponent('Support Forge');
       let uri = `upi://pay?pa=${cfg.upi}&pn=${encodedName}&tn=${encodedNote}&cu=INR`;
       if (amount && amount > 0) {
         uri += `&am=${amount}`;
@@ -907,7 +907,7 @@
 
     function onPaymentDone() {
       closeModal();
-      showToast('Thank you for supporting Forge by Lokesh! ❤️');
+      showToast('Thank you for supporting Forge! ❤️');
     }
 
     function showToast(msg) {

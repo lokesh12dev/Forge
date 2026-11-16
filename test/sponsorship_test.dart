@@ -56,7 +56,7 @@ void main() {
       expect(uri.queryParameters['pa'], 'mr.mlokesh7@oksbi');
       expect(uri.queryParameters['pn'], 'M Lokesh');
       expect(uri.queryParameters['cu'], 'INR');
-      expect(uri.queryParameters['tn'], 'Support Forge by Lokesh');
+      expect(uri.queryParameters['tn'], 'Support Forge');
       expect(uri.queryParameters.containsKey('am'), isFalse,
           reason: 'No fixed amount parameter must be set for flexible payment');
     });
@@ -76,7 +76,7 @@ void main() {
       expect(uri.queryParameters['pa'], '7603883879@axl');
       expect(uri.queryParameters['pn'], 'LOKESH M');
       expect(uri.queryParameters['cu'], 'INR');
-      expect(uri.queryParameters['tn'], 'Support Forge by Lokesh');
+      expect(uri.queryParameters['tn'], 'Support Forge');
       expect(uri.queryParameters.containsKey('am'), isFalse,
           reason: 'No fixed amount parameter must be set for flexible payment');
     });
@@ -250,7 +250,7 @@ void main() {
 
       // Verify header and branding
       expect(find.text('Support Forge'), findsOneWidget);
-      expect(find.text('by Lokesh'), findsOneWidget);
+      expect(find.text('Free'), findsOneWidget);
       expect(find.textContaining('Forge is built with passion'), findsOneWidget);
 
       // Verify both method tabs exist

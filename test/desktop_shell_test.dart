@@ -15,7 +15,7 @@ void main() {
     );
 
     expect(tester.takeException(), isNull);
-    expect(find.text('forge'), findsOneWidget);
+    expect(find.text('Forge'), findsOneWidget);
     expect(find.byTooltip('Settings'), findsOneWidget);
   });
 }

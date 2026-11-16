@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 /// Forge's signature sporty green, shared with the website.
 const Color forgeGreen = Color(0xFF19E28A);
 
-/// The Forge brand lockup: a glowing ember, the heavy tight-tracked lowercase
-/// "forge" wordmark and a spaced "BY LOKESH" signature framed by hairlines.
+/// The Forge wordmark: the heavy, tight-tracked "Forge" name on its own.
 ///
 /// It owns its own [Material] and [DefaultTextStyle], so it renders cleanly
 /// anywhere (custom title bars, app bars, hero sections) without the yellow
@@ -12,7 +11,7 @@ const Color forgeGreen = Color(0xFF19E28A);
 class ForgeWordmark extends StatelessWidget {
   const ForgeWordmark({
     this.scale = 1,
-    this.showSignature = true,
+    this.showSignature = false,
     this.inverted = false,
     super.key,
   });
@@ -42,24 +41,8 @@ class ForgeWordmark extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: 7 * scale,
-                  height: 7 * scale,
-                  margin: EdgeInsets.only(right: 7 * scale, top: 2 * scale),
-                  decoration: BoxDecoration(
-                    color: accent,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: accent.withValues(alpha: inverted ? 0.0 : 0.55),
-                        blurRadius: 8 * scale,
-                        spreadRadius: 1 * scale,
-                      ),
-                    ],
-                  ),
-                ),
                 Text(
-                  'forge',
+                  'Forge',
                   style: TextStyle(
                     color: wordColor,
                     fontFamily: 'paytoneOne',
@@ -79,7 +62,7 @@ class ForgeWordmark extends StatelessWidget {
                   _Hairline(scale: scale, fadeLeft: true, color: accent),
                   SizedBox(width: 6 * scale),
                   Text(
-                    'BY LOKESH',
+                    '',
                     style: TextStyle(
                       color: accent,
                       fontSize: 8.5 * scale,

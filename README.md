@@ -2,7 +2,7 @@
 
 <img src="assets/icons/forge_icon.png" width="130" alt="Forge App Icon" />
 
-# 🎵 Forge by Lokesh
+# 🎵 Forge
 
 ### The High-Fidelity, Ad-Free Music Player for Android, iOS, macOS & Windows
 
@@ -119,8 +119,8 @@ Get-Content .\SHA256SUMS.txt
 - Native low-latency audio playback pipeline with gapless playback, lock-screen controls, and system media integration across Android, macOS, and Windows.
 - Intelligent multi-stream caching ensures smooth playback even under unstable network conditions.
 
-### 🖥️ Pinned "Forge by Lokesh" Desktop Chrome
-- **Permanent Top Bar Visibility:** The centered **Forge by Lokesh** brand heading remains razor-sharp and visible when scrolling down, scrolling up, or expanding into full-screen and maximized views.
+### 🖥️ Pinned "Forge" Desktop Chrome
+- **Permanent Top Bar Visibility:** The centered **Forge** brand heading remains razor-sharp and visible when scrolling down, scrolling up, or expanding into full-screen and maximized views.
 - **Fluid Multi-View Adaptation:** Side view, minimized view, and maximized full-screen modes dynamically adjust grid cards, spacing, and album textures.
 
 ### 🔍 Music-Focused Search Engine

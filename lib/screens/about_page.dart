@@ -47,7 +47,7 @@ class AboutPage extends StatelessWidget {
           children: <Widget>[
             const SizedBox(height: 16),
 
-            // Forge by Lokesh Hero Header
+            // Forge hero header
             Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -119,6 +119,29 @@ class AboutPage extends StatelessWidget {
               avatarUrl: 'https://avatars.githubusercontent.com/lokesh12dev',
               portfolioUrl: 'https://lokesh-online-three.vercel.app/pro',
               githubUrl: 'https://github.com/lokesh12dev',
+            ),
+
+            const SizedBox(height: 20),
+
+            // The story behind Forge
+            const _SectionContainer(
+              icon: FluentIcons.heart_24_filled,
+              iconColor: Color(0xFF19E28A),
+              title: 'The story behind Forge',
+              subtitle: 'Made by Lokesh',
+              child: Text(
+                'Forge is the work of one person. Every screen, every line of '
+                'code, every animation, the release process and the website '
+                'were designed, built and tested by Lokesh, with a great deal '
+                'of time, patience and care. There is no company or team '
+                'behind it, only a simple idea: a music app that is free, '
+                'free of ads and respectful of the people who use it.\n\n'
+                'Every update is checked before it is released, because a free '
+                'app should still be one you can trust. If Forge brings a '
+                'little music into your day, thank you. That is all this work '
+                'ever asked for.',
+                style: TextStyle(fontSize: 15, height: 1.6),
+              ),
             ),
 
             const SizedBox(height: 20),
@@ -196,11 +219,11 @@ class AboutPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Section: Forge by Lokesh Board
+            // Section: Forge experience
             _SectionContainer(
               icon: FluentIcons.sparkle_24_filled,
               iconColor: const Color(0xFF19E28A),
-              title: 'Forge by Lokesh — Experience',
+              title: 'Forge — Experience',
               subtitle: 'Key pillars engineered for listeners',
               child: LayoutBuilder(
                 builder: (context, constraints) {
@@ -562,7 +585,7 @@ class _TechItem extends StatelessWidget {
   }
 }
 
-/// Feature pillar card in the Forge by Lokesh showcase.
+/// Feature pillar card in the Forge showcase.
 class _FeaturePillar extends StatelessWidget {
   const _FeaturePillar({
     required this.width,

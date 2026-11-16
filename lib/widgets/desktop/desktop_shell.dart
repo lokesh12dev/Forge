@@ -127,7 +127,7 @@ class _MainSurface extends StatelessWidget {
 }
 
 /// Floating top bar: back / forward history buttons,
-/// a centered high-contrast "Forge by Lokesh" brand title, and action shortcuts.
+/// a centered high-contrast "Forge" brand title, and action shortcuts.
 class DesktopTopBar extends StatelessWidget {
   const DesktopTopBar({
     required this.onSettings,
@@ -184,7 +184,7 @@ class DesktopTopBar extends StatelessWidget {
               if (onAbout != null) ...[
                 _ChromeIconButton(
                   icon: Icons.info_outline,
-                  tooltip: 'About Forge by Lokesh',
+                  tooltip: 'About Forge',
                   enabled: true,
                   onPressed: onAbout,
                 ),
@@ -204,7 +204,7 @@ class DesktopTopBar extends StatelessWidget {
   }
 }
 
-/// Pinned "forge · by Lokesh" brand lockup in the title bar.
+/// Pinned "Forge" brand title in the title bar.
 class _ForgeBrandTitle extends StatelessWidget {
   const _ForgeBrandTitle({this.onTap});
 
@@ -213,7 +213,7 @@ class _ForgeBrandTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: 'Forge by Lokesh — Tap for About & Creator details',
+      message: 'Forge — Tap for About',
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),

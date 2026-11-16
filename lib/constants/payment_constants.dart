@@ -29,7 +29,7 @@ class UpiPaymentMethod {
     required this.assetPath,
     required this.upiId,
     required this.payeeName,
-    this.note = 'Support Forge by Lokesh',
+    this.note = 'Support Forge',
   });
 
   final UpiPaymentMethodType type;

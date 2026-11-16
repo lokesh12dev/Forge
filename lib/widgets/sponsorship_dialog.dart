@@ -337,7 +337,7 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: const Text(
-                                'by Lokesh',
+                                'Free',
                                 style: TextStyle(
                                   color: Color(0xFF19E28A),
                                   fontSize: 11,

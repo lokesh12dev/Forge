@@ -148,7 +148,7 @@ jobs:
           mkdir release-assets
           gh release download "$TAG" --repo lokesh12dev/Forge --dir release-assets
           cd release-assets
-          sha256sum Forge.ipa Forge-* > SHA256SUMS.txt
+          shasum -a 256 Forge.ipa Forge-* > SHA256SUMS.txt
           gh release upload "$TAG" SHA256SUMS.txt \
             --repo lokesh12dev/Forge \
             --clobber

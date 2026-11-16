@@ -3,14 +3,14 @@ name: Android Release
 # Builds a signed, installable APK and publishes it to GitHub Releases.
 #
 # Release process:
-#   1. Bump `version` in pubspec.yaml (e.g. 10.6.0+186).
+#   1. Bump `version` in pubspec.yaml (e.g. 10.7.3+199).
 #   2. Commit and push to master.
 #   3. Push a matching tag:  git tag v10.6.0 && git push origin v10.6.0
 #
 # Required repository secrets (Settings -> Secrets and variables -> Actions):
 #   KEYSTORE_BASE64   Base64 of the release keystore (android/app/key.jks)
 #   KEYSTORE_PASSWORD Store password
-#   KEY_ALIAS         Key alias (default: lokeshmusic — keystore signing alias, legacy identity)
+#   KEY_ALIAS         Key alias configured for the Forge release keystore
 #   KEY_PASSWORD      Key password
 #
 # Never commit the keystore or its passwords. Back them up securely: losing

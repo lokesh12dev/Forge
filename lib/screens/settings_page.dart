@@ -19,11 +19,8 @@
  *     please visit: https://github.com/lokesh12dev/Forge
  */
 
-import 'dart:async';
-import 'dart:io';
 import 'package:audio_service/audio_service.dart';
 import 'package:forge/constants/app_constants.dart';
-import 'package:forge/constants/payment_constants.dart';
 import 'package:forge/extensions/l10n.dart';
 import 'package:forge/main.dart';
 import 'package:forge/screens/search_page.dart';
@@ -47,11 +44,9 @@ import 'package:forge/widgets/confirmation_dialog.dart';
 import 'package:forge/widgets/custom_bar.dart';
 import 'package:forge/widgets/mini_player_bottom_space.dart';
 import 'package:forge/widgets/section_header.dart';
-import 'package:forge/widgets/shapes/four_sided_cookie_shape.dart';
-import 'package:forge/widgets/sponsorship_dialog.dart';
+import 'package:forge/widgets/sponsor_project_card.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -484,106 +479,13 @@ class SettingsPage extends StatelessWidget {
   }
 
   Widget _buildSponsorSection(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Column(
       children: [
         SectionHeader(
           title: context.l10n!.becomeSponsor,
           icon: Icons.favorite,
         ),
-        Material(
-          color: colorScheme.primaryContainer,
-          borderRadius: BorderRadius.circular(16),
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            onTap: () async {
-              // Ensure in-app dialog displays immediately
-              unawaited(showSponsorshipDialog(context));
-
-              if (isMobilePlatform) {
-                // On Android/iOS: trigger direct Google Pay / PhonePe UPI intent
-                var launched = false;
-                try {
-                  launched = await url_launcher.launchUrl(
-                    SponsorshipConfig.googlePay.paymentUri,
-                    mode: url_launcher.LaunchMode.externalApplication,
-                  );
-                } catch (_) {}
-                if (!launched) {
-                  try {
-                    await url_launcher.launchUrl(
-                      SponsorshipConfig.googlePay.paymentUri,
-                    );
-                  } catch (_) {}
-                }
-              } else {
-                // On macOS/Windows/Linux: open dedicated web payment portal
-                const payUrl = 'https://lokesh12dev.github.io/Forge/pay/';
-                try {
-                  await launchURL(Uri.parse(payUrl));
-                } catch (_) {}
-                // Additional macOS guarantee
-                if (Platform.isMacOS) {
-                  try {
-                    await Process.run('open', [payUrl]);
-                  } catch (_) {}
-                }
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-              child: Row(
-                children: [
-                  FourSidedCookieShape(
-                    size: 44,
-                    color: colorScheme.onPrimaryContainer.withValues(
-                      alpha: 0.14,
-                    ),
-                    child: Icon(
-                      Icons.favorite,
-                      color: colorScheme.onPrimaryContainer,
-                      size: 24,
-                    ),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n!.sponsorProject,
-                          style: TextStyle(
-                            color: colorScheme.onPrimaryContainer,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          'Google Pay & PhonePe UPI',
-                          style: TextStyle(
-                            color: colorScheme.onPrimaryContainer.withValues(
-                              alpha: 0.75,
-                            ),
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: 16,
-                    color: colorScheme.onPrimaryContainer.withValues(
-                      alpha: 0.6,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+        const SponsorProjectCard(),
       ],
     );
   }

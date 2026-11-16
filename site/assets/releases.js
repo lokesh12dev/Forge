@@ -4,9 +4,8 @@
  * Single source of truth for release data on the Forge website.
  * - Live data comes from the GitHub Releases API (assets, sizes, sha256 digests).
  * - A verified static snapshot (FALLBACK_RELEASE) ships with the site so the
- *   page is correct even if the API is unreachable. Every value in the
- *   snapshot is copied from the official v10.7.2 release (SHA256SUMS.txt and
- *   the release API response) — never edited by hand.
+ *   page stays useful if the API is unreachable. Refresh it from the official
+ *   release assets and API response whenever a new version ships.
  * - All download URLs are strictly allow-listed to official GitHub release
  *   asset URLs before they are ever placed in the DOM.
  */
@@ -20,88 +19,21 @@
   const DEFAULT_REPO = 'lokesh12dev/Forge';
   const ALLOWED_URL_PREFIX = 'https://github.com/lokesh12dev/Forge/releases/download/';
 
-  /*
-   * VERIFIED static snapshot of Forge v10.7.2 (published 2026-11-15).
-   * Sizes are exact byte counts from the release API; checksums are copied
-   * verbatim from the release's official SHA256SUMS.txt.
-   * Update this object only by re-verifying a newly published release.
-   */
+  // The current-release asset details are filled from the release before deploy.
   const FALLBACK_RELEASE = {
-    version: 'v10.7.2',
-    versionClean: '10.7.2',
-    name: 'Forge v10.7.2',
-    date: '15 Nov 2026',
-    publishedAt: '2026-11-15T17:50:00Z',
-    htmlUrl: 'https://github.com/lokesh12dev/Forge/releases/tag/v10.7.2',
-    checksumsUrl: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.2/SHA256SUMS.txt',
-    notes:
-      'One-click UPI payment on Android (opens Google Pay / PhonePe directly). One-click Forge Pay portal on macOS & Windows. GitHub shortcut in Settings. macOS: right-click Forge.app → Open to bypass Gatekeeper on first launch.',
-    android: [
-      {
-        name: 'Forge-v10.7.2-universal.apk',
-        label: 'Universal APK',
-        desc: 'Works on Android phones and tablets. The easiest choice for most devices.',
-        arch: 'all architectures',
-        type: 'universal',
-        recommended: true,
-        size: 33603968,
-        sizeFormatted: '32.0 MB',
-        sha256: 'bb6c8a3dcf9318750cedf805eab7b7fc59906b0f3b3471d22495a7a42f2e5852',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.2/Forge-v10.7.2-universal.apk'
-      },
-      {
-        name: 'Forge-v10.7.2-arm64-v8a.apk',
-        label: 'ARM64 APK',
-        desc: 'For modern Android devices with a 64-bit ARM processor.',
-        arch: 'arm64-v8a',
-        type: 'arm64',
-        recommended: false,
-        size: 13334885,
-        sizeFormatted: '12.7 MB',
-        sha256: 'fc18e2619f13c6ea3c5a5047e066ece4a5adfd3b6353df5e31e4422867269f48',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.2/Forge-v10.7.2-arm64-v8a.apk'
-      }
-    ],
-    macos: [
-      {
-        name: 'Forge-v10.7.2-macos.dmg',
-        label: 'macOS Disk Image',
-        desc: 'Universal build for Apple Silicon and Intel Macs.',
-        arch: 'macOS 12.0+',
-        type: 'dmg',
-        recommended: true,
-        size: 27336803,
-        sizeFormatted: '26.1 MB',
-        sha256: '4fb879b9ad40a6182a4080c2daecb2476e45bdaf2ef6e38bbd0e8afae5db7a4d',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.2/Forge-v10.7.2-macos.dmg'
-      }
-    ],
-    windows: [
-      {
-        name: 'Forge-v10.7.2-windows-setup.exe',
-        label: 'Windows Installer',
-        desc: 'Standard setup wizard with Start menu shortcuts and clean desktop integration.',
-        arch: 'x64',
-        type: 'installer',
-        recommended: true,
-        size: 18614190,
-        sizeFormatted: '17.8 MB',
-        sha256: 'df82023d0e66b3a90f569a5b2bdb78b0569d3fce388c48d35d4b4156fdd37651',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.2/Forge-v10.7.2-windows-setup.exe'
-      },
-      {
-        name: 'Forge-v10.7.2-windows-x64.zip',
-        label: 'Portable ZIP',
-        desc: 'Standalone archive. Extract anywhere and run forge.exe directly without installation.',
-        arch: 'x64',
-        type: 'portable',
-        recommended: false,
-        size: 23003199,
-        sizeFormatted: '21.9 MB',
-        sha256: '74eb2ff54d8ddc1bdfb8221f45d4f6c3ab283d89cb5a87e016590b956e395ff5',
-        url: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.2/Forge-v10.7.2-windows-x64.zip'
-      }
-    ]
+    version: 'v10.7.3',
+    versionClean: '10.7.3',
+    name: 'Forge v10.7.3',
+    date: '16 Nov 2026',
+    publishedAt: '',
+    htmlUrl: 'https://github.com/lokesh12dev/Forge/releases/tag/v10.7.3',
+    checksumsUrl: 'https://github.com/lokesh12dev/Forge/releases/download/v10.7.3/SHA256SUMS.txt',
+    notes: 'One-click UPI app launch with QR fallback on Android and iPhone. Forge Pay opens on desktop.',
+    android: [],
+    ios: [],
+    macos: [],
+    windows: [],
+    allAssets: []
   };
 
   function isValidDownloadUrl(url) {
@@ -153,6 +85,7 @@
       htmlUrl,
       checksumsUrl: null,
       android: [],
+      ios: [],
       macos: [],
       windows: [],
       allAssets: []
@@ -205,6 +138,13 @@
           item.type = 'standard';
         }
         classified.android.push(item);
+      } else if (lowerName.endsWith('.ipa')) {
+        item.label = 'iPhone App';
+        item.desc = 'Unsigned IPA for installation with your Apple ID.';
+        item.arch = 'iOS 15+';
+        item.recommended = true;
+        item.type = 'ipa';
+        classified.ios.push(item);
       } else if (lowerName.endsWith('.dmg') || lowerName.includes('macos')) {
         item.label = 'macOS Disk Image';
         item.desc = 'Universal build for Apple Silicon and Intel Macs.';
@@ -232,6 +172,7 @@
 
     // Sort options: recommended first
     classified.android.sort((a, b) => (b.recommended ? 1 : 0) - (a.recommended ? 1 : 0));
+    classified.ios.sort((a, b) => (b.recommended ? 1 : 0) - (a.recommended ? 1 : 0));
     classified.macos.sort((a, b) => (b.recommended ? 1 : 0) - (a.recommended ? 1 : 0));
     classified.windows.sort((a, b) => (b.recommended ? 1 : 0) - (a.recommended ? 1 : 0));
 
@@ -288,6 +229,7 @@
 
   function detectPlatform(ua, plat) {
     const raw = [plat, ua].filter(Boolean).join(' ').toLowerCase();
+    if (/iphone|ipad|ipod/.test(raw)) return 'ios';
     if (/android/.test(raw)) return 'android';
     if (/windows|win32|win64/.test(raw)) return 'windows';
     if (/macintosh|macintel|mac os x|macos/.test(raw)) return 'macos';

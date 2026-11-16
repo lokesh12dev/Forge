@@ -20,21 +20,21 @@
  */
 
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:forge/constants/payment_constants.dart';
+import 'package:forge/localization/app_localizations.dart';
+import 'package:forge/widgets/sponsor_project_card.dart';
 import 'package:forge/widgets/sponsorship_dialog.dart';
+import 'package:material_ui/material_ui.dart';
 
 Widget _buildTestApp({required Widget home}) {
   return MaterialApp(
     theme: ThemeData.dark(),
-    localizationsDelegates: const [
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
-    ],
-    supportedLocales: const [Locale('en')],
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    supportedLocales: AppLocalizations.supportedLocales,
     home: home,
   );
 }
@@ -88,6 +88,156 @@ void main() {
   });
 
   group('Sponsorship Dialog Widget Tests', () {
+    testWidgets('Tapping the mobile sponsor card opens the dialog and UPI intent',
+        (WidgetTester tester) async {
+      const channel = MethodChannel('plugins.flutter.io/url_launcher');
+      final calls = <MethodCall>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (call) async {
+        calls.add(call);
+        return true;
+      });
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, null);
+      });
+
+      await tester.pumpWidget(
+        _buildTestApp(home: const Scaffold(body: SponsorProjectCard())),
+      );
+
+      await tester.tap(find.text('Sponsor the project'));
+      await tester.pump();
+      await tester.pump();
+
+      expect(find.byType(SponsorshipDialog), findsOneWidget);
+      expect(calls, hasLength(1));
+      expect(calls.single.method, 'launch');
+      expect(
+        (calls.single.arguments as Map)['url'],
+        startsWith('upi://pay?pa=mr.mlokesh7@oksbi'),
+      );
+
+      await tester.tap(find.byTooltip('Close').first);
+      await tester.pumpAndSettle();
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    testWidgets('The QR fallback stays visible when no UPI app opens',
+        (WidgetTester tester) async {
+      const channel = MethodChannel('plugins.flutter.io/url_launcher');
+      final calls = <MethodCall>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (call) async {
+        calls.add(call);
+        return calls.length == 2;
+      });
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, null);
+      });
+
+      await tester.pumpWidget(
+        _buildTestApp(home: const Scaffold(body: SponsorProjectCard())),
+      );
+
+      await tester.tap(find.text('Sponsor the project'));
+      await tester.pump();
+      await tester.pump();
+
+      expect(find.byType(SponsorshipDialog), findsOneWidget);
+      expect(calls, hasLength(2));
+      expect(
+        (calls[1].arguments as Map)['url'],
+        SponsorshipConfig.paymentPortalUrl,
+      );
+      expect(
+        find.text('No UPI app was found. Forge Pay opened in your browser.'),
+        findsOneWidget,
+      );
+
+      await tester.tap(find.text('Open UPI app'));
+      await tester.pump();
+      await tester.pump();
+      expect(find.byType(SponsorshipDialog), findsOneWidget);
+      expect(find.text('Google Pay'), findsOneWidget);
+      expect(find.text('PhonePe'), findsOneWidget);
+
+      await tester.tap(find.byTooltip('Close').first);
+      await tester.pumpAndSettle();
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    testWidgets('Keeps the QR fallback if UPI and browser launches fail',
+        (WidgetTester tester) async {
+      const channel = MethodChannel('plugins.flutter.io/url_launcher');
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (_) async => false);
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, null);
+      });
+
+      await tester.pumpWidget(
+        _buildTestApp(home: const Scaffold(body: SponsorProjectCard())),
+      );
+
+      await tester.tap(find.text('Sponsor the project'));
+      await tester.pump();
+      await tester.pump();
+
+      expect(find.byType(SponsorshipDialog), findsOneWidget);
+      expect(find.text(SponsorshipConfig.failedOpenAppMessage), findsOneWidget);
+      expect(find.text('mr.mlokesh7@oksbi'), findsOneWidget);
+
+      await tester.tap(find.byTooltip('Close').first);
+      await tester.pumpAndSettle();
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    testWidgets('Tapping the desktop sponsor card opens Forge Pay once',
+        (WidgetTester tester) async {
+      const channel = MethodChannel('plugins.flutter.io/url_launcher');
+      final calls = <MethodCall>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (call) async {
+        calls.add(call);
+        return true;
+      });
+      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, null);
+      });
+
+      await tester.pumpWidget(
+        _buildTestApp(home: const Scaffold(body: SponsorProjectCard())),
+      );
+
+      await tester.tap(find.text('Sponsor the project'));
+      await tester.pump();
+      await tester.pump();
+
+      expect(find.byType(SponsorshipDialog), findsOneWidget);
+      expect(calls, hasLength(1));
+      expect(calls.single.method, 'launch');
+      expect(
+        (calls.single.arguments as Map)['url'],
+        SponsorshipConfig.paymentPortalUrl,
+      );
+
+      await tester.tap(find.byTooltip('Close').first);
+      await tester.pumpAndSettle();
+      debugDefaultTargetPlatformOverride = null;
+    });
+
     testWidgets('Renders dual UPI payment options and details',
         (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -112,7 +262,7 @@ void main() {
       expect(find.text('Payee: M Lokesh'), findsOneWidget);
 
       // Verify action buttons
-      expect(find.text('Pay with Google Pay'), findsOneWidget);
+      expect(find.text('Open UPI app'), findsOneWidget);
       expect(find.text('Copy Details'), findsOneWidget);
       expect(find.textContaining('Flexible amount'), findsOneWidget);
 
@@ -123,7 +273,7 @@ void main() {
       // Verify PhonePe details and button
       expect(find.text('7603883879@axl'), findsOneWidget);
       expect(find.text('Payee: LOKESH M'), findsOneWidget);
-      expect(find.text('Pay with PhonePe'), findsOneWidget);
+      expect(find.text('Open UPI app'), findsOneWidget);
     });
 
     testWidgets('Opens enlarged QR modal when tapping on QR preview',

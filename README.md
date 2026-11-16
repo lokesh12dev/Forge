@@ -4,14 +4,14 @@
 
 # 🎵 Forge by Lokesh
 
-### The High-Fidelity, Ad-Free Music Player for Android, macOS & Windows
+### The High-Fidelity, Ad-Free Music Player for Android, iOS, macOS & Windows
 
 **Crafted with passion, precision, and modern software engineering by Lokesh.**
 
 [![Release](https://img.shields.io/github/v/release/lokesh12dev/Forge?color=1DB954&label=Latest%20Release&style=for-the-badge)](https://github.com/lokesh12dev/Forge/releases/latest)
 [![Website](https://img.shields.io/badge/Landing%20%26%20Download%20Page-Online-1DB954?style=for-the-badge&logo=googlechrome&logoColor=white)](https://lokesh12dev.github.io/Forge/download/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=for-the-badge)](LICENSE)
-[![Platforms](https://img.shields.io/badge/Platforms-Android%20%7C%20macOS%20%7C%20Windows-lightgrey?style=for-the-badge)](https://lokesh12dev.github.io/Forge/download/)
+[![Platforms](https://img.shields.io/badge/Platforms-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey?style=for-the-badge)](https://lokesh12dev.github.io/Forge/download/)
 [![Flutter](https://img.shields.io/badge/Built%20With-Flutter%20%26%20Dart-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
 
 <br />
@@ -31,16 +31,15 @@ Click below to visit the official landing and download portal or download releas
 > 🌐 **Interactive Download Portal:** **[https://lokesh12dev.github.io/Forge/download/](https://lokesh12dev.github.io/Forge/download/)**  
 > *(Automatically detects your operating system, provides SHA-256 verification hashes, and guides your installation)*
 
-| Platform | Format / Architecture | File Size | Direct Download |
-| :--- | :--- | :--- | :--- |
-| 🍏 **macOS** | Universal Disk Image (`.dmg`) · macOS 12.0+ | **26.1 MB** | [**Forge-v10.7.0-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-macos.dmg) |
-| 🪟 **Windows** | Setup Installer (`-setup.exe`) · x64 | **17.8 MB** | [**Forge-v10.7.0-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-windows-setup.exe) |
-| 🪟 **Windows** | Portable Archive (`.zip`) · x64 | **21.9 MB** | [**Forge-v10.7.0-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-windows-x64.zip) |
-| 🤖 **Android** | Universal APK · All Architectures | **32.0 MB** | [**Forge-v10.7.0-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-universal.apk) |
-| 🤖 **Android** | ARM64 APK · arm64-v8a Devices | **12.7 MB** | [**Forge-v10.7.0-arm64-v8a.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-arm64-v8a.apk) |
-| 🔐 **Checksums** | SHA-256 Digest for All Platforms | **472 B** | [**SHA256SUMS.txt**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/SHA256SUMS.txt) |
-
-*File sizes are shown in binary megabytes (MiB), matching the official download portal; in decimal MB the same assets measure ~5% more (e.g. the DMG is 27.3 decimal MB).*
+| Platform | Format | Latest download |
+| :--- | :--- | :--- |
+| 📱 **iOS** | Unsigned iPhone app (`.ipa`) | [Download Forge for iPhone](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge.ipa) · [installation guide](docs/ios/INSTALL.md) |
+| 🍏 **macOS** | Universal Disk Image (`.dmg`) · macOS 12.0+ | [Download Forge for macOS](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-macos.dmg) |
+| 🪟 **Windows** | Setup installer (`.exe`) · x64 | [Download Forge installer](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-windows-setup.exe) |
+| 🪟 **Windows** | Portable archive (`.zip`) · x64 | [Download portable Forge](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-windows-x64.zip) |
+| 🤖 **Android** | Universal APK | [Download Forge for Android](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-universal.apk) |
+| 🤖 **Android** | ARM64 APK | [Download the smaller ARM64 APK](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-arm64-v8a.apk) |
+| 🔐 **Checksums** | SHA-256 for release files | [Download SHA256SUMS.txt](https://github.com/lokesh12dev/Forge/releases/latest/download/SHA256SUMS.txt) |
 
 ---
 
@@ -49,7 +48,7 @@ Click below to visit the official landing and download portal or download releas
 <details open>
 <summary><b>🍏 macOS Installation Guide</b></summary>
 
-1. Download [**Forge-v10.7.0-macos.dmg**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-macos.dmg).
+1. Download [the latest Forge macOS disk image](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-macos.dmg).
 2. Double-click the `.dmg` file to open it.
 3. Drag **Forge.app** into your **Applications** folder.
 4. **First Launch Note:** Because Forge is built independently and unsigned, macOS Gatekeeper may show an untrusted developer prompt. To open:
@@ -59,9 +58,18 @@ Click below to visit the official landing and download portal or download releas
 </details>
 
 <details open>
+<summary><b>📱 iPhone Installation Guide</b></summary>
+
+1. Download the [latest Forge IPA](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge.ipa).
+2. Follow the [iPhone installation guide](docs/ios/INSTALL.md) to sign and install it with your Apple ID using AltStore/AltServer or Sideloadly.
+
+The downloadable IPA is unsigned; it is not presented as an App Store-ready install.
+</details>
+
+<details open>
 <summary><b>🪟 Windows Installation Guide</b></summary>
 
-1. Download [**Forge-v10.7.0-windows-setup.exe**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-windows-setup.exe) for a guided installer, or download [**Forge-v10.7.0-windows-x64.zip**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-windows-x64.zip) for standalone portable usage.
+1. Download the [latest Windows installer](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-windows-setup.exe) or [portable ZIP](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-windows-x64.zip).
 2. Launch the installer or extract the `.zip` archive to your desired directory.
 3. **SmartScreen Note:** Windows Defender SmartScreen may display an *"Unknown Publisher"* warning. Click **More info**, then click **Run anyway**.
 4. Enjoy high-performance native audio with libmpv integration!
@@ -70,7 +78,7 @@ Click below to visit the official landing and download portal or download releas
 <details open>
 <summary><b>🤖 Android Installation Guide</b></summary>
 
-1. Download [**Forge-v10.7.0-universal.apk**](https://github.com/lokesh12dev/Forge/releases/download/v10.7.0/Forge-v10.7.0-universal.apk) on your device.
+1. Download the [latest universal Android APK](https://github.com/lokesh12dev/Forge/releases/latest/download/Forge-v10.7.3-universal.apk) on your device.
 2. Open the downloaded `.apk` file.
 3. If prompted by Android, enable **Install from unknown sources** for your browser or file manager.
 4. Tap **Install** and launch Forge.
@@ -80,7 +88,7 @@ Click below to visit the official landing and download portal or download releas
 
 ## 🛡️ Verify Your Download (SHA-256)
 
-Every release publishes official cryptographic checksums in `SHA256SUMS.txt`.
+Every release publishes verified SHA-256 checksums in `SHA256SUMS.txt`.
 
 **On macOS / Linux:**
 ```bash
@@ -89,16 +97,8 @@ shasum -a 256 -c SHA256SUMS.txt
 
 **On Windows (PowerShell):**
 ```powershell
-Get-FileHash .\Forge-v10.7.0-windows-setup.exe -Algorithm SHA256
-```
-
-Official Release Checksums for v10.7.0:
-```
-dec1128b0d51dc0438e7f33c3172c47d41d44249a3c84fcd2e671effb3dc0fa3  Forge-v10.7.0-macos.dmg
-b54998e34a2a48f76d7580695569dea18870137c395b3519f20d4ea318fc851e  Forge-v10.7.0-windows-setup.exe
-b808080e0b687b71b97027fa08699a3fe1c28f480f5827dbed0b96b8ad351193  Forge-v10.7.0-windows-x64.zip
-bb6c8a3dcf9318750cedf805eab7b7fc59906b0f3b3471d22495a7a42f2e5852  Forge-v10.7.0-universal.apk
-fc18e2619f13c6ea3c5a5047e066ece4a5adfd3b6353df5e31e4422867269f48  Forge-v10.7.0-arm64-v8a.apk
+Invoke-WebRequest https://github.com/lokesh12dev/Forge/releases/latest/download/SHA256SUMS.txt -OutFile SHA256SUMS.txt
+Get-Content .\SHA256SUMS.txt
 ```
 
 ---
@@ -219,19 +219,12 @@ flutter build apk --release         # Android
 
 ## 🆕 Changelog
 
-### v10.7.0 — UPI Sponsorship Polish *(Latest)*
-- 🎯 **Sponsor button auto-opens Google Pay on Android** — tapping "Sponsor the Project" in Settings immediately triggers Google Pay (or any UPI app)
-- ✅ **Direct UPI launch** — skips `canLaunchUrl()` pre-check; calls `launchUrl()` directly for instant response
-- 📋 **Auto-copy UPI ID on failure** — if no UPI app is installed, UPI ID copies to clipboard automatically with a helpful snackbar
-- 💚 **Dynamic button label** — dialog shows "Pay with Google Pay" or "Pay with PhonePe" based on selected tab
-- 🤖 **Android manifest** — declared `upi://` scheme and all major UPI app packages in `<queries>` block
-- 🍎 **iOS plist** — added `LSApplicationQueriesSchemes` for `upi`, `gpay`, `phonepe`, `paytmmp`
-
-### v10.7.0 — Dual UPI Sponsorship Experience
-- 💰 Dual UPI sponsorship dialog with Google Pay + PhonePe QR codes
-- 📱 QR tap-to-enlarge, Copy UPI ID, Open UPI App
-- 🏷️ Payees verified: `mr.mlokesh7@oksbi` (GPay) · `7603883879@axl` (PhonePe)
-- 🔐 All QR codes decoded and verified — no fabricated UPI IDs
+### v10.7.3 — UPI sponsorship repair *(Latest)*
+- Opens the in-app sponsor dialog with bundled Google Pay and PhonePe QR codes.
+- Mobile taps launch the standard UPI payment intent after the dialog is visible.
+- macOS and Windows open the Forge Pay portal once while keeping the QR dialog available.
+- Removed the unrelated external fundraising profile and its announcement handling.
+- Removed machine-specific QR image fallback paths so the bundled images work on every install.
 
 ---
 

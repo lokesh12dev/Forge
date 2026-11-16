@@ -80,6 +80,7 @@
       navigator.userAgent
     ].filter(Boolean).join(' ').toLowerCase();
 
+    if (/iphone|ipad|ipod/.test(raw)) return 'ios';
     if (/android/.test(raw)) return 'android';
     if (/windows|win32|win64/.test(raw)) return 'windows';
     if (/macintosh|macintel|mac os x|macos/.test(raw)) return 'macos';
@@ -87,7 +88,7 @@
   }
 
   const detected = getDetectedPlatform();
-  const knownPlatforms = ['macos', 'windows', 'android'];
+  const knownPlatforms = ['ios', 'macos', 'windows', 'android'];
   const urlParam = new URLSearchParams(window.location.search).get('os');
   const initialPlatform = knownPlatforms.includes(urlParam) ? urlParam : (detected || 'macos');
 
@@ -106,6 +107,7 @@
     detectPills.forEach(function (pill) {
       if (userInitiated) {
         const labels = {
+          ios: 'iPhone edition selected',
           macos: 'macOS edition selected',
           windows: 'Windows edition selected',
           android: 'Android edition selected'
@@ -113,6 +115,7 @@
         pill.innerHTML = `<span class="dot"></span> ${labels[platform] || 'Platform selected'}`;
       } else if (detected) {
         const labels = {
+          ios: 'Detected iPhone — IPA available',
           macos: 'Detected macOS — universal build ready',
           windows: 'Detected Windows — setup & zip ready',
           android: 'Detected Android — universal & arm64 ready'
@@ -160,6 +163,17 @@
     document.querySelectorAll('.release-notes-link').forEach(function (el) {
       el.href = release.htmlUrl;
     });
+
+    // Hydrate iOS asset
+    if (release.ios && release.ios.length) {
+      const ipa = release.ios[0];
+      const linkEl = document.getElementById('ios-ipa-link');
+      if (linkEl && releasesApi.isValidDownloadUrl(ipa.url)) linkEl.href = ipa.url;
+      const sizeEl = document.getElementById('ios-ipa-size');
+      if (sizeEl) sizeEl.innerHTML = `${ipa.sizeFormatted} <i>·</i> iOS 15+`;
+      const csEl = document.getElementById('ios-ipa-checksum');
+      if (csEl && ipa.sha256) csEl.textContent = ipa.sha256;
+    }
 
     if (release.checksumsUrl) {
       document.querySelectorAll('.checksum-file-link').forEach(function (el) {

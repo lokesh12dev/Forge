@@ -1696,7 +1696,7 @@ h2.display { font-size: clamp(34px, 4.4vw, 58px); }
 /* Platform Switcher Tabs */
 .device-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   margin: 32px 0 8px;
   padding: 6px;

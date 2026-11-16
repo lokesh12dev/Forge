@@ -133,20 +133,22 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
-      - name: Publish GitHub Release with IPA
+      - name: Upload IPA to the matching Forge release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           VERSION=$(plutil -extract CFBundleShortVersionString raw verify/Payload/Runner.app/Info.plist)
-          BUILD=$(plutil -extract CFBundleVersion raw verify/Payload/Runner.app/Info.plist)
-          TAG="ios-v${VERSION}-${BUILD}"
-          git config user.name "lokesh12dev"
-          git config user.email "actions@github.com"
-          git tag "$TAG" "$GITHUB_SHA"
-          git push origin "$TAG"
-          gh release create "$TAG" \
+          TAG="v${VERSION}"
+          gh release upload "$TAG" \
             Forge.ipa \
             docs/ios/INSTALL.md \
-            --title "Forge $VERSION for iPhone" \
-            --notes-file verify/REPORT.md \
-            --latest
+            verify/REPORT.md \
+            --clobber
+
+          mkdir release-assets
+          gh release download "$TAG" --repo lokesh12dev/Forge --dir release-assets
+          cd release-assets
+          sha256sum Forge.ipa Forge-* > SHA256SUMS.txt
+          gh release upload "$TAG" SHA256SUMS.txt \
+            --repo lokesh12dev/Forge \
+            --clobber

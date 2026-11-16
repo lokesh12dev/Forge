@@ -49,7 +49,3 @@ const commonBarContentPadding = EdgeInsets.symmetric(
 );
 
 const commonPlaylistArtworkDivision = 1.75;
-
-/// Centralized sponsorship link. Every in-app sponsor action must use this
-/// single Forge Pay profile so there are no conflicting or stale sponsor URLs.
-const sponsorshipUrl = 'https://lokesh12dev.github.io/Forge/pay/';

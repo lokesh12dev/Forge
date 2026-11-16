@@ -19,10 +19,7 @@
  *     please visit: https://github.com/lokesh12dev/Forge
  */
 
-enum UpiPaymentMethodType {
-  googlePay,
-  phonePe,
-}
+enum UpiPaymentMethodType { googlePay, phonePe }
 
 class UpiPaymentMethod {
   const UpiPaymentMethod({
@@ -30,10 +27,8 @@ class UpiPaymentMethod {
     required this.title,
     required this.subtitle,
     required this.assetPath,
-    required this.externalFallbackPath,
     required this.upiId,
     required this.payeeName,
-    required this.rawQrUri,
     this.note = 'Support Forge by Lokesh',
   });
 
@@ -41,11 +36,9 @@ class UpiPaymentMethod {
   final String title;
   final String subtitle;
   final String assetPath;
-  final String externalFallbackPath;
   final String upiId;
   final String payeeName;
   final String note;
-  final String rawQrUri;
 
   /// Flexible UPI Payment URI without any fixed amount parameter.
   /// Standard format:
@@ -73,35 +66,28 @@ class SponsorshipConfig {
   static const String heading = 'Support Forge';
   static const String description =
       'Forge is built with passion. Your support helps us improve the experience, build new features and keep the project growing.';
-  static const String appreciationMessage =
-      'Thank you for supporting Forge by Lokesh. Your contribution is appreciated!';
   static const String failedOpenAppMessage =
-      'Unable to open a UPI application? Scan the QR code using your preferred UPI app.';
+      'No compatible UPI app opened. Scan the QR code or copy the UPI ID.';
+  static const String paymentPortalUrl =
+      'https://lokesh12dev.github.io/Forge/pay/';
 
   static const googlePay = UpiPaymentMethod(
     type: UpiPaymentMethodType.googlePay,
     title: 'Google Pay',
-    subtitle: 'Scan and pay using Google Pay or any compatible UPI application.',
+    subtitle: 'Scan with Google Pay or any compatible UPI application.',
     assetPath: 'assets/payments/upigpay.jpeg',
-    externalFallbackPath: '/Users/m.lokesh/Downloads/upigpay.jpeg',
     upiId: 'mr.mlokesh7@oksbi',
     payeeName: 'M Lokesh',
-    rawQrUri: 'upi://pay?pa=mr.mlokesh7@oksbi&pn=M%20Lokesh&aid=uGICAgKDwx_K9bw',
   );
 
   static const phonePe = UpiPaymentMethod(
     type: UpiPaymentMethodType.phonePe,
     title: 'PhonePe',
-    subtitle: 'Scan and pay using PhonePe or any compatible UPI application.',
+    subtitle: 'Scan with PhonePe or any compatible UPI application.',
     assetPath: 'assets/payments/phoneupi.jpeg',
-    externalFallbackPath: '/Users/m.lokesh/Downloads/phoneupi.jpeg',
     upiId: '7603883879@axl',
     payeeName: 'LOKESH M',
-    rawQrUri: 'upi://pay?pa=7603883879@axl&pn=LOKESH%20%20M&mc=0000&mode=02&purpose=00',
   );
 
-  static const List<UpiPaymentMethod> methods = [
-    googlePay,
-    phonePe,
-  ];
+  static const List<UpiPaymentMethod> methods = [googlePay, phonePe];
 }

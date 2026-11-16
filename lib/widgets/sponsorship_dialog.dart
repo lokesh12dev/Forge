@@ -19,27 +19,33 @@
  *     please visit: https://github.com/lokesh12dev/Forge
  */
 
-import 'dart:io';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forge/constants/payment_constants.dart';
+import 'package:forge/utilities/platform_utils.dart';
 import 'package:forge/utilities/url_launcher.dart' as forge_launcher;
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Opens the dedicated Forge Sponsorship dialog.
-Future<void> showSponsorshipDialog(BuildContext context) {
+Future<void> showSponsorshipDialog(
+  BuildContext context, {
+  bool autoLaunchPayment = false,
+}) {
   return showDialog<void>(
     context: context,
     // ignore: avoid_redundant_argument_values
-    useRootNavigator: true, // Required: ensures dialog renders above NavShell/MiniPlayer
-    builder: (BuildContext dialogContext) => const SponsorshipDialog(),
+    useRootNavigator:
+        true, // Required: ensures dialog renders above NavShell/MiniPlayer
+    builder: (BuildContext dialogContext) =>
+        SponsorshipDialog(autoLaunchPayment: autoLaunchPayment),
   );
 }
 
 class SponsorshipDialog extends StatefulWidget {
-  const SponsorshipDialog({super.key});
+  const SponsorshipDialog({super.key, this.autoLaunchPayment = false});
+
+  final bool autoLaunchPayment;
 
   @override
   State<SponsorshipDialog> createState() => _SponsorshipDialogState();
@@ -52,6 +58,16 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
 
   UpiPaymentMethod get _selectedMethod =>
       SponsorshipConfig.methods[_selectedMethodIndex];
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.autoLaunchPayment) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _openUpiApp();
+      });
+    }
+  }
 
   Future<void> _copyToClipboard(String text, String label) async {
     try {
@@ -77,6 +93,21 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
   }
 
   Future<void> _openUpiApp() async {
+    if (!isMobilePlatform) {
+      try {
+        await forge_launcher.launchURL(
+          Uri.parse(SponsorshipConfig.paymentPortalUrl),
+        );
+      } catch (_) {}
+      if (mounted) {
+        setState(() {
+          _statusMessage = 'Forge Pay opened in your browser.';
+          _isErrorMessage = false;
+        });
+      }
+      return;
+    }
+
     final uri = _selectedMethod.paymentUri;
     try {
       final launched = await launchUrl(
@@ -86,7 +117,8 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
       if (launched) {
         if (!mounted) return;
         setState(() {
-          _statusMessage = SponsorshipConfig.appreciationMessage;
+          _statusMessage =
+              'UPI app opened. Confirm the payee and amount before paying.';
           _isErrorMessage = false;
         });
         return;
@@ -95,29 +127,23 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
       // Intent launch failed or unsupported on this platform (e.g. desktop)
     }
 
-    // On desktop platforms, launch the web payment portal directly
+    // Emulators and devices without a UPI app still need a working payment
+    // route. Keep the QR in the dialog and open Forge Pay in the browser.
+    var portalLaunched = false;
     try {
-      await forge_launcher.launchURL(
-        Uri.parse('https://lokesh12dev.github.io/Forge/pay/'),
+      portalLaunched = await launchUrl(
+        Uri.parse(SponsorshipConfig.paymentPortalUrl),
+        mode: LaunchMode.externalApplication,
       );
     } catch (_) {}
 
-    // If opening UPI app directly didn't succeed, handle gracefully
     if (!mounted) return;
     setState(() {
-      _statusMessage = SponsorshipConfig.failedOpenAppMessage;
+      _statusMessage = portalLaunched
+          ? 'No UPI app was found. Forge Pay opened in your browser.'
+          : SponsorshipConfig.failedOpenAppMessage;
       _isErrorMessage = false;
     });
-    // Also copy UPI ID to clipboard to assist the user
-    await Clipboard.setData(ClipboardData(text: _selectedMethod.upiId));
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'UPI ID ${_selectedMethod.upiId} copied! Scan the QR or complete payment.',
-        ),
-      ),
-    );
   }
 
   void _showEnlargedQr(BuildContext context, UpiPaymentMethod method) {
@@ -208,42 +234,31 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
     return Image.asset(
       method.assetPath,
       fit: BoxFit.contain,
-      errorBuilder: (context, error, stackTrace) {
-        if (!kIsWeb) {
-          final file = File(method.externalFallbackPath);
-          if (file.existsSync()) {
-            return Image.file(file, fit: BoxFit.contain);
-          }
-        }
-        return Container(
-          height: 180,
-          width: 180,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.black26,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.broken_image, size: 40, color: Colors.grey),
-              const SizedBox(height: 8),
-              const Text(
-                'QR Image not loaded',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                method.upiId,
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+      errorBuilder: (context, error, stackTrace) => Container(
+        height: 180,
+        width: 180,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.black26,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.broken_image, size: 40, color: Colors.grey),
+            const SizedBox(height: 8),
+            const Text(
+              'QR Image not loaded',
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              method.upiId,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -317,9 +332,8 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF19E28A).withValues(
-                                  alpha: 0.15,
-                                ),
+                                color: const Color(0xFF19E28A)
+                                    .withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: const Text(
@@ -388,20 +402,17 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                           duration: const Duration(milliseconds: 200),
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            color:
-                                isSelected
-                                    ? const Color(
-                                      0xFF19E28A,
-                                    ).withValues(alpha: 0.18)
-                                    : Colors.transparent,
+                            color: isSelected
+                                ? const Color(0xFF19E28A)
+                                      .withValues(alpha: 0.18)
+                                : Colors.transparent,
                             borderRadius: BorderRadius.circular(10),
-                            border:
-                                isSelected
-                                    ? Border.all(
-                                      color: const Color(0xFF19E28A),
-                                      width: 1.5,
-                                    )
-                                    : Border.all(color: Colors.transparent),
+                            border: isSelected
+                                ? Border.all(
+                                    color: const Color(0xFF19E28A),
+                                    width: 1.5,
+                                  )
+                                : Border.all(color: Colors.transparent),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -411,10 +422,9 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                                     ? Icons.account_balance_wallet_outlined
                                     : Icons.qr_code_scanner,
                                 size: 18,
-                                color:
-                                    isSelected
-                                        ? const Color(0xFF19E28A)
-                                        : colorScheme.onSurfaceVariant,
+                                color: isSelected
+                                    ? const Color(0xFF19E28A)
+                                    : colorScheme.onSurfaceVariant,
                               ),
                               const SizedBox(width: 6),
                               Flexible(
@@ -424,14 +434,12 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontSize: 14,
-                                    fontWeight:
-                                        isSelected
-                                            ? FontWeight.w700
-                                            : FontWeight.w500,
-                                    color:
-                                        isSelected
-                                            ? colorScheme.onSurface
-                                            : colorScheme.onSurfaceVariant,
+                                    fontWeight: isSelected
+                                        ? FontWeight.w700
+                                        : FontWeight.w500,
+                                    color: isSelected
+                                        ? colorScheme.onSurface
+                                        : colorScheme.onSurfaceVariant,
                                   ),
                                 ),
                               ),
@@ -574,8 +582,8 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                             tooltip: 'Copy UPI ID',
                             splashRadius: 20,
                             color: const Color(0xFF19E28A),
-                            onPressed:
-                                () => _copyToClipboard(method.upiId, 'UPI ID'),
+                            onPressed: () =>
+                                _copyToClipboard(method.upiId, 'UPI ID'),
                           ),
                         ],
                       ),
@@ -617,11 +625,10 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                 children: [
                   Expanded(
                     child: OutlinedButton.icon(
-                      onPressed:
-                          () => _copyToClipboard(
-                            method.paymentDetails,
-                            'Payment Details',
-                          ),
+                      onPressed: () => _copyToClipboard(
+                        method.paymentDetails,
+                        'Payment Details',
+                      ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 13),
                         side: BorderSide(
@@ -660,7 +667,7 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                         color: Colors.black,
                       ),
                       label: Text(
-                        'Pay with ${_selectedMethod.title}',
+                        isMobilePlatform ? 'Open UPI app' : 'Open Forge Pay',
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -681,16 +688,14 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                     vertical: 10,
                   ),
                   decoration: BoxDecoration(
-                    color:
-                        _isErrorMessage
-                            ? colorScheme.errorContainer.withValues(alpha: 0.3)
-                            : const Color(0xFF19E28A).withValues(alpha: 0.15),
+                    color: _isErrorMessage
+                        ? colorScheme.errorContainer.withValues(alpha: 0.3)
+                        : const Color(0xFF19E28A).withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color:
-                          _isErrorMessage
-                              ? colorScheme.error.withValues(alpha: 0.5)
-                              : const Color(0xFF19E28A).withValues(alpha: 0.4),
+                      color: _isErrorMessage
+                          ? colorScheme.error.withValues(alpha: 0.5)
+                          : const Color(0xFF19E28A).withValues(alpha: 0.4),
                     ),
                   ),
                   child: Row(
@@ -700,10 +705,9 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                             ? Icons.info_outline
                             : Icons.check_circle_outline,
                         size: 18,
-                        color:
-                            _isErrorMessage
-                                ? colorScheme.error
-                                : const Color(0xFF19E28A),
+                        color: _isErrorMessage
+                            ? colorScheme.error
+                            : const Color(0xFF19E28A),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
@@ -712,10 +716,9 @@ class _SponsorshipDialogState extends State<SponsorshipDialog> {
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            color:
-                                _isErrorMessage
-                                    ? colorScheme.onErrorContainer
-                                    : colorScheme.onSurface,
+                            color: _isErrorMessage
+                                ? colorScheme.onErrorContainer
+                                : colorScheme.onSurface,
                           ),
                         ),
                       ),

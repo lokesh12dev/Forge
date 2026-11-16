@@ -173,9 +173,12 @@ class DesktopTopBar extends StatelessWidget {
                 onPressed: history.forward,
               ),
               const Spacer(),
-              _ForgeBrandTitle(
-                onTap: onAbout ??
-                    () => NavigationManager.router.go('/settings/about'),
+              Material(
+                color: Colors.transparent,
+                child: _ForgeBrandTitle(
+                  onTap: onAbout ??
+                      () => NavigationManager.router.go('/settings/about'),
+                ),
               ),
               const Spacer(),
               if (onAbout != null) ...[
